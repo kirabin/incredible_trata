@@ -10,13 +10,14 @@
 		EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493B27268C9D0055292D /* AppDelegate.swift */; };
 		EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493D27268C9D0055292D /* SceneDelegate.swift */; };
 		EA3F494027268C9D0055292D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493F27268C9D0055292D /* ViewController.swift */; };
-		EA3F494327268C9D0055292D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3F494127268C9D0055292D /* Main.storyboard */; };
 		EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */; };
 		EA3F494827268CA00055292D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA3F494727268CA00055292D /* Assets.xcassets */; };
-		EA3F494B27268CA00055292D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3F494927268CA00055292D /* LaunchScreen.storyboard */; };
 		EA3F495627268CA00055292D /* incredible_trataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F495527268CA00055292D /* incredible_trataTests.swift */; };
 		EA3F496027268CA00055292D /* incredible_trataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F495F27268CA00055292D /* incredible_trataUITests.swift */; };
 		EA3F496227268CA00055292D /* incredible_trataUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */; };
+		F68A78662726ABBF00874F0B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78652726ABBF00874F0B /* TabBar.swift */; };
+		F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundImageButton.swift */; };
+		F68A786C2726EA0100874F0B /* SplitRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786B2726EA0100874F0B /* SplitRoundButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,16 +42,17 @@
 		EA3F493B27268C9D0055292D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA3F493D27268C9D0055292D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EA3F493F27268C9D0055292D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EA3F494227268C9D0055292D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA3F494527268C9D0055292D /* incredible_trata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = incredible_trata.xcdatamodel; sourceTree = "<group>"; };
 		EA3F494727268CA00055292D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EA3F494A27268CA00055292D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA3F494C27268CA00055292D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA3F495127268CA00055292D /* incredible_trataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = incredible_trataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F495527268CA00055292D /* incredible_trataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incredible_trataTests.swift; sourceTree = "<group>"; };
 		EA3F495B27268CA00055292D /* incredible_trataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = incredible_trataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F495F27268CA00055292D /* incredible_trataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incredible_trataUITests.swift; sourceTree = "<group>"; };
 		EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incredible_trataUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F68A78652726ABBF00874F0B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		F68A78692726E49F00874F0B /* RoundImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageButton.swift; sourceTree = "<group>"; };
+		F68A786B2726EA0100874F0B /* SplitRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitRoundButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		EA3F493A27268C9D0055292D /* incredible_trata */ = {
 			isa = PBXGroup;
 			children = (
+				F68A78632726AB8C00874F0B /* View */,
 				EA3F497427268E3E0055292D /* Resource */,
 				EA3F497227268DEA0055292D /* Modules */,
 				EA3F497127268DD60055292D /* Common */,
@@ -131,8 +134,6 @@
 		EA3F496E27268D900055292D /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				EA3F494927268CA00055292D /* LaunchScreen.storyboard */,
-				EA3F494127268C9D0055292D /* Main.storyboard */,
 				EA3F493B27268C9D0055292D /* AppDelegate.swift */,
 				EA3F493D27268C9D0055292D /* SceneDelegate.swift */,
 			);
@@ -176,6 +177,24 @@
 				EA3F494C27268CA00055292D /* Info.plist */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		F68A78632726AB8C00874F0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F68A78642726AB9300874F0B /* TabBar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F68A78642726AB9300874F0B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				F68A78652726ABBF00874F0B /* TabBar.swift */,
+				F68A78692726E49F00874F0B /* RoundImageButton.swift */,
+				F68A786B2726EA0100874F0B /* SplitRoundButton.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,9 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3F494B27268CA00055292D /* LaunchScreen.storyboard in Resources */,
 				EA3F494827268CA00055292D /* Assets.xcassets in Resources */,
-				EA3F494327268C9D0055292D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,10 +326,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F68A786C2726EA0100874F0B /* SplitRoundButton.swift in Sources */,
 				EA3F494027268C9D0055292D /* ViewController.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
+				F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */,
+				F68A78662726ABBF00874F0B /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,25 +367,6 @@
 			targetProxy = EA3F495C27268CA00055292D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		EA3F494127268C9D0055292D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA3F494227268C9D0055292D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EA3F494927268CA00055292D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA3F494A27268CA00055292D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EA3F496327268CA00055292D /* Debug */ = {
@@ -496,7 +497,6 @@
 				INFOPLIST_FILE = incredible_trata/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -524,7 +524,6 @@
 				INFOPLIST_FILE = incredible_trata/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
