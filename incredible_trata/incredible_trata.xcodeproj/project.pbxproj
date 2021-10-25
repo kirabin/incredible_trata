@@ -101,13 +101,11 @@
 		EA3F493A27268C9D0055292D /* incredible_trata */ = {
 			isa = PBXGroup;
 			children = (
-				EA3F493B27268C9D0055292D /* AppDelegate.swift */,
-				EA3F493D27268C9D0055292D /* SceneDelegate.swift */,
-				EA3F493F27268C9D0055292D /* ViewController.swift */,
-				EA3F494127268C9D0055292D /* Main.storyboard */,
-				EA3F494727268CA00055292D /* Assets.xcassets */,
-				EA3F494927268CA00055292D /* LaunchScreen.storyboard */,
-				EA3F494C27268CA00055292D /* Info.plist */,
+				EA3F497427268E3E0055292D /* Resource */,
+				EA3F497227268DEA0055292D /* Modules */,
+				EA3F497127268DD60055292D /* Common */,
+				EA3F497027268DC90055292D /* Models */,
+				EA3F496E27268D900055292D /* Application */,
 				EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */,
 			);
 			path = incredible_trata;
@@ -128,6 +126,56 @@
 				EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */,
 			);
 			path = incredible_trataUITests;
+			sourceTree = "<group>";
+		};
+		EA3F496E27268D900055292D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				EA3F494927268CA00055292D /* LaunchScreen.storyboard */,
+				EA3F494127268C9D0055292D /* Main.storyboard */,
+				EA3F493B27268C9D0055292D /* AppDelegate.swift */,
+				EA3F493D27268C9D0055292D /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		EA3F497027268DC90055292D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EA3F497327268E1A0055292D /* Main */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EA3F497127268DD60055292D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EA3F497227268DEA0055292D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		EA3F497327268E1A0055292D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EA3F493F27268C9D0055292D /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		EA3F497427268E3E0055292D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				EA3F494727268CA00055292D /* Assets.xcassets */,
+				EA3F494C27268CA00055292D /* Info.plist */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
