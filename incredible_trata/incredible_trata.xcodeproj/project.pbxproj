@@ -493,7 +493,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B5MHTW4TA8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = incredible_trata/Info.plist;
+				INFOPLIST_FILE = incredible_trata/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -521,7 +521,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B5MHTW4TA8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = incredible_trata/Info.plist;
+				INFOPLIST_FILE = incredible_trata/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
