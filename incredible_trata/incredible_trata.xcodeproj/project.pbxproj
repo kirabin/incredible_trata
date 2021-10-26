@@ -18,6 +18,7 @@
 		F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78652726ABBF00874F0B /* AddItemBar.swift */; };
 		F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundImageButton.swift */; };
 		F68A786E2727EAED00874F0B /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786D2727EAED00874F0B /* RoundTextField.swift */; };
+		F68A78722728523500874F0B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78712728523400874F0B /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		F68A78652726ABBF00874F0B /* AddItemBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBar.swift; sourceTree = "<group>"; };
 		F68A78692726E49F00874F0B /* RoundImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageButton.swift; sourceTree = "<group>"; };
 		F68A786D2727EAED00874F0B /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
+		F68A78712728523400874F0B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				EA3F494727268CA00055292D /* Assets.xcassets */,
 				EA3F494C27268CA00055292D /* Info.plist */,
+				F68A78712728523400874F0B /* Color.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3F494027268C9D0055292D /* ViewController.swift in Sources */,
+				F68A78722728523500874F0B /* Color.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,

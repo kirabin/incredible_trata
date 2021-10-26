@@ -11,34 +11,42 @@ import UIKit
 // TODO: setup "Created by" to change automatically
 class AddItemBar: UIView {
     private let addButton: UIButton = {
-        let button = RoundImageButton(image: UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), color: UIColor(named: "addButtonBG") ?? .red)
+        let button = RoundImageButton(
+                        image: UIImage(systemName: "plus",
+                                       withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                        color: Color.addButtonBG)
+
         button.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
         return button
     }()
     
     private let typeButton: UIButton = {
-        let button = RoundImageButton(image: UIImage(systemName: "house", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), color: UIColor(named: "inputBG") ?? .red)
-        button.tintColor = UIColor(named: "inputFG") ?? .red
+        let button = RoundImageButton(
+                        image: UIImage(systemName: "house",
+                                       withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                        color: Color.inputBG)
+
+        button.tintColor = Color.inputFG
         return button
     }()
     
     private let noteField: RoundTextField = {
-        let field = RoundTextField(BGColor: UIColor(named: "inputBG") ?? .red)
-        field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        field.attributedPlaceholder = NSAttributedString(
+            let field = RoundTextField(BGColor: Color.inputBG)
+            field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+            field.attributedPlaceholder = NSAttributedString(
             string: "Заметка",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "inputFG") ?? .red]
+            attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
         return field
     }()
 
     private let priceField: UITextField = {
-        let field = RoundTextField(BGColor: UIColor(named: "inputBG") ?? .red)
+        let field = RoundTextField(BGColor: Color.inputBG)
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.attributedPlaceholder = NSAttributedString(
             string: "$0",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "inputFG") ?? .red]
+            attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
         return field
     }()
@@ -50,14 +58,17 @@ class AddItemBar: UIView {
         stack.alignment = .fill
         stack.spacing = Constants.stackSpacing
         stack.isLayoutMarginsRelativeArrangement = true
-        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: Constants.stackPadding, leading: Constants.stackPadding, bottom: Constants.stackPadding, trailing: Constants.stackPadding)
+        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: Constants.stackPadding,
+                                                                 leading: Constants.stackPadding,
+                                                                 bottom: Constants.stackPadding,
+                                                                 trailing: Constants.stackPadding)
         return stack
     }()
 
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = UIColor(named: "mainBG") ?? .red
-        self.layer.shadowColor = UIColor(named: "mainBG")?.cgColor
+        self.backgroundColor = Color.mainBG
+        self.layer.shadowColor = Color.mainBG.cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowOffset = .zero
         self.layer.shadowRadius = 10
@@ -105,7 +116,6 @@ class AddItemBar: UIView {
     }
 }
 
-// TODO: Move colors to assets
 // MARK: - Constants
 extension AddItemBar {
     // TODO: Why use enum for Constants instead of struct? 
@@ -115,6 +125,5 @@ extension AddItemBar {
         static let stackSpacing: CGFloat = 16.0
         static let stackPadding: CGFloat = 15.0
         static let stackCustomSpacing: CGFloat = 2.0
-
     }
 }
