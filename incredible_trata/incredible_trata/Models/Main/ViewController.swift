@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = Constants.backgroundColor
+        view.backgroundColor = UIColor(named: "mainBG") ?? .red
         
         middleView = UIView() // TODO: remove this view
         middleView.backgroundColor = .red.withAlphaComponent(0.6)
@@ -69,12 +69,5 @@ class ViewController: UIViewController {
     private func keyboardWillHide(notification: NSNotification) {
         bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
-    }
-}
-
-// MARK: - Constants
-extension ViewController {
-    private enum Constants {
-        static let backgroundColor = UIColor(red: 17.0 / 255.0, green: 17.0 / 255.0, blue: 17.0 / 255.0, alpha: 1.0)
     }
 }

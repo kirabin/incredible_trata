@@ -11,34 +11,34 @@ import UIKit
 // TODO: setup "Created by" to change automatically
 class AddItemBar: UIView {
     private let addButton: UIButton = {
-        let button = RoundImageButton(image: UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), color: Constants.AddButton.BGColor)
+        let button = RoundImageButton(image: UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), color: UIColor(named: "addButtonBG") ?? .red)
         button.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
         return button
     }()
     
     private let typeButton: UIButton = {
-        let button = RoundImageButton(image: UIImage(systemName: "house", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), color: Constants.darkGreyBGColor)
-        button.tintColor = Constants.greyTextColor
+        let button = RoundImageButton(image: UIImage(systemName: "house", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), color: UIColor(named: "inputBG") ?? .red)
+        button.tintColor = UIColor(named: "inputFG") ?? .red
         return button
     }()
     
     private let noteField: RoundTextField = {
-        let field = RoundTextField(BGColor: Constants.darkGreyBGColor)
+        let field = RoundTextField(BGColor: UIColor(named: "inputBG") ?? .red)
         field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         field.attributedPlaceholder = NSAttributedString(
             string: "Заметка",
-            attributes: [NSAttributedString.Key.foregroundColor: Constants.greyTextColor]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "inputFG") ?? .red]
         )
         return field
     }()
-    
+
     private let priceField: UITextField = {
-        let field = RoundTextField(BGColor: Constants.darkGreyBGColor)
+        let field = RoundTextField(BGColor: UIColor(named: "inputBG") ?? .red)
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.attributedPlaceholder = NSAttributedString(
             string: "$0",
-            attributes: [NSAttributedString.Key.foregroundColor: Constants.greyTextColor]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "inputFG") ?? .red]
         )
         return field
     }()
@@ -56,8 +56,8 @@ class AddItemBar: UIView {
 
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = Constants.backgroundColor
-        self.layer.shadowColor = backgroundColor?.cgColor
+        self.backgroundColor = UIColor(named: "mainBG") ?? .red
+        self.layer.shadowColor = UIColor(named: "mainBG")?.cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowOffset = .zero
         self.layer.shadowRadius = 10
@@ -110,17 +110,11 @@ class AddItemBar: UIView {
 extension AddItemBar {
     // TODO: Why use enum for Constants instead of struct? 
     private enum Constants {
-        static let darkGreyBGColor = UIColor(red: 48 / 255.0, green: 48 / 255.0, blue: 50 / 255.0, alpha: 1.0)
-        static let greyTextColor = UIColor(red: 196 / 255.0, green: 196 / 255.0, blue: 196 / 255.0, alpha: 1.0)
-        static let backgroundColor = UIColor(red: 17.0 / 255.0, green: 17.0 / 255.0, blue: 17.0 / 255.0, alpha: 1.0)
         static let barItemHeight: CGFloat = 50.0
         static let priceFieldWidth: CGFloat = 80.0
         static let stackSpacing: CGFloat = 16.0
         static let stackPadding: CGFloat = 15.0
         static let stackCustomSpacing: CGFloat = 2.0
 
-        enum AddButton {
-            static let BGColor = UIColor(red: 211.0 / 255.0, green: 74.0 / 255.0, blue: 81.0 / 255.0, alpha: 1.0)
-        }
     }
 }
