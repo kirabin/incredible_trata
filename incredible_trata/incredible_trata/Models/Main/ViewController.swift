@@ -7,15 +7,21 @@
 
 import UIKit
 
-
-
-
 class ViewController: UIViewController {
-    var addItemBar: AddItemBar!
-
-    private let backgroundColor = UIColor(red: 17.0 / 255.0, green: 17.0 / 255.0, blue: 17.0 / 255.0, alpha: 1.0)
     
-    // TODO: Difference betwee viewDidLoad and loadView?
+    private lazy var bottomConstraint:NSLayoutConstraint = {
+        let constraint = addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        return constraint
+    }()
+    
+    private let addItemBar: AddItemBar = {
+        let itemBar = AddItemBar()
+        
+        return itemBar
+    }()
+    
+    private var middleView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,38 +31,50 @@ class ViewController: UIViewController {
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = backgroundColor
-        // TODO: add shadow
-        addItemBar = AddItemBar()
+        view.backgroundColor = Constants.backgroundColor
+        
+        middleView = UIView() // TODO: remove this view
+        middleView.backgroundColor = .red.withAlphaComponent(0.6)
+        middleView.layer.cornerRadius = 20
+        
+        view.addSubview(middleView)
         view.addSubview(addItemBar)
         setConstraints()
     }
     
+    private func setConstraints() {
+        addItemBar.translatesAutoresizingMaskIntoConstraints = false
+        middleView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bottomConstraint,
+            addItemBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            addItemBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            middleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            middleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            middleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            middleView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
+        ])
+    }
+    
     @objc
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
-                // TODO: move tabBar only
-                // TODO: get rid of hard codded +20
-                // moves root view up by the distance of keyboard height
-                self.view.frame.origin.y = -keyboardSize.height + 20
+    private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            bottomConstraint.constant = -keyboardSize.height + view.safeAreaInsets.bottom
+            self.view.layoutIfNeeded()  // Updates layout with animation if needed
         }
     }
 
     @objc
-    func keyboardWillHide(notification: NSNotification) {
-            self.view.frame.origin.y = 0
+    private func keyboardWillHide(notification: NSNotification) {
+        bottomConstraint.constant = 0
+        self.view.layoutIfNeeded()
     }
-    
-    func setConstraints() {
-        let padding: CGFloat = 15.0
-        // TODO: how to better set bottom padding?
-        let paddingBottom: CGFloat = padding + 20
-        
-        addItemBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addItemBar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -paddingBottom),
-            addItemBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            addItemBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-        ])
+}
+
+// MARK: - Constants
+extension ViewController {
+    private enum Constants {
+        static let backgroundColor = UIColor(red: 17.0 / 255.0, green: 17.0 / 255.0, blue: 17.0 / 255.0, alpha: 1.0)
     }
 }
