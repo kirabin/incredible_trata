@@ -20,6 +20,7 @@ class AddItemBar: UIView {
     private let addButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldPlusImage = UIImage(systemName: "plus", withConfiguration: boldConfig)
+        //let button = RoundButton(with: boldPlusImage)
         let button = RoundButton(with: boldPlusImage)
         button.backgroundColor = Color.addButtonBG
         button.tintColor = .white
@@ -42,7 +43,6 @@ class AddItemBar: UIView {
         let boldHouseImage = UIImage(systemName: "house", withConfiguration: boldConfig)
         let button = RoundButton(with: boldHouseImage)
         button.backgroundColor = Color.controlBG
-        button.tintColor = .white
         button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         button.tintColor = Color.inputFG
         return button

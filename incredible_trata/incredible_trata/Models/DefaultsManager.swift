@@ -20,6 +20,12 @@ class DefaultsManager {
         CoreDataManager.shared.setUserSettings()
     }
     
+    func populateCoreData() {
+        guard countItems(of: Category.self) == 0 else { return }
+        
+        CoreDataManager.shared.fillingAllCategories()
+        
+    }
     func countItems(of managedObject: NSManagedObject.Type) -> Int {
         let managedContext = CoreDataManager.shared.context
         
