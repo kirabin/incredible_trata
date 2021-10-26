@@ -10,11 +10,9 @@ import UIKit
 
 class RoundImageButton: UIButton {
     var image: UIImage!
-    var height: CGFloat
     var color: UIColor
     
-    init(image: UIImage!, height: CGFloat, color: UIColor) {
-        self.height = height
+    init(image: UIImage!, color: UIColor) {
         self.color = color
         self.image = image
         super.init(frame: .zero)
@@ -29,7 +27,14 @@ class RoundImageButton: UIButton {
     func createButton() {
         self.setImage(image, for: .normal)
         self.tintColor = .white
-        self.layer.cornerRadius = self.height / 2
         self.backgroundColor = color
+        NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalTo: self.widthAnchor)
+        ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = self.frame.height / 2
     }
 }
