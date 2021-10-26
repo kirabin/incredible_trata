@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8329D9022726B0A4000949BB /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D9012726B0A4000949BB /* Cell.swift */; };
+		8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D90C2726BDF0000949BB /* ExtensionVC.swift */; };
+		8329D9122727E9B4000949BB /* customCellCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D9112727E9B4000949BB /* customCellCategories.swift */; };
 		EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493B27268C9D0055292D /* AppDelegate.swift */; };
 		EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493D27268C9D0055292D /* SceneDelegate.swift */; };
 		EA3F494027268C9D0055292D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493F27268C9D0055292D /* ViewController.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8329D9012726B0A4000949BB /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		8329D90C2726BDF0000949BB /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
+		8329D9112727E9B4000949BB /* customCellCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCellCategories.swift; sourceTree = "<group>"; };
 		EA3F493827268C9D0055292D /* incredible_trata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = incredible_trata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F493B27268C9D0055292D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA3F493D27268C9D0055292D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +88,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8329D9002726AFFD000949BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8329D9012726B0A4000949BB /* Cell.swift */,
+				8329D9112727E9B4000949BB /* customCellCategories.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8329D9032726B34B000949BB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8329D90A2726BD97000949BB /* ViewController */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8329D90A2726BD97000949BB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8329D90C2726BDF0000949BB /* ExtensionVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		EA3F492F27268C9D0055292D = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +176,8 @@
 		EA3F497027268DC90055292D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8329D9032726B34B000949BB /* Extensions */,
+				8329D9002726AFFD000949BB /* View */,
 				EA3F497327268E1A0055292D /* Main */,
 			);
 			path = Models;
@@ -331,8 +364,11 @@
 			files = (
 				EA3F494027268C9D0055292D /* ViewController.swift in Sources */,
 				F68A78722728523500874F0B /* Color.swift in Sources */,
+				8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
+				8329D9022726B0A4000949BB /* Cell.swift in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
+				8329D9122727E9B4000949BB /* customCellCategories.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F68A786E2727EAED00874F0B /* RoundTextField.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */,
