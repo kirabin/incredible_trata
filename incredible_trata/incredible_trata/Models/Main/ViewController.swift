@@ -10,21 +10,27 @@ import UIKit
 class MainViewController: UIViewController {
     
     private lazy var bottomConstraint:NSLayoutConstraint = {
-        let constraint = addItemBar
-                            .bottomAnchor
-                            .constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        return constraint
+        addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
     
-    private let addItemBar: AddItemBar = {
-        let itemBar = AddItemBar()
-        return itemBar
-    }()
+    private let addItemBar = AddItemBar()
     
+<<<<<<< HEAD
     let idCell = "idCell"
+=======
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = Color.mainBG
+        view.addSubview(addItemBar)
+        setConstraints()
+    }
+>>>>>>> 919bd2b (Core Data models for Currency & Record)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CurrencyManager.shared.populateIfNeeded()
+        
         NotificationCenter.default
             .addObserver(self,
                          selector: #selector(keyboardWillShow(notification:)),
@@ -35,6 +41,7 @@ class MainViewController: UIViewController {
                          selector: #selector(keyboardWillHide(notification:)),
                          name: UIResponder.keyboardWillHideNotification,
                          object: nil)
+<<<<<<< HEAD
         
         setConstraints()
         self.view.backgroundColor = UIColor.black
@@ -62,6 +69,11 @@ class MainViewController: UIViewController {
 
     func setConstraints() {
         view.addSubview(castomTableView)
+=======
+    }
+
+    private func setConstraints() {
+>>>>>>> 919bd2b (Core Data models for Currency & Record)
         addItemBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             bottomConstraint,

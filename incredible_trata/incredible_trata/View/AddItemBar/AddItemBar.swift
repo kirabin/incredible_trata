@@ -7,33 +7,32 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 // TODO: setup "Created by" to change automatically
 class AddItemBar: UIView {
     private let addButton: UIButton = {
-        let button = RoundImageButton(
-                        image: UIImage(systemName: "plus",
-                                       withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                        color: Color.addButtonBG)
+        let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
+        let boldPlus = UIImage(systemName: "plus", withConfiguration: boldConfig)
+        let button = RoundImageButton(image: boldPlus, color: Color.addButtonBG)
 
-        button.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveRecord), for: .touchUpInside)
         return button
     }()
-    
+
     private let typeButton: UIButton = {
-        let button = RoundImageButton(
-                        image: UIImage(systemName: "house",
-                                       withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                        color: Color.inputBG)
+        let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
+        let boldHouse = UIImage(systemName: "house", withConfiguration: boldConfig)
+        let button = RoundImageButton(image: boldHouse, color: Color.inputBG)
 
         button.tintColor = Color.inputFG
         return button
     }()
-    
+
     private let noteField: RoundTextField = {
-            let field = RoundTextField(BGColor: Color.inputBG)
-            field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-            field.attributedPlaceholder = NSAttributedString(
+        let field = RoundTextField(BGColor: Color.inputBG)
+        field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        field.attributedPlaceholder = NSAttributedString(
             string: "Заметка",
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
@@ -45,7 +44,7 @@ class AddItemBar: UIView {
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.attributedPlaceholder = NSAttributedString(
-            string: "$0",
+            string: "\(SettingsManager.shared.currency.symbol)0",
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
         return field
@@ -80,9 +79,22 @@ class AddItemBar: UIView {
     }
     
     @objc
-    private func addButtonAction() {
-        // TODO: button action
-        print("1")
+    private func saveRecord() {
+        guard let noteFieldValue = noteField.text else { return }
+        guard let priceFieldValue = Int(priceField.text ?? "") else { return }
+        
+        let record = RecordModel(note: noteFieldValue,
+                                 amount: priceFieldValue,
+                                 categoryId: UUID(), // TODO: set proper IDs
+                                 currencyId: SettingsManager.shared.currency.id)
+
+        do {
+            try RecordManager().saveRecord(record: record)
+            noteField.text = ""
+            priceField.text = ""
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 
     private func setupAddItemBarStack() {
@@ -106,11 +118,8 @@ class AddItemBar: UIView {
             addItemBarStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             addItemBarStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             addItemBarStack.topAnchor.constraint(equalTo: topAnchor),
-            
             addButton.widthAnchor.constraint(equalToConstant: Constants.barItemHeight),
-
             typeButton.widthAnchor.constraint(equalToConstant: Constants.barItemHeight),
-
             priceField.widthAnchor.constraint(equalToConstant: Constants.priceFieldWidth)
         ])
     }
