@@ -70,13 +70,12 @@ class MainViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([castomTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0), castomTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0), castomTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0), castomTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -65.0)])
     }
-        
     override func loadView() {
         view = UIView()
         view.backgroundColor = Color.mainBG
         view.addSubview(addItemBar)
     }
-    
+
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize =
@@ -91,5 +90,7 @@ class MainViewController: UIViewController {
     private func keyboardWillHide(notification: NSNotification) {
         bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
+
     }
 }
+
