@@ -9,7 +9,6 @@ import UIKit
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return itemsInfoArrays[section].count
 
@@ -21,6 +20,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             cell.indexCell["First"]! = true
+            
         }
         if  indexPath.row == i - 1 {
             cell.indexCell["Last"]! = true

@@ -75,7 +75,6 @@ class MainViewController: UIViewController {
         view = UIView()
         view.backgroundColor = Color.mainBG
         view.addSubview(addItemBar)
-        setConstraints()
     }
     
     @objc
