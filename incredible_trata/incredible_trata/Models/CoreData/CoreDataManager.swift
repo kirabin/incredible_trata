@@ -65,12 +65,13 @@ class CoreDataManager {
         record.note = note
         record.amount = amount
         record.currency = currency
-
+        
+        currency.addToRecords(record)
         try context.save()
         
         let records = try! context.fetch(Record.fetchRequest())
         for record in records {
-            print(record.note, record.amount, record.currency?.name)
+            print(record.note!, record.amount, record.currency!.name!)
         }
     }
     

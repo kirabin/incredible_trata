@@ -13,5 +13,3 @@ import CoreData
 public class Currency: NSManagedObject {
     
 }
-
-// TODO: Create inverse relationship
