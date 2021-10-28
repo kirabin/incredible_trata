@@ -23,11 +23,15 @@
 		F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundImageButton.swift */; };
 		F68A786E2727EAED00874F0B /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786D2727EAED00874F0B /* RoundTextField.swift */; };
 		F68A78722728523500874F0B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78712728523400874F0B /* Color.swift */; };
-		F6F95FB02729404A005202E2 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FAF2729404A005202E2 /* RecordManager.swift */; };
-		F6F95FB227294D06005202E2 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FB127294D06005202E2 /* CurrencyManager.swift */; };
-		F6F95FB427296F24005202E2 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FB327296F24005202E2 /* SettingsManager.swift */; };
-		F6F95FB627297563005202E2 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FB527297562005202E2 /* CurrencyModel.swift */; };
-		F6F95FB8272975D9005202E2 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FB7272975D9005202E2 /* RecordModel.swift */; };
+		F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC1272995E8005202E2 /* CoreDataManager.swift */; };
+		F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC327299979005202E2 /* DefaultsManager.swift */; };
+		F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */; };
+		F6F95FD3272A7AD5005202E2 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FCF272A7AD5005202E2 /* Currency+CoreDataProperties.swift */; };
+		F6F95FD4272A7AD5005202E2 /* Record+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FD0272A7AD5005202E2 /* Record+CoreDataClass.swift */; };
+		F6F95FD5272A7AD5005202E2 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */; };
+		F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */; };
+		F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */; };
+		F6F95FE7272A9C1D005202E2 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FE6272A9C1D005202E2 /* NSManagedObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,11 +72,15 @@
 		F68A78692726E49F00874F0B /* RoundImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageButton.swift; sourceTree = "<group>"; };
 		F68A786D2727EAED00874F0B /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		F68A78712728523400874F0B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		F6F95FAF2729404A005202E2 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
-		F6F95FB127294D06005202E2 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
-		F6F95FB327296F24005202E2 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
-		F6F95FB527297562005202E2 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
-		F6F95FB7272975D9005202E2 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
+		F6F95FC1272995E8005202E2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F6F95FC327299979005202E2 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
+		F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F6F95FCF272A7AD5005202E2 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6F95FD0272A7AD5005202E2 /* Record+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6F95FE6272A9C1D005202E2 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,12 +216,10 @@
 				8357475B272A901800FF0A3E /* View */,
 				8357475A272A8E4F00FF0A3E /* ViewModel */,
 				8329D9032726B34B000949BB /* Extensions */,
+				F6F95FCD272A7AAE005202E2 /* CoreData */,
 				EA3F497327268E1A0055292D /* Main */,
-				F6F95FAF2729404A005202E2 /* RecordManager.swift */,
-				F6F95FB127294D06005202E2 /* CurrencyManager.swift */,
-				F6F95FB327296F24005202E2 /* SettingsManager.swift */,
-				F6F95FB527297562005202E2 /* CurrencyModel.swift */,
-				F6F95FB7272975D9005202E2 /* RecordModel.swift */,
+				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
+				F6F95FE6272A9C1D005202E2 /* NSManagedObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +272,20 @@
 				F68A786D2727EAED00874F0B /* RoundTextField.swift */,
 			);
 			path = AddItemBar;
+			sourceTree = "<group>";
+		};
+		F6F95FCD272A7AAE005202E2 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F6F95FC1272995E8005202E2 /* CoreDataManager.swift */,
+				F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */,
+				F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */,
+				F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */,
+				F6F95FCF272A7AD5005202E2 /* Currency+CoreDataProperties.swift */,
+				F6F95FD0272A7AD5005202E2 /* Record+CoreDataClass.swift */,
+				F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,18 +421,23 @@
 				83CF019E272A965200E76996 /* CustomCellCategory.swift in Sources */,
 				8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */,
 				F6F95FB227294D06005202E2 /* CurrencyManager.swift in Sources */,
+				F6F95FD3272A7AD5005202E2 /* Currency+CoreDataProperties.swift in Sources */,
+				F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */,
 				EA3F494027268C9D0055292D /* ViewController.swift in Sources */,
-				F6F95FB627297563005202E2 /* CurrencyModel.swift in Sources */,
 				F68A78722728523500874F0B /* Color.swift in Sources */,
-				F6F95FB02729404A005202E2 /* RecordManager.swift in Sources */,
-				F6F95FB8272975D9005202E2 /* RecordModel.swift in Sources */,
+				F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
+				F6F95FD5272A7AD5005202E2 /* Record+CoreDataProperties.swift in Sources */,
+				F6F95FD4272A7AD5005202E2 /* Record+CoreDataClass.swift in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				83CF01A0272A966100E76996 /* CustomCell.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F68A786E2727EAED00874F0B /* RoundTextField.swift in Sources */,
+				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */,
-				F6F95FB427296F24005202E2 /* SettingsManager.swift in Sources */,
+				F6F95FE7272A9C1D005202E2 /* NSManagedObject.swift in Sources */,
+				F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */,
+				F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */,
 				F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */,
 				83CF01A4272A96FC00E76996 /* CastomCellViewModel.swift in Sources */,
 			);

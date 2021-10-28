@@ -7,13 +7,31 @@
 
 import UIKit
 
+<<<<<<< HEAD
 class MainViewController: UIViewController {
     
+=======
+
+// TODO: protocol add..Delegate
+class ViewController: UIViewController {
+//    func addButtonTapped() {
+//        <#code#>
+//    }
+//
+//    func typeButtonTapped() {
+//        <#code#>
+//    }
+
+>>>>>>> 42b4aef (Working model for Record & Currency)
     private lazy var bottomConstraint:NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
     
-    private let addItemBar = AddItemBar()
+    private let addItemBar:AddItemBar = {
+        let bar = AddItemBar()
+//        bar.delegate = self
+        return bar
+    }()
     
 <<<<<<< HEAD
     let idCell = "idCell"
@@ -29,7 +47,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CurrencyManager.shared.populateIfNeeded()
+        DefaultManager.shared.populateCurrencyIfNeeded()
         
         NotificationCenter.default
             .addObserver(self,

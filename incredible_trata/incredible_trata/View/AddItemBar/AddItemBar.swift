@@ -4,13 +4,23 @@
 //
 //  Created by Рябин Кирилл on 25.10.2021.
 //
+// TODO: setup "Created by" to change automatically
 
 import Foundation
 import UIKit
 import CoreData
 
-// TODO: setup "Created by" to change automatically
+// TODO: anyobj?
+protocol AddItemBarDelegate: AnyObject {
+    
+    func addButtonTapped()
+    func typeButtonTapped()
+}
+
+
 class AddItemBar: UIView {
+    weak var delegate: AddItemBarDelegate?
+    
     private let addButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldPlus = UIImage(systemName: "plus", withConfiguration: boldConfig)
@@ -44,7 +54,7 @@ class AddItemBar: UIView {
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.attributedPlaceholder = NSAttributedString(
-            string: "\(SettingsManager.shared.currency.symbol)0",
+            string: "$0",
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
         return field
@@ -78,18 +88,19 @@ class AddItemBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // TODO: delegate pattern
+    //    UITableView delegate
     @objc
     private func saveRecord() {
+        print(1)
         guard let noteFieldValue = noteField.text else { return }
-        guard let priceFieldValue = Int(priceField.text ?? "") else { return }
+        guard let priceFieldValue = Int64(priceField.text ?? "") else { return }
         
-        let record = RecordModel(note: noteFieldValue,
-                                 amount: priceFieldValue,
-                                 categoryId: UUID(), // TODO: set proper IDs
-                                 currencyId: SettingsManager.shared.currency.id)
-
         do {
-            try RecordManager().saveRecord(record: record)
+            // TODO: Add completion handler with result
+            try CoreDataManager.shared.saveRecord(note: noteFieldValue,
+                                                  amount: priceFieldValue,
+                                                  currency: CoreDataManager.shared.getCurrency()!)
             noteField.text = ""
             priceField.text = ""
         } catch let error as NSError {
@@ -136,3 +147,5 @@ extension AddItemBar {
         static let stackCustomSpacing: CGFloat = 2.0
     }
 }
+
+// TODO: make relations between entities
