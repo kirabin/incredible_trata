@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D90C2726BDF0000949BB /* ExtensionVC.swift */; };
+		83CF019E272A965200E76996 /* CustomCellCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019D272A965200E76996 /* CustomCellCategory.swift */; };
+		83CF01A0272A966100E76996 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019F272A966100E76996 /* CustomCell.swift */; };
+		83CF01A2272A969800E76996 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF01A1272A969800E76996 /* MainViewController.swift */; };
+		83CF01A4272A96FC00E76996 /* CastomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF01A3272A96FC00E76996 /* CastomCellViewModel.swift */; };
 		EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493B27268C9D0055292D /* AppDelegate.swift */; };
 		EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493D27268C9D0055292D /* SceneDelegate.swift */; };
-		EA3F494027268C9D0055292D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493F27268C9D0055292D /* ViewController.swift */; };
 		EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */; };
 		EA3F494827268CA00055292D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA3F494727268CA00055292D /* Assets.xcassets */; };
 		EA3F495627268CA00055292D /* incredible_trataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F495527268CA00055292D /* incredible_trataTests.swift */; };
@@ -39,10 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8329D90C2726BDF0000949BB /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
+		83CF019D272A965200E76996 /* CustomCellCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCellCategory.swift; path = View/CustomCellCategory.swift; sourceTree = "<group>"; };
+		83CF019F272A966100E76996 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = View/CustomCell.swift; sourceTree = "<group>"; };
+		83CF01A1272A969800E76996 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = incredible_trata/Models/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
+		83CF01A3272A96FC00E76996 /* CastomCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CastomCellViewModel.swift; path = ViewModel/CastomCellViewModel.swift; sourceTree = "<group>"; };
 		EA3F493827268C9D0055292D /* incredible_trata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = incredible_trata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F493B27268C9D0055292D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA3F493D27268C9D0055292D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EA3F493F27268C9D0055292D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EA3F494527268C9D0055292D /* incredible_trata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = incredible_trata.xcdatamodel; sourceTree = "<group>"; };
 		EA3F494727268CA00055292D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA3F494C27268CA00055292D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +90,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8329D9032726B34B000949BB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8329D90A2726BD97000949BB /* ViewController */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8329D90A2726BD97000949BB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8329D90C2726BDF0000949BB /* ExtensionVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		83574759272A8E2E00FF0A3E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			path = View;
+			sourceTree = "<group>";
+		};
+		8357475A272A8E4F00FF0A3E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				83CF01A3272A96FC00E76996 /* CastomCellViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		8357475B272A901800FF0A3E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				83CF019D272A965200E76996 /* CustomCellCategory.swift */,
+				83CF019F272A966100E76996 /* CustomCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		EA3F492F27268C9D0055292D = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +176,7 @@
 		EA3F495E27268CA00055292D /* incredible_trataUITests */ = {
 			isa = PBXGroup;
 			children = (
+				83574759272A8E2E00FF0A3E /* New Group */,
 				EA3F495F27268CA00055292D /* incredible_trataUITests.swift */,
 				EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */,
 			);
@@ -145,6 +195,9 @@
 		EA3F497027268DC90055292D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8357475B272A901800FF0A3E /* View */,
+				8357475A272A8E4F00FF0A3E /* ViewModel */,
+				8329D9032726B34B000949BB /* Extensions */,
 				EA3F497327268E1A0055292D /* Main */,
 			);
 			path = Models;
@@ -167,7 +220,7 @@
 		EA3F497327268E1A0055292D /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				EA3F493F27268C9D0055292D /* ViewController.swift */,
+				83CF01A1272A969800E76996 /* MainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -329,14 +382,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3F494027268C9D0055292D /* ViewController.swift in Sources */,
 				F68A78722728523500874F0B /* Color.swift in Sources */,
+				83CF01A2272A969800E76996 /* MainViewController.swift in Sources */,
+				83CF019E272A965200E76996 /* CustomCellCategory.swift in Sources */,
+				8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
+				83CF01A0272A966100E76996 /* CustomCell.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F68A786E2727EAED00874F0B /* RoundTextField.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */,
 				F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */,
+				83CF01A4272A96FC00E76996 /* CastomCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
