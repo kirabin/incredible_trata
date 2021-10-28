@@ -7,21 +7,6 @@
 import Foundation
 import CoreData
 
-func deleteAllData(entity: String) {
-    let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
-    fetchRequest.returnsObjectsAsFaults = false
-    
-    do {
-        let results = try managedContext.fetch(fetchRequest)
-        for managedObject in results {
-            managedContext.delete(managedObject)
-        }
-    } catch let error as NSError {
-        print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
-    }
-}
-
 
 class CoreDataManager {
     
@@ -32,8 +17,8 @@ class CoreDataManager {
     static let shared = CoreDataManager()
 
     init() {
-//        deleteAllData(entity: String(describing: Record.self))
-//        deleteAllData(entity: String(describing: Currency.self))
+//        deleteAllData(at: Record.self)
+//        deleteAllData(at: Currency.self)
     }
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -51,14 +36,23 @@ class CoreDataManager {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }
     
+    func deleteAllData(at entity: NSManagedObject.Type) {
+        do {
+            let results = try context.fetch(entity.fetchRequest())
+            for managedObject in results {
+                context.delete(managedObject as! NSManagedObject)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+
     func saveRecord(note: String, amount: Int64, currency: Currency) throws {
         
         let record = Record.create(in: context)
@@ -76,7 +70,7 @@ class CoreDataManager {
     }
     
     func populateCurrency() {
-        for item in Constants.Currency.items {
+        for item in Constants.defaultCurrencyItems {
             let obj = Currency.create(in: context)
             obj.symbol = item.symbol
             obj.name = item.name
@@ -89,47 +83,33 @@ class CoreDataManager {
         }
     }
 
-    func getCurrency() -> Currency? {
-        
-        let settings = try! context.fetch(UserSettings.fetchRequest()) // TODO: try!
-        if settings.count >= 1 {
-            return settings[0].currency
-        }
-        return nil
+    // TODO: make'em safer
+    func getCurrency() -> Currency {
+        let userSettings = try! context.fetch(UserSettings.fetchRequest())
+        return userSettings[0].currency!
     }
     
     func setCurrency() {
-        guard getCurrency() == nil else { return }
-        
         let userSettings = UserSettings.create(in: context)
-        
         let currencies = try! context.fetch(Currency.fetchRequest())
-        userSettings.currency = currencies[0]
-        try! context.save()
+        userSettings.currency = currencies[3]
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 }
 
 // MARK: - Constants
 extension CoreDataManager {
     private enum Constants {
-        
-        enum Record {
-            static let idFieldName = "id"
-            static let creationDateFieldName = "creation_date"
-            static let amountFieldName = "amount"
-            static let noteFieldName = "note"
-        }
-        enum Currency {
-            static let nameFieldName = "name"
-            static let symbolFieldName = "symbol"
-            static let idFieldName = "id"
-            static let items = [
-                (symbol: "$", name: "United State Dollar"),
-                (symbol: "₽", name: "Russian Ruble"),
-                (symbol: "£", name: "British Pound"),
-                (symbol: "¥", name: "Japanese Yen"),
-                (symbol: "€", name: "Euro")
-            ]
-        }
+        static let defaultCurrencyItems = [
+            (symbol: "$", name: "United State Dollar"),
+            (symbol: "₽", name: "Russian Ruble"),
+            (symbol: "£", name: "British Pound"),
+            (symbol: "¥", name: "Japanese Yen"),
+            (symbol: "€", name: "Euro")
+        ]
     }
 }

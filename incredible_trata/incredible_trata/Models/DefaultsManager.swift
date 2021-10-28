@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+
 func countItems(managedObject: NSManagedObject.Type) -> Int {
     let managedContext = CoreDataManager.shared.persistentContainer.viewContext
     
@@ -20,22 +21,14 @@ func countItems(managedObject: NSManagedObject.Type) -> Int {
     return 0
 }
 
-class DefaultManager {
+class DefaultsManager {
     
-    static let shared = DefaultManager()
+    static let shared = DefaultsManager()
     
     func populateCurrencyIfNeeded() {
         guard countItems(managedObject: Currency.self) == 0 else { return }
         
         CoreDataManager.shared.populateCurrency()
         CoreDataManager.shared.setCurrency()
-    }
-    // C
-}
-
-// MARK: - Constants
-extension DefaultManager {
-    private enum Constants {
-        
     }
 }

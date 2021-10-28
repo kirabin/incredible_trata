@@ -54,7 +54,7 @@ class AddItemBar: UIView {
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.attributedPlaceholder = NSAttributedString(
-            string: "$0",
+            string: "\(CoreDataManager.shared.getCurrency().symbol ?? "?")0",
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
         return field
@@ -100,7 +100,7 @@ class AddItemBar: UIView {
             // TODO: Add completion handler with result
             try CoreDataManager.shared.saveRecord(note: noteFieldValue,
                                                   amount: priceFieldValue,
-                                                  currency: CoreDataManager.shared.getCurrency()!)
+                                                  currency: CoreDataManager.shared.getCurrency())
             noteField.text = ""
             priceField.text = ""
         } catch let error as NSError {
@@ -147,5 +147,3 @@ extension AddItemBar {
         static let stackCustomSpacing: CGFloat = 2.0
     }
 }
-
-// TODO: make relations between entities
