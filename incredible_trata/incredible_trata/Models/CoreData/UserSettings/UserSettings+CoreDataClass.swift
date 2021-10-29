@@ -2,7 +2,7 @@
 //  UserSettings+CoreDataClass.swift
 //  incredible_trata
 //
-//  Created by Рябин Кирилл on 28.10.2021.
+//  Created by Ryabin Kirill on 28.10.2021.
 //
 //
 

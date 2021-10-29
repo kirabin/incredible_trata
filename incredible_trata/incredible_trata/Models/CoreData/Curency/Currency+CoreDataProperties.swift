@@ -2,8 +2,7 @@
 //  Currency+CoreDataProperties.swift
 //  incredible_trata
 //
-//  Created by a19658227 on 28.10.2021.
-//
+//  Created by Ryabin Kirill on 28.10.2021.
 //
 
 import Foundation
@@ -20,7 +19,7 @@ extension Currency {
     @NSManaged public var name: String?
     @NSManaged public var symbol: String?
     @NSManaged public var records: NSSet?
-    @NSManaged public var userSettings: NSSet?
+    @NSManaged public var userSettings: UserSettings?
 
 }
 
@@ -38,23 +37,6 @@ extension Currency {
 
     @objc(removeRecords:)
     @NSManaged public func removeFromRecords(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for userSettings
-extension Currency {
-
-    @objc(addUserSettingsObject:)
-    @NSManaged public func addToUserSettings(_ value: UserSettings)
-
-    @objc(removeUserSettingsObject:)
-    @NSManaged public func removeFromUserSettings(_ value: UserSettings)
-
-    @objc(addUserSettings:)
-    @NSManaged public func addToUserSettings(_ values: NSSet)
-
-    @objc(removeUserSettings:)
-    @NSManaged public func removeFromUserSettings(_ values: NSSet)
 
 }
 

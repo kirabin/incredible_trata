@@ -2,7 +2,7 @@
 //  RoundImageButton.swift
 //  incredible_trata
 //
-//  Created by Рябин Кирилл on 25.10.2021.
+//  Created by Ryabin Kirill on 25.10.2021.
 //
 
 import Foundation

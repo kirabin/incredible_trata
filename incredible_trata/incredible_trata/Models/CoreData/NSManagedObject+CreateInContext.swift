@@ -1,8 +1,8 @@
 //
-//  NSManagedObject.swift
+//  NSManagedObject+CreateInContext.swift
 //  incredible_trata
 //
-//  Created by Рябин Кирилл on 28.10.2021.
+//  Created by Ryabin Kirill on 28.10.2021.
 //
 
 import Foundation
@@ -14,4 +14,6 @@ extension NSManagedObject {
         NSEntityDescription.insertNewObject(forEntityName: String(describing: self),
                                             into: context) as! Self
     }
+    
+    // TODO: find or create
 }

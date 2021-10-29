@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Currency" representedClassName=".Currency" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="symbol" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="currency" inverseEntity="Record"/>
-        <relationship name="userSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserSettings" inverseName="currency" inverseEntity="UserSettings"/>
+        <relationship name="userSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSettings" inverseName="currency" inverseEntity="UserSettings"/>
     </entity>
     <entity name="Record" representedClassName=".Record" syncable="YES">
-        <attribute name="amount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="creation_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="amount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="creation_date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="note" attributeType="String"/>
         <relationship name="currency" maxCount="1" deletionRule="Deny" destinationEntity="Currency" inverseName="records" inverseEntity="Currency"/>
     </entity>
     <entity name="UserSettings" representedClassName=".UserSettings" syncable="YES">

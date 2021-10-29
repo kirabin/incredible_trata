@@ -8,13 +8,14 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
     private lazy var bottomConstraint:NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
     
     private lazy var addItemBar:AddItemBar = {
         let bar = AddItemBar()
+        bar.delegate = self
         return bar
     }()
     
@@ -22,7 +23,7 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         
-        DefaultsManager.shared.populateCurrencyIfNeeded()
+        DefaultsManager.shared.populateCoreDataIfNeeded()
         view = UIView()
         view.backgroundColor = Color.mainBG
         view.addSubview(castomTableView)
@@ -32,19 +33,15 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
 
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(keyboardWillShow(notification:)),
-                         name: UIResponder.keyboardWillShowNotification,
-                         object: nil)
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(keyboardWillHide(notification:)),
-                         name: UIResponder.keyboardWillHideNotification,
-                         object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
         
         self.view.backgroundColor = UIColor.black
         castomTableView.delegate = self
@@ -93,5 +90,29 @@ class MainViewController: UIViewController {
         bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
         
+    }
+}
+
+extension MainViewController: AddItemBarDelegate {
+    func addButtonTapped(noteValue: String?, priceValue: String?, completionHandler: () -> Void) {
+        guard let noteValue = noteValue else {return}
+        guard let priceValue = priceValue else {return}
+        guard !priceValue.isEmpty else {return}
+        
+        do {
+            if let currency = CoreDataManager.shared.getCurrency() {
+                
+                try CoreDataManager.shared.saveRecord(note: noteValue,
+                                                      amount: Int64(priceValue) ?? 0,
+                                                      currency: currency)
+                completionHandler()
+            }
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func categoryButtonTapped() {
+        // TODO: implement
     }
 }

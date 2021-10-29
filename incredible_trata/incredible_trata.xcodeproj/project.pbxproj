@@ -30,8 +30,11 @@
 		F6F95FD5272A7AD5005202E2 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */; };
 		F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */; };
 		F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */; };
-		F6F95FE7272A9C1D005202E2 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FE6272A9C1D005202E2 /* NSManagedObject.swift */; };
+		F6F95FE7272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FE6272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift */; };
 		F6FA5C5E272AE58F00C93A19 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FA5C5C272AE58F00C93A19 /* Currency+CoreDataProperties.swift */; };
+		F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FA5C68272BED4D00C93A19 /* CoreDataManager+Record.swift */; };
+		F6FA5C6B272BEDE700C93A19 /* CoreDataManager+Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FA5C6A272BEDE700C93A19 /* CoreDataManager+Currency.swift */; };
+		F6FA5C6D272BEE2600C93A19 /* CoreDataManager+UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FA5C6C272BEE2600C93A19 /* CoreDataManager+UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +82,11 @@
 		F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F6F95FE6272A9C1D005202E2 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
-		F6FA5C5C272AE58F00C93A19 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataProperties.swift"; path = "../../../Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6F95FE6272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+CreateInContext.swift"; sourceTree = "<group>"; };
+		F6FA5C5C272AE58F00C93A19 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6FA5C68272BED4D00C93A19 /* CoreDataManager+Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Record.swift"; sourceTree = "<group>"; };
+		F6FA5C6A272BEDE700C93A19 /* CoreDataManager+Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Currency.swift"; sourceTree = "<group>"; };
+		F6FA5C6C272BEE2600C93A19 /* CoreDataManager+UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+UserSettings.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,13 +219,12 @@
 		EA3F497027268DC90055292D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
 				8357475B272A901800FF0A3E /* View */,
 				8357475A272A8E4F00FF0A3E /* ViewModel */,
 				8329D9032726B34B000949BB /* Extensions */,
 				F6F95FCD272A7AAE005202E2 /* CoreData */,
 				EA3F497327268E1A0055292D /* Main */,
-				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
-				F6F95FE6272A9C1D005202E2 /* NSManagedObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -277,15 +282,43 @@
 		F6F95FCD272A7AAE005202E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				F6F95FE6272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift */,
 				F6F95FC1272995E8005202E2 /* CoreDataManager.swift */,
-				F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */,
-				F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */,
-				F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */,
-				F6FA5C5C272AE58F00C93A19 /* Currency+CoreDataProperties.swift */,
-				F6F95FD0272A7AD5005202E2 /* Record+CoreDataClass.swift */,
-				F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */,
+				F6FA5C61272BE8C600C93A19 /* Record */,
+				F6FA5C60272BE86800C93A19 /* Curency */,
+				F6FA5C5F272BE85900C93A19 /* UserSettings */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F6FA5C5F272BE85900C93A19 /* UserSettings */ = {
+			isa = PBXGroup;
+			children = (
+				F6F95FDE272A8C5C005202E2 /* UserSettings+CoreDataClass.swift */,
+				F6F95FDF272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift */,
+				F6FA5C6C272BEE2600C93A19 /* CoreDataManager+UserSettings.swift */,
+			);
+			path = UserSettings;
+			sourceTree = "<group>";
+		};
+		F6FA5C60272BE86800C93A19 /* Curency */ = {
+			isa = PBXGroup;
+			children = (
+				F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */,
+				F6FA5C5C272AE58F00C93A19 /* Currency+CoreDataProperties.swift */,
+				F6FA5C6A272BEDE700C93A19 /* CoreDataManager+Currency.swift */,
+			);
+			path = Curency;
+			sourceTree = "<group>";
+		};
+		F6FA5C61272BE8C600C93A19 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				F6F95FD0272A7AD5005202E2 /* Record+CoreDataClass.swift */,
+				F6F95FD1272A7AD5005202E2 /* Record+CoreDataProperties.swift */,
+				F6FA5C68272BED4D00C93A19 /* CoreDataManager+Record.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,12 +463,15 @@
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				83CF01A0272A966100E76996 /* CustomCell.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
+				F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */,
 				F68A786E2727EAED00874F0B /* RoundTextField.swift in Sources */,
 				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundImageButton.swift in Sources */,
-				F6F95FE7272A9C1D005202E2 /* NSManagedObject.swift in Sources */,
+				F6FA5C6D272BEE2600C93A19 /* CoreDataManager+UserSettings.swift in Sources */,
+				F6F95FE7272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift in Sources */,
 				F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */,
 				F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */,
+				F6FA5C6B272BEDE700C93A19 /* CoreDataManager+Currency.swift in Sources */,
 				F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */,
 				83CF01A4272A96FC00E76996 /* CastomCellViewModel.swift in Sources */,
 			);

@@ -2,7 +2,7 @@
 //  TabBar.swift
 //  incredible_trata
 //
-//  Created by Рябин Кирилл on 25.10.2021.
+//  Created by Ryabin Kirill on 25.10.2021.
 //
 // TODO: setup "Created by" to change automatically
 
@@ -10,13 +10,12 @@ import Foundation
 import UIKit
 import CoreData
 
-// TODO: anyobj?
+// Any Object defines "class-only-protocol", so no structures can conform to it (allows weak)
 protocol AddItemBarDelegate: AnyObject {
     
-    func addButtonTapped()
-    func typeButtonTapped()
+    func addButtonTapped(noteValue: String?, priceValue: String?, completionHandler: () -> Void)
+    func categoryButtonTapped()
 }
-
 
 class AddItemBar: UIView {
     weak var delegate: AddItemBarDelegate?
@@ -25,19 +24,35 @@ class AddItemBar: UIView {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldPlus = UIImage(systemName: "plus", withConfiguration: boldConfig)
         let button = RoundImageButton(image: boldPlus, color: Color.addButtonBG)
-
-        button.addTarget(self, action: #selector(saveRecord), for: .touchUpInside)
+        
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    @objc
+    private func addButtonTapped() {
+        delegate?.addButtonTapped(noteValue: noteField.text,
+                                  priceValue: priceField.text,
+                                  completionHandler: {
+            noteField.text = ""
+            priceField.text = ""
+        })
+    }
 
-    private let typeButton: UIButton = {
+    private let categoryButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldHouse = UIImage(systemName: "house", withConfiguration: boldConfig)
         let button = RoundImageButton(image: boldHouse, color: Color.inputBG)
 
+        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         button.tintColor = Color.inputFG
         return button
     }()
+    
+    @objc
+    private func categoryButtonTapped() {
+        delegate?.categoryButtonTapped()
+    }
 
     private let noteField: RoundTextField = {
         let field = RoundTextField(BGColor: Color.inputBG)
@@ -54,7 +69,7 @@ class AddItemBar: UIView {
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         field.attributedPlaceholder = NSAttributedString(
-            string: "\(CoreDataManager.shared.getCurrency().symbol ?? "?")0",
+            string: "\(CoreDataManager.shared.getCurrency()?.symbol ?? "?")0",
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
         return field
@@ -87,29 +102,9 @@ class AddItemBar: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // TODO: delegate pattern
-    //    UITableView delegate
-    @objc
-    private func saveRecord() {
-        print(1)
-        guard let noteFieldValue = noteField.text else { return }
-        guard let priceFieldValue = Int64(priceField.text ?? "") else { return }
-        
-        do {
-            // TODO: Add completion handler with result
-            try CoreDataManager.shared.saveRecord(note: noteFieldValue,
-                                                  amount: priceFieldValue,
-                                                  currency: CoreDataManager.shared.getCurrency())
-            noteField.text = ""
-            priceField.text = ""
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
 
     private func setupAddItemBarStack() {
-        addItemBarStack.addArrangedSubview(typeButton)
+        addItemBarStack.addArrangedSubview(categoryButton)
         addItemBarStack.addArrangedSubview(noteField)
         addItemBarStack.addArrangedSubview(priceField)
         addItemBarStack.addArrangedSubview(addButton)
@@ -130,7 +125,7 @@ class AddItemBar: UIView {
             addItemBarStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             addItemBarStack.topAnchor.constraint(equalTo: topAnchor),
             addButton.widthAnchor.constraint(equalToConstant: Constants.barItemHeight),
-            typeButton.widthAnchor.constraint(equalToConstant: Constants.barItemHeight),
+            categoryButton.widthAnchor.constraint(equalToConstant: Constants.barItemHeight),
             priceField.widthAnchor.constraint(equalToConstant: Constants.priceFieldWidth)
         ])
     }

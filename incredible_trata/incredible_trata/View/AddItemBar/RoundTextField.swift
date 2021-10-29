@@ -2,7 +2,7 @@
 //  RoundTextField.swift
 //  incredible_trata
 //
-//  Created by Рябин Кирилл on 26.10.2021.
+//  Created by Ryabin Kirill on 26.10.2021.
 //
 
 import Foundation
@@ -22,7 +22,7 @@ class RoundTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // TODO: Who calls this function?
+    // addSubview calls this func
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.height / 2
