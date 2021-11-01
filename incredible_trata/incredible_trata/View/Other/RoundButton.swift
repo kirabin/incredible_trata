@@ -8,17 +8,15 @@
 import Foundation
 import UIKit
 
-class RoundImageButton: UIButton {
+
+class RoundButton: UIButton {
     
-    init(image: UIImage?, color: UIColor) {
+    init(with image: UIImage?) {
         super.init(frame: .zero)
         
         if let image = image {
             self.setImage(image, for: .normal)
         }
-        self.backgroundColor = color
-        self.tintColor = .white
-        
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalTo: self.widthAnchor)
         ])

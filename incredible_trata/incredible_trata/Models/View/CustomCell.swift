@@ -115,7 +115,6 @@ final class CustomCell: UITableViewCell {
     private func setupUI() {
         addSubviews()
         setupLayout()
-       
     }
     
     private func addSubviews() {
