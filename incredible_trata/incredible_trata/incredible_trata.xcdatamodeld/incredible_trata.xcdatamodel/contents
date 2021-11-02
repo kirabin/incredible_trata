@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Currency" representedClassName=".Currency" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="currency" inverseEntity="Record"/>
+        <relationship name="userSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSettings" inverseName="currency" inverseEntity="UserSettings"/>
+    </entity>
+    <entity name="Record" representedClassName=".Record" syncable="YES">
+        <attribute name="amount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="creation_date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="note" attributeType="String"/>
+        <relationship name="currency" maxCount="1" deletionRule="Deny" destinationEntity="Currency" inverseName="records" inverseEntity="Currency"/>
+    </entity>
+    <entity name="UserSettings" representedClassName=".UserSettings" syncable="YES">
+        <relationship name="currency" maxCount="1" deletionRule="Deny" destinationEntity="Currency" inverseName="userSettings" inverseEntity="Currency"/>
+    </entity>
+    <elements>
+        <element name="Currency" positionX="-46.296142578125" positionY="-18.88229370117188" width="128" height="118"/>
+        <element name="Record" positionX="-234.321044921875" positionY="-59.01181030273435" width="132.9143676757812" height="118"/>
+        <element name="UserSettings" positionX="179.4215087890625" positionY="11.544921875" width="128" height="58"/>
+    </elements>
 </model>
