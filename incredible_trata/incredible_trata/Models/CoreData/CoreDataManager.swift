@@ -26,7 +26,7 @@ class CoreDataManager {
         return container
     }()
 
-    func saveContext () {
+    func saveContext() {
         if context.hasChanges {
             do {
                 try context.save()
@@ -37,7 +37,7 @@ class CoreDataManager {
         }
     }
     
-    private func deleteAllData(at entity: NSManagedObject.Type) {
+    private func deleteAll(for entity: NSManagedObject.Type) {
         do {
             let results = try context.fetch(entity.fetchRequest())
             for managedObject in results {

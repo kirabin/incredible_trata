@@ -14,7 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = MainViewController()
+        let nav = NavigationController(rootViewController: MainViewController())
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
         window?.backgroundColor = .black
         window?.overrideUserInterfaceStyle = .light

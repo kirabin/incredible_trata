@@ -11,7 +11,6 @@ import CoreData
 extension CoreDataManager {
     
     func saveRecord(note: String, amount: Int64, currency: Currency) throws {
-        
         let record = Record.create(in: context)
         record.id = UUID()
         record.creation_date = Date()
@@ -21,11 +20,9 @@ extension CoreDataManager {
         
         currency.addToRecords(record)
         try context.save()
-        
-        // Debugging part
-        let records = try! context.fetch(Record.fetchRequest())
-        for record in records {
-            print(record.note!, record.amount, record.currency!.name!)
-        }
+    }
+    
+    func save(_ record: Record) throws {
+        try context.save()
     }
 }

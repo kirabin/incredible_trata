@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 
 enum Color {
-    static let inputBG = UIColor(named: "inputBG")!
+    static let controlBG = UIColor(named: "controlBG")!
     static let inputFG = UIColor(named: "inputFG")!
     static let mainBG = UIColor(named: "mainBG")!
     static let addButtonBG = UIColor(named: "addButtonBG")!
+    static let headerButtonBG = UIColor(named: "headerButtonBG")!
+    static let iconBG = UIColor(named: "iconBG")
 }

@@ -14,13 +14,13 @@ class DefaultsManager {
     static let shared = DefaultsManager()
     
     func populateCoreDataIfNeeded() {
-        guard countItems(managedObject: Currency.self) == 0 else { return }
+        guard countItems(of: Currency.self) == 0 else { return }
         
         CoreDataManager.shared.populateCurrency()
         CoreDataManager.shared.setUserSettings()
     }
     
-    func countItems(managedObject: NSManagedObject.Type) -> Int {
+    func countItems(of managedObject: NSManagedObject.Type) -> Int {
         let managedContext = CoreDataManager.shared.context
         
         do {
