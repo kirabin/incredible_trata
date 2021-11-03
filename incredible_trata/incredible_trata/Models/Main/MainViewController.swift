@@ -11,11 +11,11 @@ import Foundation
 
 class MainViewController: UIViewController {
     
-    private lazy var bottomConstraint:NSLayoutConstraint = {
+    private lazy var bottomConstraint: NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
     
-    private lazy var addItemBar:AddItemBar = {
+    private lazy var addItemBar: AddItemBar = {
         let bar = AddItemBar()
         bar.delegate = self
         return bar
@@ -76,7 +76,6 @@ class MainViewController: UIViewController {
         
         castomTableView.delegate = self
         castomTableView.dataSource = self
-        castomTableView.bounces = false
         castomTableView.register(RecordTableViewCell.self, forCellReuseIdentifier: idCell)
         DefaultsManager.shared.populateCoreDataIfNeeded()
         DefaultsManager.shared.populateCoreData()
@@ -93,6 +92,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        addItemBar.updateAmountField()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -141,15 +141,17 @@ extension MainViewController: CategoriesViewControllerDelegate {
 
 extension MainViewController: AddItemBarDelegate {
     func addButtonTapped(noteValue: String?, priceValue: String?, completionHandler: () -> Void) {
-        guard let noteValue = noteValue else {return}
-        guard let priceValue = priceValue else {return}
-        guard !priceValue.isEmpty else {return}
-        guard let chosenCurrency = CoreDataManager.shared.getCurrency() else {return}
-        
+        guard let noteValue = noteValue,
+              let priceValue = priceValue,
+              !priceValue.isEmpty,
+              let selectedCurrency = CoreDataManager.shared.getUserSelectedCurrency()
+        else {
+            return
+        }
         do {
             try CoreDataManager.shared.saveRecord(note: noteValue,
                                                   amount: Int64(priceValue) ?? 0,
-                                                  currency: chosenCurrency)
+                                                  currency: selectedCurrency)
             completionHandler()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")

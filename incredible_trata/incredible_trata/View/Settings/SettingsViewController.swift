@@ -10,10 +10,53 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    private lazy var settingsView: UIView = {
-        let view = SettingsView()
-        view.tableView.delegate = self
-        view.tableView.dataSource = self        
+    lazy var settingItems: [[SettingsTableViewCellModel]] = {
+        var sections:[[SettingsTableViewCellModel]] = []
+        
+        SettingsSection.sortedSections.forEach { section in
+            var rows: [SettingsTableViewCellModel] = []
+            
+            section.rows.forEach { row in
+                let model = SettingsTableViewCellModel(cellType: row.type,
+                                                       imageName: row.imageName,
+                                                       text: row.text)
+
+                model.action = { [weak self] isOn in
+                    switch row {
+                    case .hints:
+                        self?.switchHints(isOn ?? false)
+                            
+                    case .currency:
+                        self?.currencyAction()
+                            
+                    case .importData, .exportData, .category,
+                            .appearance, .siri, .notifications,
+                                .monthlyLimit:
+                        break
+                    }
+                }
+                rows.append(model)
+            }
+            sections.append(rows)
+        }
+        return sections
+    }()
+    
+    func switchHints(_ isOn: Bool) {
+        print(isOn)
+    }
+    
+    func currencyAction() {
+        self.navigationController?.pushViewController(CurrencyViewController(), animated: true)
+    }
+    
+    private lazy var settingsView: UITableView = {
+        let view = UITableView(frame: .zero, style: UITableView.Style.grouped)
+        view.delegate = self
+        view.dataSource = self
+        view.register(SettingsTableViewCell.self, forCellReuseIdentifier: "settingsCell")
+        view.separatorColor = Color.mainBG
+        view.backgroundColor = Color.mainBG
         return view
     }()
     
@@ -25,29 +68,34 @@ class SettingsViewController: UIViewController {
         setConstrainst()
     }
     
+  
+    
     func setConstrainst() {
         settingsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            settingsView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            settingsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            settingsView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            settingsView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            settingsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            settingsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            settingsView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                  constant: Constants.sidePadding),
+            settingsView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                   constant: -Constants.sidePadding),
         ])
     }
 }
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Constants.settingItems.count
+        return settingItems.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Constants.settingItems[section].count
+        return settingItems[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath) as! SettingsCell
-        let cellModel = Constants.settingItems[indexPath.section][indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.settingsCellReusableIdentifier,
+                                                 for: indexPath) as! SettingsTableViewCell
+        let cellModel = settingItems[indexPath.section][indexPath.row]
         let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
         
         if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
@@ -61,23 +109,22 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.rowHeight
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = settingItems[indexPath.section][indexPath.row]
+        guard item.cellType != .toggle else {return}
+        
+        if let action = item.action {
+            action(nil)
+        }
     }
-    
+
+}
+
+// MARK: - Constants
+extension SettingsViewController {
     private enum Constants {
         static let settingsTitle = "Settings"
-        static let rowHeight: CGFloat = 70 // duplicate of SettingsCell.Constants
-        static let settingItems: [[SettingsCellModel]] = [
-            [SettingsCellModel(cellType: .blank, imageName: "tray.and.arrow.down", text: "Import"),
-             SettingsCellModel(cellType: .blank, imageName: "tray.and.arrow.up", text: "Export")],
-            [SettingsCellModel(cellType: .nested, imageName: "tag", text: "Categories"),
-             SettingsCellModel(cellType: .nested, imageName: "dollarsign.circle", text: "Currencies")],
-            [SettingsCellModel(cellType: .nested, imageName: "paintbrush", text: "Appearance")],
-            [SettingsCellModel(cellType: .blank, imageName: "bubble.right", text: "Siri Shortcuts"),
-             SettingsCellModel(cellType: .nested, imageName: "app.badge", text: "Notifications")],
-            [SettingsCellModel(cellType: .toggle, imageName: "rectangle.stack", text: "Enable Hints"),
-             SettingsCellModel(cellType: .blank, imageName: "hand.raised", text: "Setup Monthly Limit")]
-        ]
+        static let settingsCellReusableIdentifier = "settingsCell"
+        static let sidePadding: CGFloat = 24
     }
 }

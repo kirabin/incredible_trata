@@ -9,8 +9,8 @@ import Foundation
 
 extension CoreDataManager {
     
-    func populateCurrency() {
-        for item in Constants.defaultCurrencyItems {
+    func populateCurrency(with items: [(symbol: String, name: String)]) {
+        for item in items {
             let obj = Currency.create(in: context)
             obj.symbol = item.symbol
             obj.name = item.name
@@ -23,17 +23,9 @@ extension CoreDataManager {
             }
         }
     }
-}
-
-// MARK: - Constants
-extension CoreDataManager {
-    private enum Constants {
-        static let defaultCurrencyItems = [
-            (symbol: "$", name: "United State Dollar"),
-            (symbol: "₽", name: "Russian Ruble"),
-            (symbol: "£", name: "British Pound"),
-            (symbol: "¥", name: "Japanese Yen"),
-            (symbol: "€", name: "Euro")
-        ]
+    
+    func getCurrencies() -> [Currency]? {
+        try? CoreDataManager.shared.context.fetch(Currency.fetchRequest())
     }
+    
 }

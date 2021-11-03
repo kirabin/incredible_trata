@@ -1,5 +1,5 @@
 //
-//  SettingsCell.swift
+//  SettingsTableViewCell.swift
 //  incredible_trata
 //
 //  Created by Ryabin Kirill on 01.11.2021.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class SettingsCell: UITableViewCell {
+class SettingsTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,7 +23,7 @@ class SettingsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var viewModel: SettingsCellModel! {
+    private var viewModel: SettingsTableViewCellModel! {
         didSet {
             labelView.text = viewModel.text
             roundIcon.imageName = viewModel.imageName
@@ -38,7 +38,7 @@ class SettingsCell: UITableViewCell {
         }
     }
     
-    func configure(viewModel: SettingsCellModel) {
+    func configure(viewModel: SettingsTableViewCellModel) {
         self.viewModel = viewModel
     }
     
@@ -49,7 +49,6 @@ class SettingsCell: UITableViewCell {
         case all
     }
     
-    // TODO: Should I or how to move this logic to RoundSide?
     var roundSide: RoundSide = .none {
         didSet {
             self.contentView.layer.cornerRadius = Constants.cellCornerRadius
@@ -82,7 +81,7 @@ class SettingsCell: UITableViewCell {
     private lazy var labelView: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: Constants.cellFontSize)
+        label.font = label.font.withSize(Constants.cellFontSize)
         return label
     }()
     
@@ -91,8 +90,19 @@ class SettingsCell: UITableViewCell {
         let toggle = UISwitch()
         toggle.isHidden = true
         toggle.setContentHuggingPriority(.required, for: .horizontal)
+        toggle.addTarget(self, action: #selector(toggleWasTapped), for: .touchUpInside)
         return toggle
     }()
+    
+    @objc
+    func toggleWasTapped() {
+        guard let viewModel = self.viewModel,
+              let action = viewModel.action
+        else {
+            return
+        }
+        action(toggleView.isOn)
+    }
     
     private lazy var arrowView: UIImageView = {
         let image = UIImage(systemName: "chevron.right")
@@ -129,7 +139,8 @@ class SettingsCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: Constants.cellHeight),
+            stackView.heightAnchor.constraint(equalTo: roundIcon.heightAnchor,
+                                              constant: Constants.cellPadding * 2),
             roundIcon.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
             roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
         ])
@@ -138,10 +149,7 @@ class SettingsCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        if viewModel != nil && viewModel.cellType == .toggle {
-            contentView.backgroundColor = Color.controlBG
-        }
-        else if selected {
+        if selected {
             contentView.backgroundColor = .gray
         } else {
             contentView.backgroundColor = Color.controlBG
@@ -150,12 +158,12 @@ class SettingsCell: UITableViewCell {
 }
 
 // MARK: - Constants
-extension SettingsCell {
+extension SettingsTableViewCell {
     private enum Constants {
-        static let cellCornerRadius: CGFloat = 10
+        static let cellCornerRadius: CGFloat = 5
         static let cellFontSize: CGFloat = 20
         static let cellElementSpacing: CGFloat = 15
-        static let cellHeight: CGFloat = 70 // duplicate of SettingsViewController.Constants
+        static let cellPadding: CGFloat = 15
         static let iconHeight: CGFloat = 40
     }
 }

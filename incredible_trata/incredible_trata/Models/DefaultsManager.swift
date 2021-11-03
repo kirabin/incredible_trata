@@ -16,8 +16,7 @@ class DefaultsManager {
     func populateCoreDataIfNeeded() {
         guard countItems(of: Currency.self) == 0 else { return }
         
-        CoreDataManager.shared.populateCurrency()
-        CoreDataManager.shared.setUserSettings()
+        CoreDataManager.shared.populateCurrency(with: Constants.Currency.defaultValues)
     }
     
     func populateCoreData() {
@@ -26,7 +25,8 @@ class DefaultsManager {
         CoreDataManager.shared.fillingAllCategories()
         
     }
-    func countItems(of managedObject: NSManagedObject.Type) -> Int {
+    
+    private func countItems(of managedObject: NSManagedObject.Type) -> Int {
         let managedContext = CoreDataManager.shared.context
         
         do {
@@ -36,5 +36,20 @@ class DefaultsManager {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         return 0
+    }
+}
+
+// MARK: - Constants
+extension DefaultsManager {
+    private enum Constants {
+        enum Currency {
+            static let defaultValues = [
+                (symbol: "$", name: "United State Dollar"),
+                (symbol: "₽", name: "Russian Ruble"),
+                (symbol: "£", name: "British Pound"),
+                (symbol: "¥", name: "Japanese Yen"),
+                (symbol: "€", name: "Euro")
+            ]
+        }
     }
 }
