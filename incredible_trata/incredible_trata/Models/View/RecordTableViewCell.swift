@@ -1,5 +1,5 @@
 //
-//  CustomCell.swift
+//  RecordTableViewCell.swift
 //  incredible_trata
 //
 //  Created by Aristova Alina on 25.10.2021.
@@ -8,10 +8,7 @@
 import CoreData
 import UIKit
 
-final class CustomCell: UITableViewCell {
-    
-    let sizeImageView: CGFloat = 35
-    let sizeLogoImageView: CGFloat = 20
+final class RecordTableViewCell: UITableViewCell {
     
     var viewModel = CustomCellViewModel(categories: .transport, subtitle: "home", price: 24) {
         
@@ -22,19 +19,35 @@ final class CustomCell: UITableViewCell {
         }
     }
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        self.clipsToBounds = false
+        self.backgroundColor = .clear
+        contentView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var indexCell = (first:false, last:false) {
         didSet {
-            if indexCell.first && indexCell.last {
-                self.layer.cornerRadius = 10
-                self.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            }
-            else if indexCell.first {
-                self.layer.cornerRadius = 10
-                self.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
-            }
-            else if indexCell.last {
-                self.layer.cornerRadius = 10
-                self.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
+            switch indexCell {
+                
+            case (first:true, last:true):
+                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            case (first:false, last:true):
+                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
+            case (first:true, last:false):
+                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
+            case (first:false, last:false):
+                self.contentView.layer.cornerRadius = 0
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             }
         }
     }
@@ -70,7 +83,7 @@ final class CustomCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = #colorLiteral(red: 0.159709245, green: 0.1699241698, blue: 0.1888181865, alpha: 1)
-        view.layer.cornerRadius = sizeImageView / 2
+        view.layer.cornerRadius = Default.sizeImageView / 2
         return view
     }()
     
@@ -103,14 +116,7 @@ final class CustomCell: UITableViewCell {
         return label
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     private func setupUI() {
         addSubviews()
@@ -128,13 +134,31 @@ final class CustomCell: UITableViewCell {
             horizontalStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
             horizontalStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             horizontalStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: sizeLogoImageView),
+            logoImageView.widthAnchor.constraint(equalToConstant: Default.sizeLogoImageView),
             imageBackgroundView.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor),
             imageBackgroundView.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor),
-            imageBackgroundView.widthAnchor.constraint(equalToConstant: sizeImageView),
-            imageBackgroundView.heightAnchor.constraint(equalToConstant: sizeImageView)
+            imageBackgroundView.widthAnchor.constraint(equalToConstant: Default.sizeImageView),
+            imageBackgroundView.heightAnchor.constraint(equalToConstant: Default.sizeImageView)
         ])
         horizontalStackView.setCustomSpacing(15, after: logoImageView)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.accessoryType = .none
+        self.clipsToBounds = false
+        self.backgroundColor = .clear
+        self.contentView.layer.cornerRadius = 0
+        indexCell = (false, false)
+    }
+}
+
+// MARK: - Constants
+
+extension RecordTableViewCell {
+    enum Default {
+        static let sizeImageView: CGFloat = 35
+        static let sizeLogoImageView: CGFloat = 20
     }
 }
 

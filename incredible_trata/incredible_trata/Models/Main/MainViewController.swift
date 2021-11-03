@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+import Foundation
 
 class MainViewController: UIViewController {
     
@@ -32,6 +34,16 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
+    let categoryVC = UIViewController()
+    let groupSection = ["1","2","3","4","5"]
+    let itemsInfoArrays = [
+    ["1111111111111111"],
+    ["1.4","1.5","1.6"],
+    ["22", "33"],
+    ["6","7", "8"],
+    ["26","27", "28"]
+    ]
+
     let idCell = "idCell"
     
     override func loadView() {
@@ -45,7 +57,7 @@ class MainViewController: UIViewController {
         view.addSubview(settingsButton)
         setConstraints()
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,18 +76,13 @@ class MainViewController: UIViewController {
         
         castomTableView.delegate = self
         castomTableView.dataSource = self
-        castomTableView.register(CustomCell.self, forCellReuseIdentifier: idCell)
+        castomTableView.bounces = false
+        castomTableView.register(RecordTableViewCell.self, forCellReuseIdentifier: idCell)
+        DefaultsManager.shared.populateCoreDataIfNeeded()
+        DefaultsManager.shared.populateCoreData()
+
     }
-    
-    let groupSection = ["1","2"]
-    let itemsInfoArrays = [
-        ["1111111111111111"],
-        ["1.4","1.5","1.6"],
-        ["22", "33"],
-        ["6","7", "8"],
-        ["26","27", "28"]
-    ]
-    
+
     let castomTableView: UITableView = {
         let castomTableView = UITableView()
         castomTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,11 +110,9 @@ class MainViewController: UIViewController {
             settingsButton.widthAnchor.constraint(equalToConstant: 60),
             settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0),
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            castomTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0),
-            castomTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0),
-            castomTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0),
-            castomTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -65.0)
         ])
+
+        NSLayoutConstraint.activate([castomTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0), castomTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0), castomTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0), castomTableView.bottomAnchor.constraint(equalTo: addItemBar.topAnchor, constant: 0)])
     }
     
     @objc
@@ -124,6 +129,13 @@ class MainViewController: UIViewController {
     private func keyboardWillHide(notification: NSNotification) {
         bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
+    }
+        
+}
+
+extension MainViewController: CategoriesViewControllerDelegate {
+    func categoryWasSelected(category: Category) {
+        
     }
 }
 
@@ -146,5 +158,13 @@ extension MainViewController: AddItemBarDelegate {
     
     func categoryButtonTapped() {
         // TODO: implement
+        let categoryVC = CategoriesViewController()
+        let navVC = UINavigationController(rootViewController: categoryVC)
+        
+        categoryVC.delegate = self
+        navVC.navigationBar.barTintColor = .none
+        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.present(navVC, animated: true)
     }
+
 }

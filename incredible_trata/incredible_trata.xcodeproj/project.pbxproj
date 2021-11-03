@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D90C2726BDF0000949BB /* ExtensionVC.swift */; };
-		83CF019E272A965200E76996 /* CustomCellCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019D272A965200E76996 /* CustomCellCategory.swift */; };
-		83CF01A0272A966100E76996 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019F272A966100E76996 /* CustomCell.swift */; };
+		8329D90D2726BDF0000949BB /* ExtensionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */; };
+		834994C3272BE66900F0E35B /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */; };
+		834994C4272BE66900F0E35B /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */; };
+		834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */; };
+		834994CC272BFAB400F0E35B /* CustomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994CB272BFAB400F0E35B /* CustomCellViewModel.swift */; };
+		834994CE272BFB0000F0E35B /* CustomCellCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994CD272BFB0000F0E35B /* CustomCellCategory.swift */; };
+		835C1B87273246560033A9CE /* ExtensionAddCAtegoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */; };
+		83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019F272A966100E76996 /* RecordTableViewCell.swift */; };
 		83CF01A2272A969800E76996 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF01A1272A969800E76996 /* MainViewController.swift */; };
-		83CF01A4272A96FC00E76996 /* CastomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF01A3272A96FC00E76996 /* CastomCellViewModel.swift */; };
+		83EFF9D0272E9C9700F133A2 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */; };
+		83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D1272EACF200F133A2 /* ExtensionCategoriesViewController.swift */; };
+		83EFF9D4272EB21200F133A2 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */; };
+		83EFF9D6272EB52A00F133A2 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */; };
+		83EFF9E127303E4F00F133A2 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */; };
 		EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493B27268C9D0055292D /* AppDelegate.swift */; };
 		EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493D27268C9D0055292D /* SceneDelegate.swift */; };
 		EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */; };
@@ -61,11 +70,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8329D90C2726BDF0000949BB /* ExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionVC.swift; sourceTree = "<group>"; };
-		83CF019D272A965200E76996 /* CustomCellCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCellCategory.swift; path = View/CustomCellCategory.swift; sourceTree = "<group>"; };
-		83CF019F272A966100E76996 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = View/CustomCell.swift; sourceTree = "<group>"; };
+		8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMainViewController.swift; sourceTree = "<group>"; };
+		834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "../../../Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Category.swift"; sourceTree = "<group>"; };
+		834994CB272BFAB400F0E35B /* CustomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellViewModel.swift; sourceTree = "<group>"; };
+		834994CD272BFB0000F0E35B /* CustomCellCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellCategory.swift; sourceTree = "<group>"; };
+		835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAddCAtegoryViewController.swift; sourceTree = "<group>"; };
+		83CF019F272A966100E76996 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordTableViewCell.swift; path = View/RecordTableViewCell.swift; sourceTree = "<group>"; };
 		83CF01A1272A969800E76996 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = incredible_trata/Models/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
-		83CF01A3272A96FC00E76996 /* CastomCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CastomCellViewModel.swift; path = ViewModel/CastomCellViewModel.swift; sourceTree = "<group>"; };
+		83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		83EFF9D1272EACF200F133A2 /* ExtensionCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCategoriesViewController.swift; sourceTree = "<group>"; };
+		83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		EA3F493827268C9D0055292D /* incredible_trata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = incredible_trata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F493B27268C9D0055292D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA3F493D27268C9D0055292D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +147,7 @@
 		8329D9032726B34B000949BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				834994C7272BEDEA00F0E35B /* CoreData */,
 				8329D90A2726BD97000949BB /* ViewController */,
 			);
 			path = Extensions;
@@ -137,9 +156,28 @@
 		8329D90A2726BD97000949BB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8329D90C2726BDF0000949BB /* ExtensionVC.swift */,
+				8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */,
+				83EFF9D1272EACF200F133A2 /* ExtensionCategoriesViewController.swift */,
+				835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		834994C7272BEDEA00F0E35B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		83574758272A7C3D00FF0A3E /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */,
+				834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 		83574759272A8E2E00FF0A3E /* New Group */ = {
@@ -153,7 +191,6 @@
 		8357475A272A8E4F00FF0A3E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				83CF01A3272A96FC00E76996 /* CastomCellViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -161,8 +198,11 @@
 		8357475B272A901800FF0A3E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				83CF019D272A965200E76996 /* CustomCellCategory.swift */,
-				83CF019F272A966100E76996 /* CustomCell.swift */,
+				83CF019F272A966100E76996 /* RecordTableViewCell.swift */,
+				834994CB272BFAB400F0E35B /* CustomCellViewModel.swift */,
+				834994CD272BFB0000F0E35B /* CustomCellCategory.swift */,
+				83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */,
+				83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -234,6 +274,7 @@
 				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
 				8357475B272A901800FF0A3E /* View */,
 				8357475A272A8E4F00FF0A3E /* ViewModel */,
+				83574758272A7C3D00FF0A3E /* CoreDataManager */,
 				8329D9032726B34B000949BB /* Extensions */,
 				F6F95FCD272A7AAE005202E2 /* CoreData */,
 				EA3F497327268E1A0055292D /* Main */,
@@ -260,6 +301,8 @@
 			children = (
 				83CF01A1272A969800E76996 /* MainViewController.swift */,
 				F65891AC272C49BA005C142B /* NavigationController.swift */,
+				83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */,
+				83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -484,12 +527,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83EFF9D4272EB21200F133A2 /* CategoryTableViewCell.swift in Sources */,
+				834994C4272BE66900F0E35B /* Category+CoreDataProperties.swift in Sources */,
 				83CF01A2272A969800E76996 /* MainViewController.swift in Sources */,
-				83CF019E272A965200E76996 /* CustomCellCategory.swift in Sources */,
-				8329D90D2726BDF0000949BB /* ExtensionVC.swift in Sources */,
+				834994C3272BE66900F0E35B /* Category+CoreDataClass.swift in Sources */,
+				8329D90D2726BDF0000949BB /* ExtensionMainViewController.swift in Sources */,
 				F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */,
 				F68A78722728523500874F0B /* Color.swift in Sources */,
 				F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */,
+				83EFF9D6272EB52A00F133A2 /* AddCategoryViewController.swift in Sources */,
+				83EFF9D0272E9C9700F133A2 /* CategoriesViewController.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
 				F6F95FD5272A7AD5005202E2 /* Record+CoreDataProperties.swift in Sources */,
 				F65891B827312AC9005C142B /* RoundIcon.swift in Sources */,
@@ -497,23 +544,28 @@
 				F6FA5C5E272AE58F00C93A19 /* Currency+CoreDataProperties.swift in Sources */,
 				F6F95FD4272A7AD5005202E2 /* Record+CoreDataClass.swift in Sources */,
 				F65891B627301331005C142B /* SettingsCellModel.swift in Sources */,
-				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
-				83CF01A0272A966100E76996 /* CustomCell.swift in Sources */,
 				F65891AD272C49BA005C142B /* NavigationController.swift in Sources */,
+				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
+				83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */,
+				83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */,
+				834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */,
+				834994CE272BFB0000F0E35B /* CustomCellCategory.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */,
 				F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */,
 				F65891B2272FED40005C142B /* SettingsCell.swift in Sources */,
 				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */,
+				835C1B87273246560033A9CE /* ExtensionAddCAtegoryViewController.swift in Sources */,
 				F6FA5C6D272BEE2600C93A19 /* CoreDataManager+UserSettings.swift in Sources */,
 				F6F95FE7272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift in Sources */,
 				F65891AF272FCAD4005C142B /* SettingsView.swift in Sources */,
 				F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */,
 				F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */,
 				F6FA5C6B272BEDE700C93A19 /* CoreDataManager+Currency.swift in Sources */,
+				834994CC272BFAB400F0E35B /* CustomCellViewModel.swift in Sources */,
+				83EFF9E127303E4F00F133A2 /* CategoryCollectionViewCell.swift in Sources */,
 				F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */,
-				83CF01A4272A96FC00E76996 /* CastomCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
