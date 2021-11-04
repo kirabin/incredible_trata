@@ -82,23 +82,23 @@ class AddCategoryViewController: UIViewController {
         view.addSubview(textField)
         view.addSubview(titleTextFieldLabel)
         
-        NSLayoutConstraint.activate([castomCollectoinView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10.0),
-                                     castomCollectoinView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200.0),
-                                     castomCollectoinView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10.0),
-                                     castomCollectoinView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50.0),
-                                     textField.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10),
-                                     textField.leadingAnchor.constraint(equalTo: titleTextFieldLabel.trailingAnchor, constant: 0),
-                                     textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                                     textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                     textField.heightAnchor.constraint(equalToConstant: 40),
-                                     titleTextFieldLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                                     titleTextFieldLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -200),
-                                     titleTextFieldLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                     titleTextFieldLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10),
-                                     titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                                     titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-                                     titleLabel.bottomAnchor.constraint(equalTo: castomCollectoinView.topAnchor, constant: -10),
-                                     titleLabel.heightAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([castomCollectoinView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Default.cellElementSpacing),
+                                     castomCollectoinView.topAnchor.constraint(equalTo: view.topAnchor, constant: Default.collectoinViewTop),
+                                     castomCollectoinView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Default.lableSpase),
+                                     castomCollectoinView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Default.collectionViewBottom),
+                                     textField.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: Default.lableSpase),
+                                     textField.leadingAnchor.constraint(equalTo: titleTextFieldLabel.trailingAnchor, constant: Default.zero),
+                                     textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.lableSpase),
+                                     textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Default.cellElementSpacing),
+                                     textField.heightAnchor.constraint(equalToConstant: Default.textFieldHeight),
+                                     titleTextFieldLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.cellElementSpacing),
+                                     titleTextFieldLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.lableTrailing),
+                                     titleTextFieldLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Default.cellElementSpacing),
+                                     titleTextFieldLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: Default.lableSpase),
+                                     titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.cellElementSpacing),
+                                     titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Default.zero),
+                                     titleLabel.bottomAnchor.constraint(equalTo: castomCollectoinView.topAnchor, constant: Default.lableSpase),
+                                     titleLabel.heightAnchor.constraint(equalToConstant: Default.LabeleHeight)])
     }
 
 }
@@ -107,6 +107,15 @@ class AddCategoryViewController: UIViewController {
 
 extension AddCategoryViewController {
     enum Default {
+        static let lableTrailing: CGFloat = -200
+        static let zero: CGFloat = 0
+        static let textFieldHeight: CGFloat = 40
+        static let collectionViewBottom: CGFloat = -50
+        static let LabeleHeight: CGFloat = 50
+        static let lableSpase: CGFloat = -10
+        static let collectoinViewTop: CGFloat = 200
+        static let cellElementSpacing: CGFloat = 10
+
         static let images = ["graduationcap.circle","camera.shutter.button.fill",
                              "bubble.left.circle.fill","screwdriver",
                              "suitcase.cart","tram.fill.tunnel",

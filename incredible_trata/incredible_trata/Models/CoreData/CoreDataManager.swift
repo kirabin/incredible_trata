@@ -25,16 +25,24 @@ class CoreDataManager {
         })
         return container
     }()
-
-    func saveContext() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+    
+    var childrenContext: NSManagedObjectContext {
+        let childrenContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        childrenContext.parent = context
+        childrenContext.automaticallyMergesChangesFromParent = true
+        return childrenContext
+    }
+    
+    func saveContext () {
+          if context.hasChanges {
+              do {
+                  try context.save()
+              } catch {
+                context.rollback()
+                  let nserror = error as NSError
+                  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+              }
+          }
     }
     
     private func deleteAll(for entity: NSManagedObject.Type) {
@@ -46,5 +54,23 @@ class CoreDataManager {
         } catch let error as NSError {
             print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
+    }
+    
+    func getChildrenContext() -> NSManagedObjectContext {
+        let childrenContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        childrenContext.parent = context
+        childrenContext.automaticallyMergesChangesFromParent = true
+        return childrenContext
+    }
+    
+    func savePrivateContext(_ privateContext: NSManagedObjectContext) {
+        try! privateContext.save()
+    }
+
+}
+
+extension NSPersistentContainer {
+    func getContext() -> NSManagedObjectContext {
+            return newBackgroundContext()
     }
 }

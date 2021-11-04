@@ -20,6 +20,9 @@ extension Record {
     @NSManaged public var creation_date: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var note: String?
+    @NSManaged public var longitudeCoordinate: Double
+    @NSManaged public var latitudeCoordinate: Double
+    @NSManaged public var category: Category?
     @NSManaged public var currency: Currency?
 
 }

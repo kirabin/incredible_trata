@@ -9,12 +9,8 @@ import UIKit
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        groupSection.count
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return itemsInfoArrays[section].count
+       return records.count
 
     }
     
@@ -32,8 +28,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.indexCell = (false, false)
         }
-        
+        cell.viewModel = records[indexPath.row]
         cell.imageView?.image = nil
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let settingsRecordViewController = SettingsRecordViewController()
+        settingsRecordViewController.reloadRecord(inputRecord: records[indexPath.row])
+        self.navigationController?.pushViewController(settingsRecordViewController, animated: true)
     }
 }

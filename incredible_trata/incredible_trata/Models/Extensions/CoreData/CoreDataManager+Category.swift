@@ -27,18 +27,6 @@ extension CoreDataManager {
         }
     }
     
-    func creatEmptyCategory() -> Category {
-        let category = Category.create(in: context)
-        category.lableName = "house"
-        category.imageName = "house"
-        do {
-            try context.save()
-        } catch {
-            print("An error ocurred while saving: \(error.localizedDescription)")
-        }
-        return category
-        
-    }
     func fillingAllCategories() {
         for category in Default.categories {
             creatCategory(lableName: category.lableName, imageName: category.imageName)

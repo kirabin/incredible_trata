@@ -8,8 +8,15 @@
 import UIKit
 import CoreData
 import Foundation
+import MapKit
 
 class MainViewController: UIViewController {
+    
+    var records = CoreDataManager.shared.getAllRecord()
+    var selectedСategory: Category?
+    let idCell = "idCell"
+    let categoryVC = CategoriesViewController()
+    let locationManager = CLLocationManager()
     
     private lazy var bottomConstraint: NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -34,18 +41,6 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
-    let categoryVC = UIViewController()
-    let groupSection = ["1","2","3","4","5"]
-    let itemsInfoArrays = [
-    ["1111111111111111"],
-    ["1.4","1.5","1.6"],
-    ["22", "33"],
-    ["6","7", "8"],
-    ["26","27", "28"]
-    ]
-
-    let idCell = "idCell"
-    
     override func loadView() {
         
         DefaultsManager.shared.populateCoreDataIfNeeded()
@@ -60,7 +55,7 @@ class MainViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        categoryVC.delegate = self
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow(notification:)),
@@ -79,7 +74,13 @@ class MainViewController: UIViewController {
         castomTableView.register(RecordTableViewCell.self, forCellReuseIdentifier: idCell)
         DefaultsManager.shared.populateCoreDataIfNeeded()
         DefaultsManager.shared.populateCoreData()
-
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
 
     let castomTableView: UITableView = {
@@ -90,6 +91,8 @@ class MainViewController: UIViewController {
     }()
     
     override func viewWillAppear(_ animated: Bool) {
+        records = CoreDataManager.shared.getAllRecord()
+        self.castomTableView.reloadData()
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         addItemBar.updateAmountField()
@@ -135,11 +138,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: CategoriesViewControllerDelegate {
     func categoryWasSelected(category: Category) {
-        
+        selectedСategory = category
     }
 }
 
-extension MainViewController: AddItemBarDelegate {
+extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
     func addButtonTapped(noteValue: String?, priceValue: String?, completionHandler: () -> Void) {
         guard let noteValue = noteValue,
               let priceValue = priceValue,
@@ -149,21 +152,25 @@ extension MainViewController: AddItemBarDelegate {
             return
         }
         do {
-            try CoreDataManager.shared.saveRecord(note: noteValue,
-                                                  amount: Int64(priceValue) ?? 0,
-                                                  currency: selectedCurrency)
+            try CoreDataManager.shared.saveRecord(note: noteValue, amount: Int64(priceValue) ?? 0,
+                                                  currency: selectedCurrency,
+                                                  category: selectedСategory!,
+                                                  longitude: (locationManager.location?.coordinate)?.longitude ?? 0,
+                                                  latitude: (locationManager.location?.coordinate)?.latitude ?? 0)
             completionHandler()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+        
+        records = CoreDataManager.shared.getAllRecord()
+        self.castomTableView.reloadData()
+        view.endEditing(true)
     }
     
     func categoryButtonTapped() {
         // TODO: implement
-        let categoryVC = CategoriesViewController()
-        let navVC = UINavigationController(rootViewController: categoryVC)
         
-        categoryVC.delegate = self
+        let navVC = UINavigationController(rootViewController: categoryVC)
         navVC.navigationBar.barTintColor = .none
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.present(navVC, animated: true)
