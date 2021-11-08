@@ -16,7 +16,7 @@ class RoundIcon: UIView {
         }
     }
     
-    var iconView: UIImageView = {
+    private var iconView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = Color.textBG
         return imageView
@@ -29,6 +29,11 @@ class RoundIcon: UIView {
         self.setContentHuggingPriority(.required, for: .horizontal)
         addSubview(iconView)
         setConstraints()
+    }
+    
+    convenience init(imageName: String) {
+        self.init()
+        self.imageName = imageName
     }
     
     func setConstraints() {

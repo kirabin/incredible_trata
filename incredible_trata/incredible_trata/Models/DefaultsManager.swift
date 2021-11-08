@@ -17,6 +17,7 @@ class DefaultsManager {
         guard countItems(of: Currency.self) == 0 else { return }
         
         CoreDataManager.shared.populateCurrency(with: Constants.Currency.defaultValues)
+        let _ = CoreDataManager.shared.setUserSettings()
     }
     
     func populateCoreData() {

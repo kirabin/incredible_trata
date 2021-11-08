@@ -31,11 +31,6 @@ extension CoreDataManager {
         try context.save()
     }
     
-    func getAllRecord() -> [Record] {
-        let record = try! context.fetch(Record.fetchRequest())
-        return record
-    }
-    
     func findRecord(viewContext: NSManagedObjectContext, record: Record) -> Record? {
         let records = try! viewContext.fetch(Record.fetchRequest())
         for temp in records {
@@ -44,5 +39,17 @@ extension CoreDataManager {
             }
         }
         return nil
+    }
+    
+    func getRecords(with predicate: NSPredicate? = nil) -> [Record] {
+        let request = Record.fetchRequest()
+        request.predicate = predicate
+        
+        do {
+            return try context.fetch(request)
+        } catch let error as NSError {
+            print("Could not get records with predicate. \(error), \(error.userInfo)")
+        }
+        return []
     }
 }

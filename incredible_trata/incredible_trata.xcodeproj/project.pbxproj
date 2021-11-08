@@ -39,10 +39,19 @@
 		F65891B827312AC9005C142B /* RoundIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B727312AC9005C142B /* RoundIcon.swift */; };
 		F65891BF27327573005C142B /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891BE27327573005C142B /* CurrencyViewController.swift */; };
 		F65891C127327CD8005C142B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */; };
+		F6632EAD273A5361001647ED /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6632EAC273A5361001647ED /* DateRange.swift */; };
+		F66CB5C6273C0A5D00F7C8C5 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66CB5C5273C0A5D00F7C8C5 /* ActionButton.swift */; };
+		F682244127390AA3002307A6 /* GraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682244027390AA3002307A6 /* GraphTableViewCell.swift */; };
+		F682244327392231002307A6 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682244227392231002307A6 /* CalendarViewController.swift */; };
 		F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78652726ABBF00874F0B /* AddItemBar.swift */; };
 		F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundButton.swift */; };
 		F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */; };
+		F68A78722728523500874F0B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78712728523400874F0B /* Color.swift */; };
+		F6A9BB762739026400A51108 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = F6A9BB752739026400A51108 /* Charts */; };
 		F6AEE2FE2732D47600ACEF1D /* SettingsSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */; };
+		F6AEE3002738F8C700ACEF1D /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEE2FF2738F8C700ACEF1D /* GraphViewController.swift */; };
+		F6EA2686273AACA200A7A7EE /* CategoryAmountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EA2685273AACA200A7A7EE /* CategoryAmountDetailViewController.swift */; };
+		F6EA2688273AC18C00A7A7EE /* CategoryAmountDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EA2687273AC18C00A7A7EE /* CategoryAmountDetailTableViewCell.swift */; };
 		F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC1272995E8005202E2 /* CoreDataManager.swift */; };
 		F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC327299979005202E2 /* DefaultsManager.swift */; };
 		F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */; };
@@ -111,10 +120,17 @@
 		F65891B727312AC9005C142B /* RoundIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIcon.swift; sourceTree = "<group>"; };
 		F65891BE27327573005C142B /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		F6632EAC273A5361001647ED /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
+		F66CB5C5273C0A5D00F7C8C5 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		F682244027390AA3002307A6 /* GraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTableViewCell.swift; sourceTree = "<group>"; };
+		F682244227392231002307A6 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		F68A78652726ABBF00874F0B /* AddItemBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBar.swift; sourceTree = "<group>"; };
 		F68A78692726E49F00874F0B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBarTextField.swift; sourceTree = "<group>"; };
 		F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSections.swift; sourceTree = "<group>"; };
+		F6AEE2FF2738F8C700ACEF1D /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		F6EA2685273AACA200A7A7EE /* CategoryAmountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAmountDetailViewController.swift; sourceTree = "<group>"; };
+		F6EA2687273AC18C00A7A7EE /* CategoryAmountDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAmountDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F6F95FC1272995E8005202E2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F6F95FC327299979005202E2 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 		F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -134,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6A9BB762739026400A51108 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +363,7 @@
 			children = (
 				F68A78692726E49F00874F0B /* RoundButton.swift */,
 				F65891B727312AC9005C142B /* RoundIcon.swift */,
+				F66CB5C5273C0A5D00F7C8C5 /* ActionButton.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -362,6 +380,7 @@
 		F68A78632726AB8C00874F0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6AEE3012738F8CC00ACEF1D /* Graph */,
 				F65891B92731831A005C142B /* Other */,
 				F65891A7272C3E57005C142B /* Settings */,
 				F65891BD27327558005C142B /* Currency */,
@@ -377,6 +396,27 @@
 				F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */,
 			);
 			path = AddItemBar;
+			sourceTree = "<group>";
+		};
+		F6AEE3012738F8CC00ACEF1D /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				F6EA2684273AAC8D00A7A7EE /* DetailView */,
+				F6AEE2FF2738F8C700ACEF1D /* GraphViewController.swift */,
+				F682244027390AA3002307A6 /* GraphTableViewCell.swift */,
+				F682244227392231002307A6 /* CalendarViewController.swift */,
+				F6632EAC273A5361001647ED /* DateRange.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		F6EA2684273AAC8D00A7A7EE /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				F6EA2685273AACA200A7A7EE /* CategoryAmountDetailViewController.swift */,
+				F6EA2687273AC18C00A7A7EE /* CategoryAmountDetailTableViewCell.swift */,
+			);
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		F6F95FCD272A7AAE005202E2 /* CoreData */ = {
@@ -437,6 +477,9 @@
 			dependencies = (
 			);
 			name = incredible_trata;
+			packageProductDependencies = (
+				F6A9BB752739026400A51108 /* Charts */,
+			);
 			productName = incredible_trata;
 			productReference = EA3F493827268C9D0055292D /* incredible_trata.app */;
 			productType = "com.apple.product-type.application";
@@ -509,6 +552,9 @@
 				Base,
 			);
 			mainGroup = EA3F492F27268C9D0055292D;
+			packageReferences = (
+				F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = EA3F493927268C9D0055292D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -550,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6EA2686273AACA200A7A7EE /* CategoryAmountDetailViewController.swift in Sources */,
 				83EFF9D4272EB21200F133A2 /* CategoryTableViewCell.swift in Sources */,
 				834994C4272BE66900F0E35B /* Category+CoreDataProperties.swift in Sources */,
 				F65891C127327CD8005C142B /* CurrencyTableViewCell.swift in Sources */,
@@ -559,21 +606,27 @@
 				F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */,
 				832C4AA2273D3DFC00F796CA /* Color.swift in Sources */,
 				F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */,
+				F6EA2688273AC18C00A7A7EE /* CategoryAmountDetailTableViewCell.swift in Sources */,
+				F682244127390AA3002307A6 /* GraphTableViewCell.swift in Sources */,
 				83EFF9D6272EB52A00F133A2 /* AddCategoryViewController.swift in Sources */,
 				83EFF9D0272E9C9700F133A2 /* CategoriesViewController.swift in Sources */,
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
+				F682244327392231002307A6 /* CalendarViewController.swift in Sources */,
 				F6F95FD5272A7AD5005202E2 /* Record+CoreDataProperties.swift in Sources */,
 				F65891B827312AC9005C142B /* RoundIcon.swift in Sources */,
 				F6AEE2FE2732D47600ACEF1D /* SettingsSections.swift in Sources */,
+				F6632EAD273A5361001647ED /* DateRange.swift in Sources */,
 				F65891A9272C3E6B005C142B /* SettingsViewController.swift in Sources */,
 				F6FA5C5E272AE58F00C93A19 /* Currency+CoreDataProperties.swift in Sources */,
 				F6F95FD4272A7AD5005202E2 /* Record+CoreDataClass.swift in Sources */,
+				F66CB5C6273C0A5D00F7C8C5 /* ActionButton.swift in Sources */,
 				F65891B627301331005C142B /* SettingsTableViewCellModel.swift in Sources */,
 				F65891AD272C49BA005C142B /* NavigationController.swift in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */,
 				83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */,
 				832C4A98273AEF6800F796CA /* AppearanceTableViewCell.swift in Sources */,
+				F6AEE3002738F8C700ACEF1D /* GraphViewController.swift in Sources */,
 				834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */,
@@ -763,6 +816,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(SRCROOT)",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Sberbank.incredible-trata";
@@ -790,6 +844,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(SRCROOT)",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Sberbank.incredible-trata";
@@ -936,6 +991,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F6A9BB752739026400A51108 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */ = {

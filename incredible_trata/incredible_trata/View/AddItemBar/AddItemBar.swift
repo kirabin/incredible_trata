@@ -17,7 +17,7 @@ protocol AddItemBarDelegate: AnyObject {
 class AddItemBar: UIView {
     weak var delegate: AddItemBarDelegate?
     
-    private let addButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldPlusImage = UIImage(systemName: "plus", withConfiguration: boldConfig)
         //let button = RoundButton(with: boldPlusImage)
@@ -38,7 +38,7 @@ class AddItemBar: UIView {
         })
     }
 
-    private let categoryButton: UIButton = {
+    private lazy var categoryButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldHouseImage = UIImage(systemName: "house", withConfiguration: boldConfig)
         let button = RoundButton(with: boldHouseImage)
@@ -53,26 +53,26 @@ class AddItemBar: UIView {
         delegate?.categoryButtonTapped()
     }
 
-    private let noteField: UITextField = {
+    private lazy var noteField: UITextField = {
         let field = AddItemBarTextField()
         field.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         field.placeholder = Constants.noteFieldPlaceholderText
         return field
     }()
 
-    private let amountField: UITextField = {
+    private lazy var amountField: UITextField = {
         let field = AddItemBarTextField()
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        field.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrency()?.symbol ?? "?")0"
+        field.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())0"
         return field
     }()
     
     func updateAmountField() {
-        amountField.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrency()?.symbol ?? "?")0"
+        amountField.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())0"
     }
     
-    private let addItemBarStack: UIStackView = {
+    private lazy var addItemBarStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fill

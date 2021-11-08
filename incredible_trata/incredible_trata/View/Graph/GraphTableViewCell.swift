@@ -1,15 +1,14 @@
 //
-//  SettingsTableViewCell.swift
+//  GraphTableViewCell.swift
 //  incredible_trata
 //
-//  Created by Ryabin Kirill on 01.11.2021.
+//  Created by Ryabin Kirill on 08.11.2021.
 //  
 
 import Foundation
 import UIKit
 
-
-class SettingsTableViewCell: UITableViewCell {
+class GraphTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,25 +22,23 @@ class SettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var viewModel: SettingsTableViewCellModel! {
+    private var viewModel: Category! {
         didSet {
-            labelView.text = viewModel.text
+            categoryName.text = viewModel.lableName
             roundIcon.imageName = viewModel.imageName
-            switch viewModel.cellType {
-                case .blank:
-                    break
-                case .nested:
-                    arrowView.isHidden = false
-                case .toggle:
-                    toggleView.isHidden = false
-                case .check:
-                    break
-            }
         }
     }
     
-    func configure(viewModel: SettingsTableViewCellModel) {
+    private var amount: Int64 = 0 {
+        didSet {
+            categoryAmount.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(amount)"
+        }
+    }
+    
+    func configure(viewModel: Category, amount: Int64, iconColor: UIColor) {
         self.viewModel = viewModel
+        self.amount = amount
+        roundIcon.backgroundColor = iconColor
     }
     
     enum RoundSide {
@@ -50,73 +47,62 @@ class SettingsTableViewCell: UITableViewCell {
         case bottom
         case all
     }
-    
+
     var roundSide: RoundSide = .none {
         didSet {
             self.contentView.layer.cornerRadius = Constants.cellCornerRadius
             switch roundSide {
-                case .none:
-                    self.contentView.layer.maskedCorners = []
-                case .top:
-                    self.contentView.layer.maskedCorners = [
-                        .layerMaxXMinYCorner,
-                        .layerMinXMinYCorner
-                    ]
-                case .bottom:
-                    self.contentView.layer.maskedCorners = [
-                        .layerMaxXMaxYCorner,
-                        .layerMinXMaxYCorner
-                    ]
-                case .all:
-                    self.contentView.layer.maskedCorners = [
-                        .layerMaxXMinYCorner,
-                        .layerMinXMinYCorner,
-                        .layerMaxXMaxYCorner,
-                        .layerMinXMaxYCorner
-                    ]
+            case .none:
+                self.contentView.layer.maskedCorners = []
+            case .top:
+                self.contentView.layer.maskedCorners = [
+                    .layerMaxXMinYCorner,
+                    .layerMinXMinYCorner
+                ]
+            case .bottom:
+                self.contentView.layer.maskedCorners = [
+                    .layerMaxXMaxYCorner,
+                    .layerMinXMaxYCorner
+                ]
+            case .all:
+                self.contentView.layer.maskedCorners = [
+                    .layerMaxXMinYCorner,
+                    .layerMinXMinYCorner,
+                    .layerMaxXMaxYCorner,
+                    .layerMinXMaxYCorner
+                ]
             }
         }
     }
     
     private lazy var roundIcon = RoundIcon()
     
-    private lazy var labelView: UILabel = {
+    private lazy var categoryName: UILabel = {
         let label = UILabel()
-        label.textColor = Color.textBG
-        label.font = label.font.withSize(Constants.cellFontSize)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: Constants.cellFontSize)
         return label
     }()
     
-    private lazy var toggleView: UISwitch = {
-        let toggle = UISwitch()
-        toggle.isHidden = true
-        toggle.setContentHuggingPriority(.required, for: .horizontal)
-        toggle.addTarget(self, action: #selector(toggleWasTapped), for: .touchUpInside)
-        return toggle
+    private lazy var categoryAmount: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: Constants.cellFontSize)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        return label
     }()
-    
-    @objc
-    func toggleWasTapped() {
-        guard let viewModel = self.viewModel,
-              let action = viewModel.action
-        else {
-            return
-        }
-        action(toggleView.isOn)
-    }
     
     private lazy var arrowView: UIImageView = {
         let image = UIImage(systemName: "chevron.right")
         let imageView = UIImageView(image: image)
-        imageView.tintColor = Color.textBG
-        imageView.isHidden = true
+        imageView.tintColor = .white
         imageView.setContentHuggingPriority(.required, for: .horizontal)
         return imageView
     }()
     
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
-            roundIcon, labelView, toggleView, arrowView
+            roundIcon, categoryName, categoryAmount, arrowView
         ])
         stack.axis = .horizontal
         stack.distribution = .fill
@@ -124,10 +110,10 @@ class SettingsTableViewCell: UITableViewCell {
         stack.spacing = Constants.cellElementSpacing
         stack.isLayoutMarginsRelativeArrangement = true
         stack.directionalLayoutMargins =
-                NSDirectionalEdgeInsets(top: 0,
-                                        leading: Constants.cellElementSpacing,
-                                        bottom: 0,
-                                        trailing: Constants.cellElementSpacing)
+        NSDirectionalEdgeInsets(top: 0,
+                                leading: Constants.cellElementSpacing,
+                                bottom: 0,
+                                trailing: Constants.cellElementSpacing)
         return stack
     }()
     
@@ -140,8 +126,7 @@ class SettingsTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            stackView.heightAnchor.constraint(equalTo: roundIcon.heightAnchor,
-                                              constant: Constants.cellPadding * 2),
+            stackView.heightAnchor.constraint(equalToConstant: Constants.iconHeight + Constants.cellPadding * 2),
             roundIcon.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
             roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
         ])
@@ -150,28 +135,28 @@ class SettingsTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        if selected {
+        if viewModel != nil {
+            contentView.backgroundColor = Color.controlBG
+        }
+        else if selected {
             contentView.backgroundColor = .gray
         } else {
             contentView.backgroundColor = Color.controlBG
         }
     }
     
+    // TODO: a bit on how it works
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.accessoryType = .none
-        self.clipsToBounds = false
-        self.backgroundColor = .clear
         self.contentView.layer.cornerRadius = 0
-        self.arrowView.isHidden = true
-        self.toggleView.isHidden = true
+        self.roundSide = .none
     }
 }
 
 // MARK: - Constants
-extension SettingsTableViewCell {
+extension GraphTableViewCell {
     private enum Constants {
-        static let cellCornerRadius: CGFloat = 5
+        static let cellCornerRadius: CGFloat = 10
         static let cellFontSize: CGFloat = 20
         static let cellElementSpacing: CGFloat = 15
         static let cellPadding: CGFloat = 15
