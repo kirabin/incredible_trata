@@ -30,14 +30,16 @@
 		EA3F496227268CA00055292D /* incredible_trataUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */; };
 		F65891A9272C3E6B005C142B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891A8272C3E6B005C142B /* SettingsViewController.swift */; };
 		F65891AD272C49BA005C142B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891AC272C49BA005C142B /* NavigationController.swift */; };
-		F65891AF272FCAD4005C142B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891AE272FCAD4005C142B /* SettingsView.swift */; };
-		F65891B2272FED40005C142B /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B1272FED40005C142B /* SettingsCell.swift */; };
-		F65891B627301331005C142B /* SettingsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B527301331005C142B /* SettingsCellModel.swift */; };
+		F65891B2272FED40005C142B /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B1272FED40005C142B /* SettingsTableViewCell.swift */; };
+		F65891B627301331005C142B /* SettingsTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B527301331005C142B /* SettingsTableViewCellModel.swift */; };
 		F65891B827312AC9005C142B /* RoundIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B727312AC9005C142B /* RoundIcon.swift */; };
+		F65891BF27327573005C142B /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891BE27327573005C142B /* CurrencyViewController.swift */; };
+		F65891C127327CD8005C142B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */; };
 		F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78652726ABBF00874F0B /* AddItemBar.swift */; };
 		F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundButton.swift */; };
 		F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */; };
 		F68A78722728523500874F0B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78712728523400874F0B /* Color.swift */; };
+		F6AEE2FE2732D47600ACEF1D /* SettingsSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */; };
 		F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC1272995E8005202E2 /* CoreDataManager.swift */; };
 		F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC327299979005202E2 /* DefaultsManager.swift */; };
 		F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */; };
@@ -97,14 +99,16 @@
 		EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incredible_trataUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F65891A8272C3E6B005C142B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F65891AC272C49BA005C142B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		F65891AE272FCAD4005C142B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		F65891B1272FED40005C142B /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
-		F65891B527301331005C142B /* SettingsCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellModel.swift; sourceTree = "<group>"; };
+		F65891B1272FED40005C142B /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		F65891B527301331005C142B /* SettingsTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCellModel.swift; sourceTree = "<group>"; };
 		F65891B727312AC9005C142B /* RoundIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIcon.swift; sourceTree = "<group>"; };
+		F65891BE27327573005C142B /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		F68A78652726ABBF00874F0B /* AddItemBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBar.swift; sourceTree = "<group>"; };
 		F68A78692726E49F00874F0B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBarTextField.swift; sourceTree = "<group>"; };
 		F68A78712728523400874F0B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSections.swift; sourceTree = "<group>"; };
 		F6F95FC1272995E8005202E2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F6F95FC327299979005202E2 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 		F6F95FCE272A7AD5005202E2 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -321,9 +325,9 @@
 			isa = PBXGroup;
 			children = (
 				F65891A8272C3E6B005C142B /* SettingsViewController.swift */,
-				F65891AE272FCAD4005C142B /* SettingsView.swift */,
-				F65891B1272FED40005C142B /* SettingsCell.swift */,
-				F65891B527301331005C142B /* SettingsCellModel.swift */,
+				F65891B1272FED40005C142B /* SettingsTableViewCell.swift */,
+				F65891B527301331005C142B /* SettingsTableViewCellModel.swift */,
+				F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -337,11 +341,21 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		F65891BD27327558005C142B /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				F65891BE27327573005C142B /* CurrencyViewController.swift */,
+				F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
 		F68A78632726AB8C00874F0B /* View */ = {
 			isa = PBXGroup;
 			children = (
 				F65891B92731831A005C142B /* Other */,
 				F65891A7272C3E57005C142B /* Settings */,
+				F65891BD27327558005C142B /* Currency */,
 				F68A78642726AB9300874F0B /* AddItemBar */,
 			);
 			path = View;
@@ -529,6 +543,7 @@
 			files = (
 				83EFF9D4272EB21200F133A2 /* CategoryTableViewCell.swift in Sources */,
 				834994C4272BE66900F0E35B /* Category+CoreDataProperties.swift in Sources */,
+				F65891C127327CD8005C142B /* CurrencyTableViewCell.swift in Sources */,
 				83CF01A2272A969800E76996 /* MainViewController.swift in Sources */,
 				834994C3272BE66900F0E35B /* Category+CoreDataClass.swift in Sources */,
 				8329D90D2726BDF0000949BB /* ExtensionMainViewController.swift in Sources */,
@@ -540,10 +555,11 @@
 				EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */,
 				F6F95FD5272A7AD5005202E2 /* Record+CoreDataProperties.swift in Sources */,
 				F65891B827312AC9005C142B /* RoundIcon.swift in Sources */,
+				F6AEE2FE2732D47600ACEF1D /* SettingsSections.swift in Sources */,
 				F65891A9272C3E6B005C142B /* SettingsViewController.swift in Sources */,
 				F6FA5C5E272AE58F00C93A19 /* Currency+CoreDataProperties.swift in Sources */,
 				F6F95FD4272A7AD5005202E2 /* Record+CoreDataClass.swift in Sources */,
-				F65891B627301331005C142B /* SettingsCellModel.swift in Sources */,
+				F65891B627301331005C142B /* SettingsTableViewCellModel.swift in Sources */,
 				F65891AD272C49BA005C142B /* NavigationController.swift in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */,
@@ -553,13 +569,13 @@
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */,
 				F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */,
-				F65891B2272FED40005C142B /* SettingsCell.swift in Sources */,
+				F65891B2272FED40005C142B /* SettingsTableViewCell.swift in Sources */,
 				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */,
 				835C1B87273246560033A9CE /* ExtensionAddCAtegoryViewController.swift in Sources */,
 				F6FA5C6D272BEE2600C93A19 /* CoreDataManager+UserSettings.swift in Sources */,
 				F6F95FE7272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift in Sources */,
-				F65891AF272FCAD4005C142B /* SettingsView.swift in Sources */,
+				F65891BF27327573005C142B /* CurrencyViewController.swift in Sources */,
 				F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */,
 				F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */,
 				F6FA5C6B272BEDE700C93A19 /* CoreDataManager+Currency.swift in Sources */,

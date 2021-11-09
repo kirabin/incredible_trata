@@ -64,9 +64,13 @@ class AddItemBar: UIView {
         let field = AddItemBarTextField()
         field.keyboardType = .numberPad
         field.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        field.placeholder = "\(CoreDataManager.shared.getCurrency()?.symbol ?? "?")0"
+        field.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrency()?.symbol ?? "?")0"
         return field
     }()
+    
+    func updateAmountField() {
+        amountField.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrency()?.symbol ?? "?")0"
+    }
     
     private let addItemBarStack: UIStackView = {
         let stack = UIStackView()
