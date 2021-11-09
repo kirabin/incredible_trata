@@ -18,9 +18,9 @@ class CategoriesViewController: UIViewController {
     
     var addCategoryButton = UIButton()
     var category: Category?
-    var categories = CoreDataManager.shared.getAllCategories()
     weak var delegate: CategoriesViewControllerDelegate?
-    
+    var categories = CoreDataManager.shared.getAllCategories()
+
     let categoriesTableView: UITableView = {
         let CategoriesTableView = UITableView()
         CategoriesTableView.translatesAutoresizingMaskIntoConstraints = false

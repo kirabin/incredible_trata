@@ -11,15 +11,6 @@ import UIKit
 
 final class CategoryTableViewCell: UITableViewCell {
     
-    var indexCell = (first:false, last:false) {
-        didSet {
-            if indexCell.first {
-                self.layer.cornerRadius = 10
-                self.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
-            }
-        }
-    }
-    
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             logoImageView, titleLabel
@@ -37,7 +28,7 @@ final class CategoryTableViewCell: UITableViewCell {
     private lazy var imageBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.159709245, green: 0.1699241698, blue: 0.1888181865, alpha: 1)
+        view.backgroundColor = Color.iconBG
         view.layer.cornerRadius = Default.sizeImageView / 2
         return view
     }()
@@ -63,11 +54,37 @@ final class CategoryTableViewCell: UITableViewCell {
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        self.clipsToBounds = false
+        self.backgroundColor = .clear
+        contentView.backgroundColor = Color.controlBG
         setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var indexCell = (first:false, last:false) {
+        didSet {
+            switch indexCell {
+                
+            case (first:true, last:true):
+                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner,
+                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            case (first:false, last:true):
+                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
+            case (first:true, last:false):
+                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
+            case (first:false, last:false):
+                self.contentView.layer.cornerRadius = 0
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner,
+                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            }
+        }
     }
     
     private func setupUI() {
@@ -99,8 +116,10 @@ final class CategoryTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.accessoryType = .none
+        self.clipsToBounds = false
+        self.backgroundColor = .clear
         self.contentView.layer.cornerRadius = 0
-        self.viewModel = nil
+        indexCell = (false, false)
     }
 }
 

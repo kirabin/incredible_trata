@@ -27,5 +27,4 @@ extension CoreDataManager {
     func getCurrencies() -> [Currency]? {
         try? CoreDataManager.shared.context.fetch(Currency.fetchRequest())
     }
-    
 }

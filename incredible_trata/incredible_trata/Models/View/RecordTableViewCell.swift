@@ -10,21 +10,20 @@ import UIKit
 
 final class RecordTableViewCell: UITableViewCell {
     
-    var viewModel = CustomCellViewModel(categories: .transport, subtitle: "home", price: 24) {
-        
-        didSet {
-            titleLabel.text = viewModel.title
-            subtitleLabel.text = viewModel.subtitle
-            layoutIfNeeded()
-        }
-    }
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         self.clipsToBounds = false
         self.backgroundColor = .clear
-        contentView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        contentView.backgroundColor = Color.controlBG
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.tintColor = .white
         setupUI()
     }
     
@@ -37,17 +36,19 @@ final class RecordTableViewCell: UITableViewCell {
             switch indexCell {
                 
             case (first:true, last:true):
-                self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+                self.contentView.layer.cornerRadius = Default.cornerRadiusTrue
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner,
+                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             case (first:false, last:true):
-                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.cornerRadius = Default.cornerRadiusTrue
                 self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
             case (first:true, last:false):
-                self.contentView.layer.cornerRadius = 10
+                self.contentView.layer.cornerRadius = Default.cornerRadiusTrue
                 self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
             case (first:false, last:false):
-                self.contentView.layer.cornerRadius = 0
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+                self.contentView.layer.cornerRadius = Default.cornerRadiusFalse
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner,
+                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             }
         }
     }
@@ -70,19 +71,10 @@ final class RecordTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private lazy var logoImageView: UIImageView = {
-        let imageName = UIImage(systemName: viewModel.imageName)!
-        let imageView = UIImageView(image: imageName)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .white
-        return imageView
-    }()
-    
     private lazy var imageBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.159709245, green: 0.1699241698, blue: 0.1888181865, alpha: 1)
+        view.backgroundColor = Color.iconBG
         view.layer.cornerRadius = Default.sizeImageView / 2
         return view
     }()
@@ -90,7 +82,6 @@ final class RecordTableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = viewModel.title
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
@@ -99,7 +90,6 @@ final class RecordTableViewCell: UITableViewCell {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = viewModel.subtitle
         label.textColor = UIColor.white.withAlphaComponent(0.6)
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.numberOfLines = 0
@@ -109,14 +99,21 @@ final class RecordTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text =  "£" + String(viewModel.price)
         label.textAlignment = .right
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 17)
         return label
     }()
     
-    
+    var viewModel: Record?  = nil {
+        didSet {
+            subtitleLabel.text = viewModel?.note
+            priceLabel.text = (viewModel?.currency?.symbol)! + String((viewModel?.amount)!)
+            titleLabel.text = viewModel?.category?.lableName
+            let image = UIImage(systemName: (viewModel?.category?.imageName)!)
+            logoImageView.image = image
+        }
+    }
     
     private func setupUI() {
         addSubviews()
@@ -159,7 +156,7 @@ extension RecordTableViewCell {
     enum Default {
         static let sizeImageView: CGFloat = 35
         static let sizeLogoImageView: CGFloat = 20
+        static let cornerRadiusTrue: CGFloat = 10
+        static let cornerRadiusFalse: CGFloat = 0
     }
 }
-
-

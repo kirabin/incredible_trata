@@ -35,5 +35,4 @@ extension AddCategoryViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.imageNumber = indexPath.row
     }
-
 }
