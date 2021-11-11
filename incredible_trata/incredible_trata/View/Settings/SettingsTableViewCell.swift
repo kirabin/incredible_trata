@@ -34,6 +34,8 @@ class SettingsTableViewCell: UITableViewCell {
                     arrowView.isHidden = false
                 case .toggle:
                     toggleView.isHidden = false
+                case .check:
+                    break
             }
         }
     }
@@ -80,7 +82,7 @@ class SettingsTableViewCell: UITableViewCell {
     
     private lazy var labelView: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = Color.textBG
         label.font = label.font.withSize(Constants.cellFontSize)
         return label
     }()
@@ -107,7 +109,7 @@ class SettingsTableViewCell: UITableViewCell {
     private lazy var arrowView: UIImageView = {
         let image = UIImage(systemName: "chevron.right")
         let imageView = UIImageView(image: image)
-        imageView.tintColor = .white
+        imageView.tintColor = Color.textBG
         imageView.isHidden = true
         imageView.setContentHuggingPriority(.required, for: .horizontal)
         return imageView
@@ -154,6 +156,16 @@ class SettingsTableViewCell: UITableViewCell {
         } else {
             contentView.backgroundColor = Color.controlBG
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.accessoryType = .none
+        self.clipsToBounds = false
+        self.backgroundColor = .clear
+        self.contentView.layer.cornerRadius = 0
+        self.arrowView.isHidden = true
+        self.toggleView.isHidden = true
     }
 }
 

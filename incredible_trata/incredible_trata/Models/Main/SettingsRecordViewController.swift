@@ -21,7 +21,7 @@ class SettingsRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = Color.mainBG
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -68,7 +68,7 @@ class SettingsRecordViewController: UIViewController {
     private lazy var picker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = Color.controlBG
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .editingChanged)
+        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .allEvents)
        return datePicker
     }()
     
@@ -188,7 +188,7 @@ class SettingsRecordViewController: UIViewController {
     }()
     
     func reloadRecord(inputRecord: Record?) {
-        childrenRecord = CoreDataManager.shared.FindRecord(viewContext: childrenViewContext, record: inputRecord!)
+        childrenRecord = CoreDataManager.shared.findRecord(viewContext: childrenViewContext, record: inputRecord!)
         noteTextField.text = childrenRecord?.note
         amountTextField.text = String((childrenRecord?.amount)!)
         settingsCategoryButton.setImage(UIImage(systemName: (childrenRecord?.category?.imageName)!), for: .normal)
@@ -292,7 +292,8 @@ class SettingsRecordViewController: UIViewController {
 
 extension SettingsRecordViewController: CategoriesViewControllerDelegate {
     func categoryWasSelected(category: Category) {
-        childrenRecord?.category = category
+        let selectedCategory = CoreDataManager.shared.findCategory(viewContext: childrenViewContext, object: category)
+                childrenRecord?.category = selectedCategory
         settingsCategoryButton.setImage(UIImage(systemName: (childrenRecord?.category!.imageName)!), for: .normal)
         settingsCategoryButton.setTitle((childrenRecord?.category!.lableName)!, for: .normal)
     }

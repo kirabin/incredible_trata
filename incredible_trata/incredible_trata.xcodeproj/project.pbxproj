@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8329D90D2726BDF0000949BB /* ExtensionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */; };
+		832C4A94273AB7FB00F796CA /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4A93273AB7FB00F796CA /* AppearanceViewController.swift */; };
+		832C4A98273AEF6800F796CA /* AppearanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4A97273AEF6800F796CA /* AppearanceTableViewCell.swift */; };
+		832C4A9E273CE89400F796CA /* AppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4A9D273CE89400F796CA /* AppearanceSection.swift */; };
+		832C4AA2273D3DFC00F796CA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4AA1273D3DFC00F796CA /* Color.swift */; };
+		832C4AA4273D3E1000F796CA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4AA3273D3E1000F796CA /* Theme.swift */; };
 		834994C3272BE66900F0E35B /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */; };
 		834994C4272BE66900F0E35B /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */; };
 		834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */; };
@@ -37,7 +42,6 @@
 		F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78652726ABBF00874F0B /* AddItemBar.swift */; };
 		F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundButton.swift */; };
 		F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */; };
-		F68A78722728523500874F0B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78712728523400874F0B /* Color.swift */; };
 		F6AEE2FE2732D47600ACEF1D /* SettingsSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */; };
 		F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC1272995E8005202E2 /* CoreDataManager.swift */; };
 		F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F95FC327299979005202E2 /* DefaultsManager.swift */; };
@@ -72,6 +76,11 @@
 
 /* Begin PBXFileReference section */
 		8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMainViewController.swift; sourceTree = "<group>"; };
+		832C4A93273AB7FB00F796CA /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
+		832C4A97273AEF6800F796CA /* AppearanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceTableViewCell.swift; sourceTree = "<group>"; };
+		832C4A9D273CE89400F796CA /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
+		832C4AA1273D3DFC00F796CA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		832C4AA3273D3E1000F796CA /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "../../../Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Category.swift"; sourceTree = "<group>"; };
@@ -105,7 +114,6 @@
 		F68A78652726ABBF00874F0B /* AddItemBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBar.swift; sourceTree = "<group>"; };
 		F68A78692726E49F00874F0B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemBarTextField.swift; sourceTree = "<group>"; };
-		F68A78712728523400874F0B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSections.swift; sourceTree = "<group>"; };
 		F6F95FC1272995E8005202E2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F6F95FC327299979005202E2 /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
@@ -190,11 +198,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8357475A272A8E4F00FF0A3E /* ViewModel */ = {
+		8357475A272A8E4F00FF0A3E /* Appearance */ = {
 			isa = PBXGroup;
 			children = (
+				832C4A9D273CE89400F796CA /* AppearanceSection.swift */,
 			);
-			name = ViewModel;
+			name = Appearance;
 			sourceTree = "<group>";
 		};
 		8357475B272A901800FF0A3E /* View */ = {
@@ -203,6 +212,7 @@
 				83CF019F272A966100E76996 /* RecordTableViewCell.swift */,
 				83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */,
 				83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */,
+				832C4A97273AEF6800F796CA /* AppearanceTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -273,7 +283,7 @@
 			children = (
 				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
 				8357475B272A901800FF0A3E /* View */,
-				8357475A272A8E4F00FF0A3E /* ViewModel */,
+				8357475A272A8E4F00FF0A3E /* Appearance */,
 				83574758272A7C3D00FF0A3E /* CoreDataManager */,
 				8329D9032726B34B000949BB /* Extensions */,
 				F6F95FCD272A7AAE005202E2 /* CoreData */,
@@ -304,6 +314,7 @@
 				83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */,
 				83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */,
 				8357C7E62735138C00FD0F8A /* SettingsRecordViewController.swift */,
+				832C4A93273AB7FB00F796CA /* AppearanceViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -311,9 +322,10 @@
 		EA3F497427268E3E0055292D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				832C4AA3273D3E1000F796CA /* Theme.swift */,
 				EA3F494727268CA00055292D /* Assets.xcassets */,
 				EA3F494C27268CA00055292D /* Info.plist */,
-				F68A78712728523400874F0B /* Color.swift */,
+				832C4AA1273D3DFC00F796CA /* Color.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -545,7 +557,7 @@
 				834994C3272BE66900F0E35B /* Category+CoreDataClass.swift in Sources */,
 				8329D90D2726BDF0000949BB /* ExtensionMainViewController.swift in Sources */,
 				F6F95FC427299979005202E2 /* DefaultsManager.swift in Sources */,
-				F68A78722728523500874F0B /* Color.swift in Sources */,
+				832C4AA2273D3DFC00F796CA /* Color.swift in Sources */,
 				F6F95FC2272995E8005202E2 /* CoreDataManager.swift in Sources */,
 				83EFF9D6272EB52A00F133A2 /* AddCategoryViewController.swift in Sources */,
 				83EFF9D0272E9C9700F133A2 /* CategoriesViewController.swift in Sources */,
@@ -561,19 +573,22 @@
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
 				83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */,
 				83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */,
+				832C4A98273AEF6800F796CA /* AppearanceTableViewCell.swift in Sources */,
 				834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
 				F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */,
+				832C4AA4273D3E1000F796CA /* Theme.swift in Sources */,
 				F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */,
 				F65891B2272FED40005C142B /* SettingsTableViewCell.swift in Sources */,
 				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */,
 				835C1B87273246560033A9CE /* ExtensionAddCAtegoryViewController.swift in Sources */,
+				832C4A94273AB7FB00F796CA /* AppearanceViewController.swift in Sources */,
 				F6FA5C6D272BEE2600C93A19 /* CoreDataManager+UserSettings.swift in Sources */,
 				F6F95FE7272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift in Sources */,
-                F65891BF27327573005C142B /* CurrencyViewController.swift in Sources */,
-				F65891AF272FCAD4005C142B /* SettingsView.swift in Sources */,
+				F65891BF27327573005C142B /* CurrencyViewController.swift in Sources */,
 				8357C7E72735138C00FD0F8A /* SettingsRecordViewController.swift in Sources */,
+				832C4A9E273CE89400F796CA /* AppearanceSection.swift in Sources */,
 				F6F95FD2272A7AD5005202E2 /* Currency+CoreDataClass.swift in Sources */,
 				F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */,
 				F6FA5C6B272BEDE700C93A19 /* CoreDataManager+Currency.swift in Sources */,

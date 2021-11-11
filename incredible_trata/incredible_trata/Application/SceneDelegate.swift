@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         window?.backgroundColor = .black
-        window?.overrideUserInterfaceStyle = .light
+        window?.initTheme()
     }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -54,3 +54,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension UIWindow {
+    func initTheme() {
+        guard #available(iOS 13.0, *) else { return }
+        
+        overrideUserInterfaceStyle = Theme.current.userInterfaceStyle
+    }
+}

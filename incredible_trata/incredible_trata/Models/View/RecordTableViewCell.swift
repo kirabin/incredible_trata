@@ -12,6 +12,7 @@ final class RecordTableViewCell: UITableViewCell {
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.tintColor = Color.textBG
         return imageView
     }()
     
@@ -23,7 +24,7 @@ final class RecordTableViewCell: UITableViewCell {
         contentView.backgroundColor = Color.controlBG
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.contentMode = .scaleAspectFit
-        logoImageView.tintColor = .white
+        logoImageView.tintColor = Color.mainBG
         setupUI()
     }
     
@@ -82,7 +83,7 @@ final class RecordTableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = Color.textBG
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
@@ -90,7 +91,7 @@ final class RecordTableViewCell: UITableViewCell {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.white.withAlphaComponent(0.6)
+        label.textColor = Color.textBG.withAlphaComponent(0.6)
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.numberOfLines = 0
         return label
@@ -100,7 +101,7 @@ final class RecordTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.textColor = .white
+        label.textColor = Color.textBG
         label.font = UIFont.boldSystemFont(ofSize: 17)
         return label
     }()
@@ -112,6 +113,7 @@ final class RecordTableViewCell: UITableViewCell {
             titleLabel.text = viewModel?.category?.lableName
             let image = UIImage(systemName: (viewModel?.category?.imageName)!)
             logoImageView.image = image
+            logoImageView.tintColor = Color.textBG
         }
     }
     

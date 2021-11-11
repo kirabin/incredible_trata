@@ -65,6 +65,7 @@ class CoreDataManager {
     
     func savePrivateContext(_ privateContext: NSManagedObjectContext) {
         try! privateContext.save()
+        try! context.save()
     }
 
 }

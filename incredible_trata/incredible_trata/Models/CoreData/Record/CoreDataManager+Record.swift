@@ -36,7 +36,7 @@ extension CoreDataManager {
         return record
     }
     
-    func FindRecord(viewContext: NSManagedObjectContext, record: Record) -> Record? {
+    func findRecord(viewContext: NSManagedObjectContext, record: Record) -> Record? {
         let records = try! viewContext.fetch(Record.fetchRequest())
         for temp in records {
             if temp.objectID == record.objectID {

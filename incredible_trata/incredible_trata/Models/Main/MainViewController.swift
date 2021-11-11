@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     private lazy var settingsButton: UIButton = {
         let button = RoundButton(with: UIImage(systemName: "gearshape"))
         button.backgroundColor = Color.headerButtonBG
-        button.tintColor = .white
+        button.tintColor = Color.textBG
         button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -175,5 +175,4 @@ extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.present(navVC, animated: true)
     }
-
 }
