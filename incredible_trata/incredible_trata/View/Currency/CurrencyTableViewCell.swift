@@ -13,7 +13,7 @@ class CurrencyTableViewCell: UITableViewCell {
     private lazy var currencyLabel: UILabel = {
         let label = UILabel()
         label.text = "?"
-        label.textColor = .white
+        label.textColor = Color.textBG
         label.font = label.font.withSize(Constants.cellFontSize)
         return label
     }()

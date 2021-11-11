@@ -18,7 +18,7 @@ class RoundIcon: UIView {
     
     var iconView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .white
+        imageView.tintColor = Color.textBG
         return imageView
     }()
     

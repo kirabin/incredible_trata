@@ -14,8 +14,8 @@ class NavigationController: UINavigationController {
         super.init(rootViewController: rootViewController)
 
         navigationBar.prefersLargeTitles = true
-        navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationBar.tintColor = .white
+        navigationBar.largeTitleTextAttributes = [.foregroundColor: Color.inputFG]
+        navigationBar.tintColor = Color.inputFG
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -48,6 +48,16 @@ extension CoreDataManager {
         let categories = try! context.fetch(Category.fetchRequest())
         return categories
     }
+    
+    func findCategory(viewContext: NSManagedObjectContext, object: Category) -> Category? {
+            let objects = try! viewContext.fetch(type(of: object).fetchRequest())
+            for temp in objects {
+                if temp.objectID == object.objectID {
+                    return temp
+                }
+            }
+            return nil
+        }
 }
 
 // MARK: - Constants

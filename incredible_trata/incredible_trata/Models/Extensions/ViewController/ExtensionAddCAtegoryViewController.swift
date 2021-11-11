@@ -19,7 +19,7 @@ extension AddCategoryViewController: UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as!
         CategoryCollectionViewCell
         cell.layer.cornerRadius = 10
-        cell.backgroundColor = #colorLiteral(red: 0.159709245, green: 0.1699241698, blue: 0.1888181865, alpha: 1)
+        cell.backgroundColor = Color.iconBG
         cell.image = Default.images[indexPath.row]
        return cell
     }

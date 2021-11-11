@@ -30,9 +30,12 @@ class SettingsViewController: UIViewController {
                         self?.currencyAction()
                             
                     case .importData, .exportData, .category,
-                            .appearance, .siri, .notifications,
+                             .siri, .notifications,
                                 .monthlyLimit:
                         break
+                    case .appearance:
+                        self?.appearanceAction()
+                        
                     }
                 }
                 rows.append(model)
@@ -48,6 +51,10 @@ class SettingsViewController: UIViewController {
     
     func currencyAction() {
         self.navigationController?.pushViewController(CurrencyViewController(), animated: true)
+    }
+    
+    func appearanceAction() {
+        self.navigationController?.pushViewController(AppearanceViewController(), animated: true)
     }
     
     private lazy var settingsView: UITableView = {
@@ -67,8 +74,6 @@ class SettingsViewController: UIViewController {
         view.addSubview(settingsView)
         setConstrainst()
     }
-    
-  
     
     func setConstrainst() {
         settingsView.translatesAutoresizingMaskIntoConstraints = false

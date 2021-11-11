@@ -36,7 +36,7 @@ final class CategoryTableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = Color.textBG
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
@@ -47,7 +47,7 @@ final class CategoryTableViewCell: UITableViewCell {
             logoImageView.image = imageName
             logoImageView.translatesAutoresizingMaskIntoConstraints = false
             logoImageView.contentMode = .scaleAspectFit
-            logoImageView.tintColor = .white
+            logoImageView.tintColor = Color.textBG
             titleLabel.text = viewModel?.lableName
 
         }

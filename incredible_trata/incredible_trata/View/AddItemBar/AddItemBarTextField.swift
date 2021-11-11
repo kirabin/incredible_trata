@@ -16,7 +16,7 @@ class AddItemBarTextField: UITextField {
 
         self.backgroundColor = Color.controlBG
         self.textAlignment = .center
-        self.textColor = .white
+        self.textColor = Color.mainBG
         self.attributedPlaceholder = NSAttributedString(
             string: "?",
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]

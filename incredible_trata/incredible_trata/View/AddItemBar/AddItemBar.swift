@@ -23,7 +23,7 @@ class AddItemBar: UIView {
         //let button = RoundButton(with: boldPlusImage)
         let button = RoundButton(with: boldPlusImage)
         button.backgroundColor = Color.addButtonBG
-        button.tintColor = .white
+        button.tintColor = Color.textBG
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -88,10 +88,6 @@ class AddItemBar: UIView {
 
     init() {
         super.init(frame: .zero)
-        self.layer.shadowColor = Color.mainBG.cgColor
-        self.layer.shadowOpacity = 1
-        self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 10
         setupSubViews()
     }
 

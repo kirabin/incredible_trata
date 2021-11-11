@@ -18,7 +18,7 @@ class AddCategoryViewController: UIViewController {
         let castomCollectionView = UICollectionView(frame: CGRect.zero,
                                                     collectionViewLayout: UICollectionViewFlowLayout.init())
         castomCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        castomCollectionView.backgroundColor = .black
+        castomCollectionView.backgroundColor = Color.mainBG
         return castomCollectionView
     }()
     
@@ -26,7 +26,7 @@ class AddCategoryViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Сhoose a picture"
-        label.textColor = .white
+        label.textColor = Color.inputFG
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
@@ -35,27 +35,26 @@ class AddCategoryViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Title"
-        label.textColor = .white
-        label.backgroundColor = #colorLiteral(red: 0.159709245, green: 0.1699241698, blue: 0.1888181865, alpha: 1)
+        label.textColor = Color.textBG
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.159709245, green: 0.1699241698, blue: 0.1888181865, alpha: 1)
+        textField.backgroundColor = Color.mainBG
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.boldSystemFont(ofSize: 20)
         textField.placeholder = "Enter the title"
         textField.attributedPlaceholder = NSAttributedString(string: "Enter the title",
-                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.6)])
+                                                             attributes: [NSAttributedString.Key.foregroundColor: Color.textBG.withAlphaComponent(0.6)])
         
         return textField
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = Color.mainBG
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
         castomCollectoinView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")

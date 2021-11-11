@@ -24,7 +24,7 @@ class CategoriesViewController: UIViewController {
     let categoriesTableView: UITableView = {
         let CategoriesTableView = UITableView()
         CategoriesTableView.translatesAutoresizingMaskIntoConstraints = false
-        CategoriesTableView.backgroundColor = .black
+        CategoriesTableView.backgroundColor = Color.mainBG
         CategoriesTableView.layer.cornerRadius = 10
         return CategoriesTableView
     }()
@@ -33,8 +33,8 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Select a category"
-        view.backgroundColor = .black
+        title = "Select a category"
+        view.backgroundColor = Color.mainBG
         self.view.addSubview(categoriesTableView)
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
@@ -42,7 +42,9 @@ class CategoriesViewController: UIViewController {
         categoriesTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: idCell)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", style: .plain, target: self, action:
                                                             #selector(actionBarItems))
-        self.navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Color.inputFG]
+        navigationController?.navigationBar.tintColor = Color.inputFG
         setConstraints()
        
     }

@@ -132,4 +132,5 @@ enum SettingsRowType {
     case blank
     case nested
     case toggle
+    case check
 }
