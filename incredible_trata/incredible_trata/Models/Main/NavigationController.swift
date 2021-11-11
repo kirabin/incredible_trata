@@ -15,6 +15,7 @@ class NavigationController: UINavigationController {
 
         navigationBar.prefersLargeTitles = true
         navigationBar.largeTitleTextAttributes = [.foregroundColor: Color.inputFG]
+        navigationBar.titleTextAttributes = [.foregroundColor: Color.inputFG]
         navigationBar.tintColor = Color.inputFG
     }
     

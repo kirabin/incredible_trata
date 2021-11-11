@@ -9,23 +9,27 @@ import Foundation
 
 extension CoreDataManager {
     
-    private func getUserSettings() -> UserSettings {
-        // TODO: handle try!
-        let userSettingsItems = try! context.fetch(UserSettings.fetchRequest())
-        
-        if userSettingsItems.isEmpty {
-            return UserSettings.create(in: context)
+    func getUserSettings() -> UserSettings {
+        var items: [UserSettings] = []
+        do {
+            items = try context.fetch(UserSettings.fetchRequest())
+        } catch let error as NSError {
+            print("Couldn't fetch userSettings \(error), \(error.userInfo)")
+        }
+
+        if items.isEmpty {
+            return setUserSettings()
         } else {
-            return userSettingsItems[0]
+            return items[0]
         }
     }
     
-    func getUserSelectedCurrency() -> Currency? {
-        return getUserSettings().currency
+    func getUserSelectedCurrencySymbol() -> String {
+        getUserSettings().currency!.symbol!
     }
     
-    func setUserSettings() {
-        let userSettings = getUserSettings()
+    func setUserSettings() -> UserSettings {
+        let userSettings = UserSettings.create(in: context)
         let currencies = try! context.fetch(Currency.fetchRequest())
         
         if currencies.isEmpty {
@@ -38,6 +42,7 @@ extension CoreDataManager {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+        return userSettings
     }
     
     func setUserSelected(_ currency: Currency) {

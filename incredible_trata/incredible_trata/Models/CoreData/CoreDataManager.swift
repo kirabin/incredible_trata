@@ -34,15 +34,15 @@ class CoreDataManager {
     }
     
     func saveContext () {
-          if context.hasChanges {
-              do {
-                  try context.save()
-              } catch {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
                 context.rollback()
-                  let nserror = error as NSError
-                  fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-              }
-          }
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
     
     private func deleteAll(for entity: NSManagedObject.Type) {
@@ -67,11 +67,10 @@ class CoreDataManager {
         try! privateContext.save()
         try! context.save()
     }
-
 }
 
 extension NSPersistentContainer {
     func getContext() -> NSManagedObjectContext {
-            return newBackgroundContext()
+        return newBackgroundContext()
     }
 }

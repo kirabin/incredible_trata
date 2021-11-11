@@ -67,9 +67,9 @@ class SettingsViewController: UIViewController {
         return view
     }()
     
-    override func loadView() {
-        view = UIView()
-        title = Constants.settingsTitle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Settings"
         view.backgroundColor = Color.mainBG
         view.addSubview(settingsView)
         setConstrainst()
@@ -85,6 +85,11 @@ class SettingsViewController: UIViewController {
             settingsView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                    constant: -Constants.sidePadding),
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
@@ -128,7 +133,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Constants
 extension SettingsViewController {
     private enum Constants {
-        static let settingsTitle = "Settings"
         static let settingsCellReusableIdentifier = "settingsCell"
         static let sidePadding: CGFloat = 24
     }

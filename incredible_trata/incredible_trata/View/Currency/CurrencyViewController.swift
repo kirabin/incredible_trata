@@ -23,8 +23,8 @@ class CurrencyViewController: UIViewController {
         return view
     }()
     
-    override func loadView() {
-        view = UIView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         title = "Currency"
         view.backgroundColor = Color.mainBG
         view.addSubview(currencyList)
