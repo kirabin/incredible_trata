@@ -8,12 +8,11 @@
 import Foundation
 import UIKit
 
-
 class RoundButton: UIButton {
-    
-    init(with image: UIImage?) {
+
+    init(with image: UIImage? = nil) {
         super.init(frame: .zero)
-        
+
         if let image = image {
             self.setImage(image, for: .normal)
         }

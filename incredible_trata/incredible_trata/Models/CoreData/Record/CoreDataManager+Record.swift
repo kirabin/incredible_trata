@@ -12,9 +12,9 @@ extension CoreDataManager {
 
     func saveRecord(note: String, amount: Int64, currency: Currency, category: Category,
                     longitude: Double, latitude: Double) throws {
-        let record = Record.create(in: context)
+        guard let record = Record.create(in: context) else {return}
         record.id = UUID()
-        record.creation_date = Date()
+        record.creationDate = Date()
         record.note = note
         record.amount = amount
         record.currency = currency
@@ -22,7 +22,7 @@ extension CoreDataManager {
         record.latitudeCoordinate = latitude
         record.longitudeCoordinate = longitude
         currency.addToRecords(record)
-        category.addToRecord(record)
+        category.addToRecords(record)
         try context.save()
     }
 

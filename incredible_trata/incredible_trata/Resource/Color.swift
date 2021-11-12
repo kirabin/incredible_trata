@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
+
     static func color(light: UIColor, dark: UIColor) -> UIColor {
         if #available(iOS 13, *) {
             return UIColor.init { traitCollection in

@@ -16,7 +16,7 @@ extension Record {
     }
 
     @NSManaged public var amount: Int64
-    @NSManaged public var creation_date: Date?
+    @NSManaged public var creationDate: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var note: String?
     @NSManaged public var longitudeCoordinate: Double

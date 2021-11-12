@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 protocol AddItemBarDelegate: AnyObject {
     func addButtonTapped(noteValue: String?, priceValue: String?, completionHandler: () -> Void)
     func categoryButtonTapped()
@@ -16,18 +15,17 @@ protocol AddItemBarDelegate: AnyObject {
 
 class AddItemBar: UIView {
     weak var delegate: AddItemBarDelegate?
-    
+
     private lazy var addButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldPlusImage = UIImage(systemName: "plus", withConfiguration: boldConfig)
-        //let button = RoundButton(with: boldPlusImage)
         let button = RoundButton(with: boldPlusImage)
         button.backgroundColor = Color.addButtonBG
         button.tintColor = Color.textBG
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     @objc
     private func addButtonTapped() {
         delegate?.addButtonTapped(noteValue: noteField.text,
@@ -39,15 +37,14 @@ class AddItemBar: UIView {
     }
 
     private lazy var categoryButton: UIButton = {
-        let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
-        let boldHouseImage = UIImage(systemName: "house", withConfiguration: boldConfig)
-        let button = RoundButton(with: boldHouseImage)
+
+        let button = RoundButton()
         button.backgroundColor = Color.controlBG
         button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         button.tintColor = Color.inputFG
         return button
     }()
-    
+
     @objc
     private func categoryButtonTapped() {
         delegate?.categoryButtonTapped()
@@ -67,11 +64,17 @@ class AddItemBar: UIView {
         field.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())0"
         return field
     }()
-    
+
     func updateAmountField() {
         amountField.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())0"
     }
-    
+
+    func setCategoryButtonIcon(imageName: String) {
+        let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
+        let boldImage = UIImage(systemName: imageName, withConfiguration: boldConfig)
+        categoryButton.setImage(boldImage, for: .normal)
+    }
+
     private lazy var addItemBarStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -102,7 +105,7 @@ class AddItemBar: UIView {
         addItemBarStack.addArrangedSubview(addButton)
         addItemBarStack.setCustomSpacing(Constants.stackCustomSpacing, after: noteField)
     }
-    
+
     private func setupSubViews() {
         setupAddItemBarStack()
         addSubview(addItemBarStack)

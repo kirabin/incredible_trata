@@ -9,10 +9,14 @@ import CoreData
 import Foundation
 
 extension CoreDataManager {
-    func creatCategory(lableName: String?, imageName: String?) {
-        let category = Category.create(in: context)
+
+    func createCategory(lableName: String?, imageName: String?, parentCategory: Category?) {
+        guard let category = Category.create(in: context) else {return}
         category.lableName = lableName
         category.imageName = imageName
+        parentCategory?.addToNestedCategories(category)
+        category.parentCategory = parentCategory
+
         do {
             try context.save()
         } catch {
@@ -22,18 +26,21 @@ extension CoreDataManager {
 
     func fillingAllCategories() {
         for category in Default.categories {
-            creatCategory(lableName: category.lableName, imageName: category.imageName)
+            createCategory(lableName: category.lableName, imageName: category.imageName, parentCategory: nil)
         }
     }
 
-    func getAllCategories() -> [Category] {
+    func getCategories(with predicate: NSPredicate? = nil) -> [Category] {
+        let request = Category.fetchRequest()
+        request.predicate = predicate
+
+        var categories: [Category] = []
         do {
-            let categories = try context.fetch(Category.fetchRequest())
-            return categories
-        } catch {
-            print("An error ocurred while saving: \(error.localizedDescription)")
+            categories = try context.fetch(request)
+        } catch let error as NSError {
+            print("Couldn't fetch categories \(error), \(error.userInfo)")
         }
-        return []
+        return categories
     }
 
     func findCategory(viewContext: NSManagedObjectContext, object: Category) -> Category? {

@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UIViewController {
-    
+
     lazy var settingItems: [[SettingsTableViewCellModel]] = {
         var sections: [[SettingsTableViewCellModel]] = []
         SettingsSection.sortedSections.forEach { section in
             var rows: [SettingsTableViewCellModel] = []
-            
+
             section.rows.forEach { row in
                 let model = SettingsTableViewCellModel(cellType: row.type,
                                                        imageName: row.imageName,
@@ -24,17 +24,18 @@ class SettingsViewController: UIViewController {
                     switch row {
                     case .hints:
                         self?.switchHints(isOn ?? false)
-                            
+
                     case .currency:
                         self?.currencyAction()
-                            
+
                     case .importData, .exportData, .category,
                              .siri, .notifications,
                                 .monthlyLimit:
                         break
+
                     case .appearance:
                         self?.appearanceAction()
-                        
+
                     }
                 }
                 rows.append(model)
@@ -43,19 +44,19 @@ class SettingsViewController: UIViewController {
         }
         return sections
     }()
-    
+
     func switchHints(_ isOn: Bool) {
         print(isOn)
     }
-    
+
     func currencyAction() {
         self.navigationController?.pushViewController(CurrencyViewController(), animated: true)
     }
-    
+
     func appearanceAction() {
         self.navigationController?.pushViewController(AppearanceViewController(), animated: true)
     }
-    
+
     private lazy var settingsView: UITableView = {
         let view = UITableView(frame: .zero, style: UITableView.Style.grouped)
         view.delegate = self
@@ -65,7 +66,7 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = Color.mainBG
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
@@ -73,7 +74,7 @@ class SettingsViewController: UIViewController {
         view.addSubview(settingsView)
         setConstrainst()
     }
-    
+
     func setConstrainst() {
         settingsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -85,7 +86,7 @@ class SettingsViewController: UIViewController {
                                                    constant: -Constants.sidePadding)
         ])
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -96,11 +97,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingItems.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingItems[section].count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.settingsCellReusableIdentifier,
                                                        for: indexPath) as? SettingsTableViewCell else {
@@ -108,7 +109,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let cellModel = settingItems[indexPath.section][indexPath.row]
         let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
-        
+
         if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
             cell.roundSide = .all
         } else if indexPath.row == 0 {
@@ -119,11 +120,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(viewModel: cellModel)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = settingItems[indexPath.section][indexPath.row]
         guard item.cellType != .toggle else {return}
-        
+
         if let action = item.action {
             action(nil)
         }

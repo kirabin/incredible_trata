@@ -8,14 +8,13 @@
 import Foundation
 import UIKit
 
-class UIBoldImage : UIImage {
-    
+class UIBoldImage: UIImage {
+
     init(systemName: String) {
         super.init()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

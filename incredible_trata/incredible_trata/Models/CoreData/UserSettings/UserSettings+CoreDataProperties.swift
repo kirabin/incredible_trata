@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension UserSettings {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<UserSettings> {

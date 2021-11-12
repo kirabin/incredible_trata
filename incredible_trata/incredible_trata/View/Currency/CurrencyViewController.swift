@@ -3,15 +3,15 @@
 //  incredible_trata
 //
 //  Created by Ryabin Kirill on 03.11.2021.
-//  
+//
 
 import Foundation
 import UIKit
 
 class CurrencyViewController: UIViewController {
-    
+
     private lazy var currencyItems: [Currency]? = CoreDataManager.shared.getCurrencies()
-    
+
     private lazy var currencyList: UITableView = {
         let view = UITableView()
         view.delegate = self
@@ -22,7 +22,7 @@ class CurrencyViewController: UIViewController {
         view.separatorColor = Color.mainBG
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Currency"
@@ -30,7 +30,7 @@ class CurrencyViewController: UIViewController {
         view.addSubview(currencyList)
         setConstraints()
     }
-    
+
     func setConstraints() {
         currencyList.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -42,21 +42,21 @@ class CurrencyViewController: UIViewController {
             currencyList.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
+
 }
 
 extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currencyItems?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
-                                                      for: indexPath) as? CurrencyTableViewCell else {
-           fatalError()
-       }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
+                                                       for: indexPath) as? CurrencyTableViewCell else {
+            fatalError()
+        }
         let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
-        
+
         if let currencyItem = currencyItems?[indexPath.row] {
             cell.configure(text: currencyItem.name! + " - " + currencyItem.symbol!)
         }
@@ -69,7 +69,7 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let currencyItem = currencyItems?[indexPath.row] {
             CoreDataManager.shared.setUserSelected(currencyItem)

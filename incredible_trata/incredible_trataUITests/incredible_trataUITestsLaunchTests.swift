@@ -7,6 +7,7 @@
 
 import XCTest
 
+// swiftlint:disable type_name
 class incredible_trataUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
