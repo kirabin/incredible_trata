@@ -58,6 +58,7 @@ class GraphViewController: UIViewController {
     private func recordsChanged() {
         groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
         updateCharts()
+        updatePieCharts()
         title = dateRange.title
         summaryLabel.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(getAmount(for: records))"
     }
@@ -94,6 +95,39 @@ class GraphViewController: UIViewController {
         self.present(calendarViewController, animated: true)
     }
     
+    private lazy var changeChartButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "chart.bar.xaxis")
+        let button = UIBarButtonItem(image: image,
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(changeChartButtonAction))
+        return button
+    }()
+
+    @objc
+    func changeChartButtonAction() {
+        if style == .bar {
+            style = .pie
+        } else {
+            style = .bar
+        }
+    }
+    
+    private var style: ChartStyle = .bar {
+        didSet {
+            switch style {
+            case .bar:
+                chartView.isHidden = false
+                changeChartButton.image = UIImage(systemName: "chart.bar.xaxis")
+                pieChartView.isHidden = true
+            case .pie:
+                chartView.isHidden = true
+                changeChartButton.image = UIImage(systemName: "chart.pie.fill")
+                pieChartView.isHidden = false
+            }
+        }
+    }
+    
     private lazy var summaryLabel: UILabel = {
         var label = UILabel()
         label.textColor = .white
@@ -109,7 +143,16 @@ class GraphViewController: UIViewController {
         view.rightAxis.enabled = false
         view.xAxis.enabled = false
         view.legend.enabled = false
-        
+        return view
+    }()
+    
+    private lazy var pieChartView: PieChartView = {
+        var view = PieChartView()
+        view.noDataTextColor = .white
+        view.holeRadiusPercent = 0.0
+        view.transparentCircleRadiusPercent = 0.0
+        view.legend.enabled = false
+        view.isHidden = true
         return view
     }()
     
@@ -127,11 +170,12 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
         view = UIView()
         
-        navigationItem.rightBarButtonItems = [dateButton]
+        navigationItem.rightBarButtonItems = [dateButton, changeChartButton]
         view.backgroundColor = Color.mainBG
         view.addSubview(summaryLabel)
         view.addSubview(chartView)
         view.addSubview(categorySummary)
+        view.addSubview(pieChartView)
         setConstrainst()
         dateRangeChanged()
     }
@@ -140,6 +184,7 @@ class GraphViewController: UIViewController {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         categorySummary.translatesAutoresizingMaskIntoConstraints = false
         summaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        pieChartView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             summaryLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,
                                               constant: Constants.padding),
@@ -156,7 +201,13 @@ class GraphViewController: UIViewController {
             categorySummary.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,
                                                       constant: -Constants.padding),
             categorySummary.topAnchor.constraint(equalTo: chartView.bottomAnchor),
-            categorySummary.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            categorySummary.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            pieChartView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor),
+            pieChartView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
+                                               constant: Constants.padding),
+            pieChartView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,
+                                                constant: -Constants.padding),
+            pieChartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
@@ -252,4 +303,24 @@ extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
         
         leftAxis.valueFormatter = self
     }
+    
+    func updatePieCharts() {
+        var pieChartDataEntries: [PieChartDataEntry] = []
+        for (_, amount) in categoriesWithAmount {
+            pieChartDataEntries.append(PieChartDataEntry(value: Double(amount)))
+        }
+        let dataSet = PieChartDataSet(entries: pieChartDataEntries)
+        dataSet.drawValuesEnabled = false
+        dataSet.setColors(.orange, .yellow, .green, .blue, .cyan, .magenta)
+        let data = PieChartData(dataSet: dataSet)
+        pieChartView.data = data
+  
+    }
 }
+extension GraphViewController {
+    enum ChartStyle {
+        case bar
+        case pie
+    }
+}
+
