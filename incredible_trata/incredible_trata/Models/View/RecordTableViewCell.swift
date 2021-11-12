@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-final class RecordTableViewCell: UITableViewCell {
+final class RecordTableViewCell: RoundedTableViewCell {
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = Color.textBG
@@ -29,27 +29,6 @@ final class RecordTableViewCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    var indexCell = (first:false, last:false) {
-        didSet {
-            switch indexCell {
-            case (first:true, last:true):
-                self.contentView.layer.cornerRadius = Default.cornerRadiusTrue
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,
-                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            case (first:false, last:true):
-                self.contentView.layer.cornerRadius = Default.cornerRadiusTrue
-                self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            case (first:true, last:false):
-                self.contentView.layer.cornerRadius = Default.cornerRadiusTrue
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            case (first:false, last:false):
-                self.contentView.layer.cornerRadius = Default.cornerRadiusFalse
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,
-                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            }
-        }
     }
 
     private lazy var horizontalStackView: UIStackView = {
@@ -104,7 +83,7 @@ final class RecordTableViewCell: UITableViewCell {
         return label
     }()
 
-    var viewModel: Record? {
+    private var viewModel: Record? {
         didSet {
             subtitleLabel.text = viewModel?.note
             priceLabel.text = (viewModel?.currency?.symbol)! + String((viewModel?.amount)!)
@@ -113,6 +92,10 @@ final class RecordTableViewCell: UITableViewCell {
             logoImageView.image = image
             logoImageView.tintColor = Color.textBG
         }
+    }
+
+    func configure(viewModel: Record) {
+        self.viewModel = viewModel
     }
 
     private func setupUI() {
@@ -146,7 +129,6 @@ final class RecordTableViewCell: UITableViewCell {
         self.clipsToBounds = false
         self.backgroundColor = .clear
         self.contentView.layer.cornerRadius = 0
-        indexCell = (false, false)
     }
 }
 

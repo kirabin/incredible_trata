@@ -25,9 +25,7 @@ extension CoreDataManager {
     }
 
     func getUserSelectedCurrencySymbol() -> String {
-        guard let userSettings = getUserSettings() else {return "?"}
-
-        return userSettings.currency!.symbol!
+        return getUserSettings()?.currency?.symbol ?? ""
     }
 
     func setUserSettings() {

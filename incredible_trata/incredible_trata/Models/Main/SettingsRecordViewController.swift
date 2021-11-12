@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
+// swiftlint:disable type_body_length
 class SettingsRecordViewController: UIViewController {
     let locationManager = CLLocationManager()
     var annotations: [MKAnnotation] = []
@@ -256,26 +257,26 @@ class SettingsRecordViewController: UIViewController {
                                                  constant: Default.zero),
             amountStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
             amountStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
-            amountStackView.heightAnchor.constraint(equalToConstant: Default.StackViewhHeight),
-            amountTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabeleWidth),
+            amountStackView.heightAnchor.constraint(equalToConstant: Default.StackViewHeight),
+            amountTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabelWidth),
 
             dateStackView.topAnchor.constraint(equalTo: amountStackView.bottomAnchor, constant: Default.zero),
             dateStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
             dateStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
-            dateStackView.heightAnchor.constraint(equalToConstant: Default.StackViewhHeight),
-            dateTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.textFieldWidht),
+            dateStackView.heightAnchor.constraint(equalToConstant: Default.StackViewHeight),
+            dateTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.textFieldWidth),
 
             categoryStackView.topAnchor.constraint(equalTo: dateStackView.bottomAnchor, constant: Default.zero),
             categoryStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
             categoryStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
-            categoryStackView.heightAnchor.constraint(equalToConstant: Default.StackViewhHeight),
-            categoryTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabeleWidth),
+            categoryStackView.heightAnchor.constraint(equalToConstant: Default.StackViewHeight),
+            categoryTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabelWidth),
 
             noteStackView.topAnchor.constraint(equalTo: categoryStackView.bottomAnchor, constant: Default.zero),
             noteStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
             noteStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
-            noteStackView.heightAnchor.constraint(equalToConstant: Default.StackViewhHeight),
-            noteTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabeleWidth),
+            noteStackView.heightAnchor.constraint(equalToConstant: Default.StackViewHeight),
+            noteTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabelWidth),
 
         mapView.topAnchor.constraint(equalTo: noteStackView.bottomAnchor, constant: Default.zero),
         mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
@@ -317,8 +318,8 @@ extension SettingsRecordViewController {
     enum Default {
         static let defaultViewWidth: CGFloat = 115
         static let zero: CGFloat = 0
-        static let StackViewhHeight: CGFloat = 50
-        static let LabeleWidth: CGFloat = 80
-        static let textFieldWidht: CGFloat = 60
+        static let StackViewHeight: CGFloat = 50
+        static let LabelWidth: CGFloat = 80
+        static let textFieldWidth: CGFloat = 60
     }
 }

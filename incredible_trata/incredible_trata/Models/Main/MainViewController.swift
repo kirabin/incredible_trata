@@ -12,16 +12,36 @@ import MapKit
 
 class MainViewController: UIViewController {
 
-    var records = CoreDataManager.shared.getRecords()
-    var selectedСategory: Category? {
+    // MARK: - Properties
+    private lazy var dates: [Date] = []
+
+    private lazy var groupedRecords: [Date: [Record]] = [:] {
         didSet {
-            addItemBar.setCategoryButtonIcon(imageName: selectedСategory?.imageName ?? "questionmark")
+            dates = Array(groupedRecords.keys).sorted(by: >)
         }
     }
 
-    let idCell = "idCell"
+    private lazy var records: [Record] = [] {
+        didSet {
+            recordsUpdated()
+        }
+    }
+
+    private var dateRange: DateRange {
+        didSet {
+            dateRangeChanged()
+        }
+    }
+
+    var selectedСategory: Category? {
+        didSet {
+            addItemBar.setCategoryButtonIcon(imageName: selectedСategory?.imageName ?? "")
+        }
+    }
+
     let locationManager = CLLocationManager()
 
+    // MARK: - Subviews
     private lazy var bottomConstraint: NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
@@ -32,6 +52,27 @@ class MainViewController: UIViewController {
         return bar
     }()
 
+    private lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.tintColor = Color.textBG
+        label.font = label.font.withSize(20)
+        return label
+    }()
+
+    private lazy var monthSelectionButton: UIButton = {
+        let image = UIImage(systemName: "chevron.down.circle.fill")
+        let button = UIButton(type: .custom)
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.semanticContentAttribute = .forceRightToLeft
+        button.titleLabel?.font = button.titleLabel?.font.withSize(25)
+        button.addTarget(self, action: #selector(monthSelectionButtonTapped), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
+        ])
+        return button
+    }()
+
     private lazy var settingsButton: UIButton = {
         let button = RoundButton(with: UIImage(systemName: "gearshape"))
         button.backgroundColor = Color.headerButtonBG
@@ -40,35 +81,59 @@ class MainViewController: UIViewController {
         return button
     }()
 
-    @objc
-    func settingsButtonTapped() {
-        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
-    }
-
     private lazy var graphButton: UIButton = {
         let button = RoundButton(with: UIImage(systemName: "doc.plaintext"))
         button.backgroundColor = Color.headerButtonBG
-        button.tintColor = .white
+        button.tintColor = Color.textBG
         button.addTarget(self, action: #selector(graphButtonTapped), for: .touchUpInside)
+        NSLayoutConstraint.activate([button.widthAnchor.constraint(equalToConstant: 60)])
         return button
     }()
 
-    @objc
-    func graphButtonTapped() {
-        self.navigationController?.pushViewController(GraphViewController(), animated: true)
+    private lazy var customTableView: UITableView = {
+        let castomTableView = UITableView()
+        castomTableView.delegate = self
+        castomTableView.dataSource = self
+        castomTableView.translatesAutoresizingMaskIntoConstraints = false
+        castomTableView.backgroundColor = Color.mainBG
+        return castomTableView
+    }()
+
+    // MARK: - Initialization
+    init() {
+        dateRange = .month(CoreDataManager.shared.getLastRecordDate() ?? Date())
+        super.init(nibName: nil, bundle: nil)
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         DefaultsManager.shared.populateCoreDataIfNeeded()
         view.backgroundColor = Color.mainBG
         navigationItem.backButtonTitle = ""
-        view.addSubview(castomTableView)
+        view.addSubview(customTableView)
         view.addSubview(addItemBar)
         view.addSubview(settingsButton)
         view.addSubview(graphButton)
+        view.addSubview(monthSelectionButton)
         setConstraints()
         setCategory()
+        setNotificationCenter()
+        dateRangeChanged()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+
+    private func setNotificationCenter() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow(notification:)),
@@ -81,29 +146,15 @@ class MainViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
-
-        castomTableView.delegate = self
-        castomTableView.dataSource = self
-        castomTableView.register(RecordTableViewCell.self, forCellReuseIdentifier: idCell)
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
     }
 
-    let castomTableView: UITableView = {
-        let castomTableView = UITableView()
-        castomTableView.translatesAutoresizingMaskIntoConstraints = false
-        castomTableView.backgroundColor = Color.mainBG
-        return castomTableView
-    }()
+    private func dateRangeChanged() {
+        updateRecords()
+        monthSelectionButton.setTitle(dateRange.dateInterval.start.convert(to: "LLLL YYYY"), for: .normal)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
-        records = CoreDataManager.shared.getRecords()
-        self.castomTableView.reloadData()
+        updateRecords()
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         addItemBar.updateAmountField()
@@ -114,10 +165,30 @@ class MainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
+    // MARK: - Private Methods
+    @objc
+    private func graphButtonTapped() {
+        let graphViewController = GraphViewController(dateRange: dateRange)
+        self.navigationController?.pushViewController(graphViewController, animated: true)
+    }
+
+    @objc
+    private func settingsButtonTapped() {
+        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
+
+    @objc
+    private func monthSelectionButtonTapped() {
+        let monthSelectionViewController = MonthSelectionViewController()
+        monthSelectionViewController.delegate = self
+        navigationController?.present(monthSelectionViewController, animated: true, completion: nil)
+    }
+
     private func setConstraints() {
         addItemBar.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         graphButton.translatesAutoresizingMaskIntoConstraints = false
+        monthSelectionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             bottomConstraint,
             addItemBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -125,13 +196,17 @@ class MainViewController: UIViewController {
             settingsButton.widthAnchor.constraint(equalToConstant: 60),
             settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0),
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            graphButton.widthAnchor.constraint(equalToConstant: 60),
+
             graphButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100.0),
             graphButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            castomTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0),
-            castomTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0),
-            castomTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0),
-            castomTableView.bottomAnchor.constraint(equalTo: addItemBar.topAnchor, constant: 0)
+
+            monthSelectionButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            monthSelectionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+
+            customTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0),
+            customTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0),
+            customTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0),
+            customTableView.bottomAnchor.constraint(equalTo: addItemBar.topAnchor, constant: 0)
         ])
     }
 
@@ -151,7 +226,7 @@ class MainViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
 
-    func setCategory() {
+    private func setCategory() {
         let categories = CoreDataManager.shared.getCategories()
 
         if categories.isEmpty {
@@ -160,29 +235,57 @@ class MainViewController: UIViewController {
             selectedСategory = categories[0]
         }
     }
+
+    private func updateRecords() {
+        let predicate = NSPredicate(format: "(%@ <= creationDate) AND (creationDate <= %@)",
+                                    argumentArray: [dateRange.dateInterval.start, dateRange.dateInterval.end])
+
+        records = CoreDataManager.shared.getRecords(with: predicate)
+        if records.isEmpty {
+            if let lastRecordDate = CoreDataManager.shared.getLastRecordDate() {
+                dateRange = .month(lastRecordDate)
+            }
+        }
+    }
+
+    private func recordsUpdated() {
+        groupedRecords = Dictionary.init(grouping: records, by: {
+            $0.creationDate?.trimTo(components: .year, .month, .day) ?? Date()
+        })
+        customTableView.reloadData()
+    }
 }
 
+// MARK: - CategoriesViewControllerDelegate
 extension MainViewController: CategoriesViewControllerDelegate {
     func categoryWasSelected(category: Category) {
         selectedСategory = category
     }
 }
 
-extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
+// MARK: - CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate {
+
+}
+
+// MARK: - AddItemBarDelegate
+extension MainViewController: AddItemBarDelegate {
     func addButtonTapped(noteValue: String?, priceValue: String?, completionHandler: () -> Void) {
         guard let noteValue = noteValue,
               let priceValue = priceValue,
-              !priceValue.isEmpty,
-              let selectedCurrency = CoreDataManager.shared.getUserSettings()?.currency
+              let amount = Int64(priceValue),
+              amount != 0,
+              let selectedCurrency = CoreDataManager.shared.getUserSettings()?.currency,
+              let selectedСategory = selectedСategory
         else {
             return
         }
         do {
             try CoreDataManager.shared.saveRecord(
                 note: noteValue,
-                amount: Int64(priceValue) ?? 0,
+                amount: amount,
                 currency: selectedCurrency,
-                category: selectedСategory!,
+                category: selectedСategory,
                 longitude: (locationManager.location?.coordinate)?.longitude ?? 0,
                 latitude: (locationManager.location?.coordinate)?.latitude ?? 0
             )
@@ -190,9 +293,8 @@ extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
-
-        records = CoreDataManager.shared.getRecords()
-        self.castomTableView.reloadData()
+        dateRange = .month(Date())
+        updateRecords()
         view.endEditing(true)
     }
 
@@ -204,5 +306,67 @@ extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
         navVC.navigationBar.barTintColor = .none
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.present(navVC, animated: true)
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return dates.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return groupedRecords[dates[section]]?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell: RecordTableViewCell = tableView.regCell(indexPath: indexPath)
+        else {
+            return UITableViewCell()
+        }
+
+        let cellModel = (groupedRecords[dates[indexPath.section]] ?? [])[indexPath.row]
+        cell.setRoundSide(tableView: tableView, indexPath: indexPath)
+        cell.configure(viewModel: cellModel)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let date = UILabel()
+        let amount = UILabel()
+        let stack = UIStackView(arrangedSubviews: [date, amount])
+        stack.backgroundColor = Color.mainBG.withAlphaComponent(0.9)
+        stack.distribution = .fill
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.directionalLayoutMargins =
+        NSDirectionalEdgeInsets(top: 7, leading: 12, bottom: 7, trailing: 12)
+
+        date.text = dates[section].formatted(date: .abbreviated, time: .omitted)
+        date.textColor = .lightGray
+
+        // TODO: convert to other currencies, CurrencyConverter?
+        var sum: Int64 = 0
+        for record in groupedRecords[dates[section]] ?? [] {
+            sum += record.amount
+        }
+        amount.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(sum)"
+        amount.textColor = .lightGray
+        return stack
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let record = groupedRecords[dates[indexPath.section]]?[indexPath.row] else {return}
+
+        let settingsRecordViewController = SettingsRecordViewController()
+        settingsRecordViewController.reloadRecord(inputRecord: record)
+        self.navigationController?.pushViewController(settingsRecordViewController, animated: true)
+    }
+}
+
+// MARK: - MonthSelectionViewControllerDelegate
+extension MainViewController: MonthSelectionViewControllerDelegate {
+    func monthWasSelected(selectedDate: Date) {
+        dateRange = .month(selectedDate)
     }
 }

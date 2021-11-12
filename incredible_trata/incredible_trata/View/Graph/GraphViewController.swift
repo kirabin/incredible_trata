@@ -13,8 +13,8 @@ class GraphViewController: UIViewController {
 
     let colors: [UIColor] = [.orange, .yellow, .green, .blue, .cyan, .magenta]
 
-    init() {
-        dateRange = .month(Date())
+    init(dateRange: DateRange) {
+        self.dateRange = dateRange
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -63,6 +63,7 @@ class GraphViewController: UIViewController {
     }
 
     private func groupRecords() {
+        // TODO: force unwrap
         var groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
         for (category, records) in groupedRecords {
             var category = category
@@ -178,7 +179,6 @@ class GraphViewController: UIViewController {
         view.separatorColor = Color.mainBG
         view.delegate = self
         view.dataSource = self
-        view.register(GraphTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
         return view
     }()
 
@@ -245,22 +245,17 @@ extension GraphViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
-                                                       for: indexPath) as? GraphTableViewCell else {
-            fatalError()
+        guard let cell: GraphTableViewCell = tableView.regCell(indexPath: indexPath)
+        else {
+            return UITableViewCell()
         }
-        let category = categoriesWithAmount[indexPath.row]
-        let rowsNumber = categoriesWithAmount.count
-        if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
-            cell.roundSide = .all
-        } else if indexPath.row == 0 {
-            cell.roundSide = .top
-        } else if indexPath.row == rowsNumber - 1 {
-            cell.roundSide = .bottom
-        }
-        cell.configure(viewModel: category.category,
-                       amount: category.amount,
-                       iconColor: colors[indexPath.row % colors.count])
+
+        let (category, amount) = categoriesWithAmount[indexPath.row]
+
+        let iconColor = colors[indexPath.row % colors.count]
+
+        cell.setRoundSide(tableView: tableView, indexPath: indexPath)
+        cell.configure(category: category, amount: amount, iconColor: iconColor)
         return cell
     }
 
@@ -304,7 +299,7 @@ extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
         for (category, amount) in categoriesWithAmount {
             chartDataEntries.append(BarChartDataEntry(x: Double(number), y: Double(amount)))
             chartBarDataEntries.append(BarChartDataEntry(x: 0, y: 0, data: category.lableName))
-            number+=1
+            number += 1
         }
         let dataSet = BarChartDataSet(entries: chartDataEntries)
         // TODO: change colors

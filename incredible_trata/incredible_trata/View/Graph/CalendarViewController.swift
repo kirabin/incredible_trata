@@ -12,25 +12,13 @@ protocol CalendarViewControllerDelegate: AnyObject {
     func updateDateRange(for dateRange: DateRange)
 }
 
+// swiftlint:disable type_body_length
 class CalendarViewController: UIViewController {
 
-    init(delegate: CalendarViewControllerDelegate, dateRange: DateRange) {
-        self.delegate = delegate
-        self.dateRange = dateRange
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    // MARK: - Public Properties
     weak var delegate: CalendarViewControllerDelegate?
 
-    func updateDatePickers() {
-        beginDatePicker.date = dateRange.dateInterval.start
-        endDatePicker.date = dateRange.dateInterval.end
-    }
-
+    // MARK: - Private Properties
     private var dateRange: DateRange {
         didSet {
             dateRangeUpdated()
@@ -38,30 +26,21 @@ class CalendarViewController: UIViewController {
         }
     }
 
-    func dateRangeUpdated() {
-        weekButton.isSelected = false
-        monthButton.isSelected = false
-        yearButton.isSelected = false
-        prevButton.isHidden = false
-        nextButton.isHidden = false
-        rangeLabel.textColor = .white
-        updateRangeLabel()
-        updateDatePickers()
+    // MARK: - Types
+    private enum Direction {
+        case leftToRight, rightToLeft
 
-        switch dateRange {
-        case .week:
-            weekButton.isSelected = true
-        case .month:
-            monthButton.isSelected = true
-        case .year:
-            yearButton.isSelected = true
-        case .custom:
-            prevButton.isHidden = true
-            nextButton.isHidden = true
-            rangeLabel.textColor = .orange
+        var multiplier: Int {
+            switch self {
+            case .leftToRight:
+                return -1
+            case .rightToLeft:
+                return 1
+            }
         }
     }
 
+    // MARK: - Subviews
     private lazy var doneButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -75,40 +54,34 @@ class CalendarViewController: UIViewController {
         return button
     }()
 
-    @objc
-    func doneBarButtonItemWasTapped() {
-        self.dismiss(animated: true)
-        delegate?.updateDateRange(for: dateRange)
-    }
+    private lazy var beginDate: UIStackView = {
+        let label = createLabel(with: "Begin", of: 20)
+        let stack = UIStackView(arrangedSubviews: [label, beginDatePicker])
+        stack.distribution = .fill
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(
+            top: Constants.padding,
+            leading: Constants.padding * 2,
+            bottom: Constants.padding,
+            trailing: Constants.padding * 2
+        )
+        return stack
 
-    func createRangeButton(with title: String, action: @escaping () -> Void) -> UIButton {
-        let button = ActionButton(with: action)
-        button.backgroundColor = Color.controlBG
-        button.setTitle(title, for: .normal)
-        button.layer.cornerRadius = 10
-        button.setTitleColor(.white, for: .normal)
-        button.setTitleColor(.orange, for: .selected)
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: 40),
-            button.widthAnchor.constraint(equalToConstant: 80)
-        ])
-        return button
-    }
+    }()
 
-    @objc
-    func weekButtonTapped() {
-        dateRange = .week(Date())
-    }
-
-    @objc
-    func monthButtonTapped() {
-        dateRange = .month(Date())
-    }
-
-    @objc
-    func yearButtonTapped() {
-        dateRange = .year(Date())
-    }
+    private lazy var endDate: UIStackView = {
+        let label = createLabel(with: "End", of: 20)
+        let stack = UIStackView(arrangedSubviews: [label, endDatePicker])
+        stack.distribution = .fill
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(
+            top: Constants.padding,
+            leading: Constants.padding * 2,
+            bottom: Constants.padding,
+            trailing: Constants.padding * 2
+        )
+        return stack
+    }()
 
     private lazy var weekButton = createRangeButton(with: "Week", action: weekButtonTapped)
     private lazy var monthButton = createRangeButton(with: "Month", action: monthButtonTapped)
@@ -121,6 +94,22 @@ class CalendarViewController: UIViewController {
         stack.distribution = .equalCentering
         stack.alignment = .center
         return stack
+    }()
+
+    private lazy var beginDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)),
+                             for: .valueChanged)
+        return datePicker
+    }()
+
+    private lazy var endDatePicker: UIDatePicker = {
+        var datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)),
+                             for: .valueChanged)
+        return datePicker
     }()
 
     private lazy var rangeLabel: UILabel = {
@@ -181,6 +170,98 @@ class CalendarViewController: UIViewController {
         return stack
     }()
 
+    // MARK: - Initialization
+    init(delegate: CalendarViewControllerDelegate, dateRange: DateRange) {
+        self.delegate = delegate
+        self.dateRange = dateRange
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let presentationController = presentationController as? UISheetPresentationController {
+            presentationController.detents = [ .medium() ]
+        }
+        view.backgroundColor = Color.mainBG
+        view.addSubview(doneButton)
+        view.addSubview(weekMonthYear)
+        view.addSubview(prevNextView)
+        view.addSubview(beginDate)
+        view.addSubview(endDate)
+        setConstraints()
+        dateRangeUpdated()
+    }
+
+    // MARK: - Private Methods
+    private func updateDatePickers() {
+        beginDatePicker.date = dateRange.dateInterval.start
+        endDatePicker.date = dateRange.dateInterval.end
+    }
+
+    private func dateRangeUpdated() {
+        weekButton.isSelected = false
+        monthButton.isSelected = false
+        yearButton.isSelected = false
+        prevButton.isHidden = false
+        nextButton.isHidden = false
+        rangeLabel.textColor = .white
+        updateRangeLabel()
+        updateDatePickers()
+
+        switch dateRange {
+        case .week:
+            weekButton.isSelected = true
+        case .month:
+            monthButton.isSelected = true
+        case .year:
+            yearButton.isSelected = true
+        case .custom:
+            prevButton.isHidden = true
+            nextButton.isHidden = true
+            rangeLabel.textColor = .orange
+        }
+    }
+
+    @objc
+    private func doneBarButtonItemWasTapped() {
+        self.dismiss(animated: true)
+        delegate?.updateDateRange(for: dateRange)
+    }
+
+    private func createRangeButton(with title: String, action: @escaping () -> Void) -> UIButton {
+        let button = ActionButton(with: action)
+        button.backgroundColor = Color.controlBG
+        button.setTitle(title, for: .normal)
+        button.layer.cornerRadius = 10
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.orange, for: .selected)
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: 40),
+            button.widthAnchor.constraint(equalToConstant: 80)
+        ])
+        return button
+    }
+
+    @objc
+    private func weekButtonTapped() {
+        dateRange = .week(Date())
+    }
+
+    @objc
+    private func monthButtonTapped() {
+        dateRange = .month(Date())
+    }
+
+    @objc
+    private func yearButtonTapped() {
+        dateRange = .year(Date())
+    }
+
     @objc
     func prevButtonTapped() {
         updateRangeLabelWithAnimation(direction: .leftToRight, completion: {
@@ -189,30 +270,17 @@ class CalendarViewController: UIViewController {
     }
 
     @objc
-    func nextButtonTapped() {
+    private func nextButtonTapped() {
         updateRangeLabelWithAnimation(direction: .rightToLeft, completion: {
             self.dateRange.moveToNextRange()
         })
     }
 
-    enum Direction {
-        case leftToRight, rightToLeft
-
-        var multiplier: Int {
-            switch self {
-            case .leftToRight:
-                return -1
-            case .rightToLeft:
-                return 1
-            }
-        }
-    }
-
-    func updateRangeLabel() {
+    private func updateRangeLabel() {
         rangeLabel.text = dateRange.labelText
     }
 
-    func updateRangeLabelWithAnimation(direction: Direction, completion: @escaping () -> Void) {
+    private func updateRangeLabelWithAnimation(direction: Direction, completion: @escaping () -> Void) {
         let offset = CGFloat(300 * direction.multiplier)
 
         UIView.transition(with: rangeLabel, duration: 0.20, options: .curveEaseInOut, animations: {
@@ -232,24 +300,8 @@ class CalendarViewController: UIViewController {
         })
     }
 
-    private lazy var beginDatePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)),
-                             for: .valueChanged)
-        return datePicker
-    }()
-
-    private lazy var endDatePicker: UIDatePicker = {
-        var datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)),
-                             for: .valueChanged)
-        return datePicker
-    }()
-
     @objc
-    func datePickerChanged(_ sender: UIDatePicker) {
+    private func datePickerChanged(_ sender: UIDatePicker) {
         if sender == beginDatePicker, sender.date > dateRange.dateInterval.end {
             sender.date = dateRange.dateInterval.end
         }
@@ -261,7 +313,7 @@ class CalendarViewController: UIViewController {
         nextButton.isHidden = true
     }
 
-    func createLabel(with text: String, of size: CGFloat) -> UILabel {
+    private func createLabel(with text: String, of size: CGFloat) -> UILabel {
         let label = UILabel()
         label.text = text
         label.textColor = .white
@@ -269,51 +321,7 @@ class CalendarViewController: UIViewController {
         return label
     }
 
-    private lazy var beginDate: UIStackView = {
-        let label = createLabel(with: "Begin", of: 20)
-        let stack = UIStackView(arrangedSubviews: [label, beginDatePicker])
-        stack.distribution = .fill
-        stack.isLayoutMarginsRelativeArrangement = true
-        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Constants.padding,
-            leading: Constants.padding * 2,
-            bottom: Constants.padding,
-            trailing: Constants.padding * 2
-        )
-        return stack
-
-    }()
-
-    private lazy var endDate: UIStackView = {
-        let label = createLabel(with: "End", of: 20)
-        let stack = UIStackView(arrangedSubviews: [label, endDatePicker])
-        stack.distribution = .fill
-        stack.isLayoutMarginsRelativeArrangement = true
-        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Constants.padding,
-            leading: Constants.padding * 2,
-            bottom: Constants.padding,
-            trailing: Constants.padding * 2
-        )
-        return stack
-    }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.detents = [ .medium() ]
-        }
-        view.backgroundColor = Color.mainBG
-        view.addSubview(doneButton)
-        view.addSubview(weekMonthYear)
-        view.addSubview(prevNextView)
-        view.addSubview(beginDate)
-        view.addSubview(endDate)
-        setConstraints()
-        dateRangeUpdated()
-    }
-
-    func setConstraints() {
+    private func setConstraints() {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         weekMonthYear.translatesAutoresizingMaskIntoConstraints = false
         prevNextView.translatesAutoresizingMaskIntoConstraints = false

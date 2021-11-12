@@ -14,8 +14,11 @@ protocol AddItemBarDelegate: AnyObject {
 }
 
 class AddItemBar: UIView {
+
+    // MARK: - Public Properties
     weak var delegate: AddItemBarDelegate?
 
+    // MARK: - Subviews
     private lazy var addButton: UIButton = {
         let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
         let boldPlusImage = UIImage(systemName: "plus", withConfiguration: boldConfig)
@@ -26,16 +29,6 @@ class AddItemBar: UIView {
         return button
     }()
 
-    @objc
-    private func addButtonTapped() {
-        delegate?.addButtonTapped(noteValue: noteField.text,
-                                  priceValue: amountField.text,
-                                  completionHandler: {
-            noteField.text = ""
-            amountField.text = ""
-        })
-    }
-
     private lazy var categoryButton: UIButton = {
 
         let button = RoundButton()
@@ -44,11 +37,6 @@ class AddItemBar: UIView {
         button.tintColor = Color.inputFG
         return button
     }()
-
-    @objc
-    private func categoryButtonTapped() {
-        delegate?.categoryButtonTapped()
-    }
 
     private lazy var noteField: UITextField = {
         let field = AddItemBarTextField()
@@ -65,16 +53,6 @@ class AddItemBar: UIView {
         return field
     }()
 
-    func updateAmountField() {
-        amountField.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())0"
-    }
-
-    func setCategoryButtonIcon(imageName: String) {
-        let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
-        let boldImage = UIImage(systemName: imageName, withConfiguration: boldConfig)
-        categoryButton.setImage(boldImage, for: .normal)
-    }
-
     private lazy var addItemBarStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -89,6 +67,7 @@ class AddItemBar: UIView {
         return stack
     }()
 
+    // MARK: - Initialization
     init() {
         super.init(frame: .zero)
         setupSubViews()
@@ -96,6 +75,33 @@ class AddItemBar: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public Methods
+    func updateAmountField() {
+        amountField.placeholder = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())0"
+    }
+
+    func setCategoryButtonIcon(imageName: String) {
+        let boldConfig = UIImage.SymbolConfiguration(weight: .heavy)
+        let boldImage = UIImage(systemName: imageName, withConfiguration: boldConfig)
+        categoryButton.setImage(boldImage, for: .normal)
+    }
+
+    // MARK: - Private Methods
+    @objc
+    private func addButtonTapped() {
+        delegate?.addButtonTapped(noteValue: noteField.text,
+                                  priceValue: amountField.text,
+                                  completionHandler: {
+            noteField.text = ""
+            amountField.text = ""
+        })
+    }
+
+    @objc
+    private func categoryButtonTapped() {
+        delegate?.categoryButtonTapped()
     }
 
     private func setupAddItemBarStack() {

@@ -10,8 +10,10 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    lazy var settingItems: [[SettingsTableViewCellModel]] = {
+    // MARK: - Private Properties
+    private lazy var settingItems: [[SettingsTableViewCellModel]] = {
         var sections: [[SettingsTableViewCellModel]] = []
+
         SettingsSection.sortedSections.forEach { section in
             var rows: [SettingsTableViewCellModel] = []
 
@@ -45,28 +47,17 @@ class SettingsViewController: UIViewController {
         return sections
     }()
 
-    func switchHints(_ isOn: Bool) {
-        print(isOn)
-    }
-
-    func currencyAction() {
-        self.navigationController?.pushViewController(CurrencyViewController(), animated: true)
-    }
-
-    func appearanceAction() {
-        self.navigationController?.pushViewController(AppearanceViewController(), animated: true)
-    }
-
+    // MARK: - Subviews
     private lazy var settingsView: UITableView = {
         let view = UITableView(frame: .zero, style: UITableView.Style.grouped)
         view.delegate = self
         view.dataSource = self
-        view.register(SettingsTableViewCell.self, forCellReuseIdentifier: "settingsCell")
-        view.separatorColor = Color.mainBG
+        view.separatorStyle = .none
         view.backgroundColor = Color.mainBG
         return view
     }()
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
@@ -75,7 +66,17 @@ class SettingsViewController: UIViewController {
         setConstrainst()
     }
 
-    func setConstrainst() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
+    // MARK: - Private Methods
+    private func switchHints(_ isOn: Bool) {
+        print(isOn)
+    }
+
+    private func setConstrainst() {
         settingsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             settingsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -87,12 +88,16 @@ class SettingsViewController: UIViewController {
         ])
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+    private func currencyAction() {
+        self.navigationController?.pushViewController(CurrencyViewController(), animated: true)
+    }
+
+    private func appearanceAction() {
+        self.navigationController?.pushViewController(AppearanceViewController(), animated: true)
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingItems.count
@@ -103,20 +108,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.settingsCellReusableIdentifier,
-                                                       for: indexPath) as? SettingsTableViewCell else {
-            fatalError()
+        guard let cell: SettingsTableViewCell = tableView.regCell(indexPath: indexPath)
+        else {
+            return UITableViewCell()
         }
-        let cellModel = settingItems[indexPath.section][indexPath.row]
-        let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
 
-        if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
-            cell.roundSide = .all
-        } else if indexPath.row == 0 {
-            cell.roundSide = .top
-        } else if indexPath.row == rowsNumber - 1 {
-            cell.roundSide = .bottom
-        }
+        let cellModel = settingItems[indexPath.section][indexPath.row]
+
+        cell.setRoundSide(tableView: tableView, indexPath: indexPath)
         cell.configure(viewModel: cellModel)
         return cell
     }
@@ -135,7 +134,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Constants
 extension SettingsViewController {
     private enum Constants {
-        static let settingsCellReusableIdentifier = "settingsCell"
         static let sidePadding: CGFloat = 24
     }
 }

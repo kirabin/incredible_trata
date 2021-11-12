@@ -9,17 +9,9 @@ import Foundation
 import UIKit
 import Charts
 
-extension Date {
-    var ommitingTime: Date {
-        let calendar = Calendar.current
-        let unitFlags = Set<Calendar.Component>([.year, .month, .day])
-        let components = calendar.dateComponents(unitFlags, from: self)
-        return calendar.date(from: components)!
-    }
-}
-
 class CategoryAmountDetailViewController: UIViewController {
 
+    // MARK: - Private Properties
     private lazy var dates: [Date] = []
 
     private lazy var groupedRecords: [Date: [Record]] = [:] {
@@ -28,16 +20,23 @@ class CategoryAmountDetailViewController: UIViewController {
         }
     }
 
-    func groupRecords() {
-        groupedRecords = Dictionary.init(grouping: records, by: { $0.creationDate!.ommitingTime })
-    }
-
     private lazy var records: [Record] = [] {
         didSet {
             groupRecords()
         }
     }
 
+    // MARK: - Subviews
+    private lazy var recordsTable: UITableView = {
+        let table = UITableView()
+        table.delegate = self
+        table.dataSource = self
+        table.separatorStyle = .none
+        table.backgroundColor = Color.mainBG
+        return table
+    }()
+
+    // MARK: - Initialization
     init(category: Category, records: [Record]) {
         super.init(nibName: nil, bundle: nil)
         self.title = category.lableName
@@ -48,31 +47,12 @@ class CategoryAmountDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var recordsTable: UITableView = {
-        let table = UITableView()
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
-        table.backgroundColor = Color.mainBG
-        table.register(CategoryAmountDetailTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
-        return table
-    }()
-
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.mainBG
         view.addSubview(recordsTable)
         setConstraints()
-    }
-
-    func setConstraints() {
-        recordsTable.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            recordsTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            recordsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            recordsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            recordsTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -81,8 +61,26 @@ class CategoryAmountDetailViewController: UIViewController {
         groupRecords()
         recordsTable.reloadData()
     }
+
+    // MARK: - Private Methods
+    private func groupRecords() {
+        groupedRecords = Dictionary.init(grouping: records, by: {
+            $0.creationDate?.trimTo(components: .year, .month, .day) ?? Date()
+        })
+    }
+
+    private func setConstraints() {
+        recordsTable.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recordsTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            recordsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            recordsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            recordsTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension CategoryAmountDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return dates.count
@@ -93,11 +91,10 @@ extension CategoryAmountDetailViewController: UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: Constants.cellReuseIdentifier,
-            for: indexPath) as? CategoryAmountDetailTableViewCell else {
-                fatalError()
-            }
+        guard let cell: CategoryAmountDetailTableViewCell = tableView.regCell(indexPath: indexPath)
+        else {
+            return UITableViewCell()
+        }
 
         let cellModel = (groupedRecords[dates[indexPath.section]] ?? [])[indexPath.row]
         cell.configure(record: cellModel)
@@ -126,16 +123,9 @@ extension CategoryAmountDetailViewController: UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record = groupedRecords[dates[indexPath.section]]![indexPath.row]
+        guard let record = groupedRecords[dates[indexPath.section]]?[indexPath.row] else {return}
         let settingsRecordViewController = SettingsRecordViewController()
         settingsRecordViewController.reloadRecord(inputRecord: record)
         self.navigationController?.pushViewController(settingsRecordViewController, animated: true)
-    }
-}
-
-// MARK: - Constants
-extension CategoryAmountDetailViewController {
-    private enum Constants {
-        static let cellReuseIdentifier = "categoryAmountDetailCellID"
     }
 }
