@@ -22,15 +22,14 @@ class CategoriesViewController: UIViewController {
     var categories = CoreDataManager.shared.getAllCategories()
 
     let categoriesTableView: UITableView = {
-        let CategoriesTableView = UITableView()
-        CategoriesTableView.translatesAutoresizingMaskIntoConstraints = false
-        CategoriesTableView.backgroundColor = Color.mainBG
-        CategoriesTableView.layer.cornerRadius = 10
-        return CategoriesTableView
+        let сategoriesTableView = UITableView()
+        сategoriesTableView.translatesAutoresizingMaskIntoConstraints = false
+        сategoriesTableView.backgroundColor = Color.mainBG
+        сategoriesTableView.layer.cornerRadius = 10
+        return сategoriesTableView
     }()
-    
+
     let idCell = "idCell"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Select a category"
@@ -46,27 +45,27 @@ class CategoriesViewController: UIViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Color.inputFG]
         navigationController?.navigationBar.tintColor = Color.inputFG
         setConstraints()
-       
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         categories = CoreDataManager.shared.getAllCategories()
         self.categoriesTableView.reloadData()
-        
     }
-    
+
     @objc func actionBarItems() {
         let addCategoryVC = AddCategoryViewController()
         navigationController?.pushViewController(addCategoryVC, animated: true)
-        
     }
-    
+
     func setConstraints() {
         view.addSubview(categoriesTableView)
 
-        NSLayoutConstraint.activate([categoriesTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10.0),
+        NSLayoutConstraint.activate(
+            [categoriesTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10.0),
                                      categoriesTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40.0),
-                                     categoriesTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10.0),
-                                     categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50.0)])
+                                     categoriesTableView.rightAnchor.constraint(equalTo:
+                                                                                    view.rightAnchor, constant: -10.0),
+                                     categoriesTableView.bottomAnchor.constraint(equalTo:
+                                                                                view.bottomAnchor, constant: -50.0)])
     }
 }

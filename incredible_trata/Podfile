@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'incredible_trata' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for incredible_trata
+
+  target 'incredible_trataTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'incredible_trataUITests' do
+    # Pods for testing
+  end
+
+	pod 'SwiftLint'
+end

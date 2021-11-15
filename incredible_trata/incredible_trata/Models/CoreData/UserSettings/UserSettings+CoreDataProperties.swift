@@ -20,6 +20,5 @@ extension UserSettings {
 
 }
 
-extension UserSettings : Identifiable {
-
+extension UserSettings: Identifiable {
 }

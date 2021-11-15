@@ -10,7 +10,6 @@ import CoreData
 import UIKit
 
 final class CategoryTableViewCell: UITableViewCell {
-    
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             logoImageView, titleLabel
@@ -19,12 +18,12 @@ final class CategoryTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         return stackView
     }()
-    
+
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
-    
+
     private lazy var imageBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +31,7 @@ final class CategoryTableViewCell: UITableViewCell {
         view.layer.cornerRadius = Default.sizeImageView / 2
         return view
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,8 +39,8 @@ final class CategoryTableViewCell: UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
-    
-    var viewModel: Category?  = nil {
+
+    var viewModel: Category? {
         didSet {
             let imageName = UIImage(systemName: viewModel?.imageName ?? "home")
             logoImageView.image = imageName
@@ -60,44 +59,42 @@ final class CategoryTableViewCell: UITableViewCell {
         contentView.backgroundColor = Color.controlBG
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     var indexCell = (first:false, last:false) {
         didSet {
             switch indexCell {
-                
             case (first:true, last:true):
                 self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner,
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,
                                                         .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             case (first:false, last:true):
                 self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
+                self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             case (first:true, last:false):
                 self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             case (first:false, last:false):
                 self.contentView.layer.cornerRadius = 0
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner,
+                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,
                                                         .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             }
         }
     }
-    
+
     private func setupUI() {
         addSubviews()
         setupLayout()
-       
     }
-    
+
     private func addSubviews() {
         contentView.addSubview(imageBackgroundView)
         contentView.addSubview(horizontalStackView)
     }
-    
+
     private func setupLayout() {
         NSLayoutConstraint.activate([
             horizontalStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
@@ -112,7 +109,7 @@ final class CategoryTableViewCell: UITableViewCell {
         ])
         horizontalStackView.setCustomSpacing(15, after: logoImageView)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.accessoryType = .none
@@ -131,4 +128,3 @@ extension CategoryTableViewCell {
         static let sizeLogoImageView: CGFloat = 20
     }
 }
-

@@ -51,14 +51,15 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
-                                                 for: indexPath) as! CurrencyTableViewCell
+       guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
+                                                      for: indexPath) as? CurrencyTableViewCell else {
+           fatalError()
+       }
         let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
         
         if let currencyItem = currencyItems?[indexPath.row] {
             cell.configure(text: currencyItem.name! + " - " + currencyItem.symbol!)
         }
-        
         if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
             cell.roundSide = .all
         } else if indexPath.row == 0 {

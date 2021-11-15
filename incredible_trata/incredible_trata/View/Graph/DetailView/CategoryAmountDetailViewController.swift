@@ -89,16 +89,17 @@ extension CategoryAmountDetailViewController: UITableViewDelegate, UITableViewDa
     func numberOfSections(in tableView: UITableView) -> Int {
         return dates.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupedRecords[dates[section]]?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
+        guard let cell = tableView.dequeueReusableCell(
             withIdentifier: Constants.cellReuseIdentifier,
-            for: indexPath
-        ) as! CategoryAmountDetailTableViewCell
+            for: indexPath) as? CategoryAmountDetailTableViewCell else {
+                fatalError()
+            }
 
         let cellModel = (groupedRecords[dates[indexPath.section]] ?? [])[indexPath.row]
         cell.configure(viewModel: cellModel)
@@ -114,10 +115,8 @@ extension CategoryAmountDetailViewController: UITableViewDelegate, UITableViewDa
         stack.isLayoutMarginsRelativeArrangement = true
         stack.directionalLayoutMargins =
             NSDirectionalEdgeInsets(top: 7, leading: 12, bottom: 7, trailing: 12)
-        
         date.text = dates[section].formatted(date: .abbreviated, time: .omitted)
         date.textColor = .lightGray
-        
         // TODO: convert to other currencies
         var sum: Int64 = 0
         for record in groupedRecords[dates[section]] ?? [] {

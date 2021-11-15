@@ -11,7 +11,7 @@ import Foundation
 enum AppearanceSection {
     case appearance
     static var appearances: [AppearanceSection] = [.appearance]
-    
+
     var rows: [Theme] {
         switch self {
 
@@ -25,14 +25,14 @@ enum Theme: Int, CaseIterable {
     case light = 0
     case dark
     case system
-    
+
     var type: SettingsRowType {
         switch self {
         case .system, .light, .dark:
             return .check
         }
     }
-    
+
     var text: String {
         switch self {
 
@@ -45,5 +45,3 @@ enum Theme: Int, CaseIterable {
         }
     }
 }
-
-

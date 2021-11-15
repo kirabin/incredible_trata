@@ -32,7 +32,7 @@ struct Persist<T> {
         get { UserDefaults.standard.object(forKey: key) as? T ?? defaultValue }
         set { UserDefaults.standard.set(newValue, forKey: key) }
     }
-    
+
     init(key: String, defaultValue: T) {
         self.key = key
         self.defaultValue = defaultValue

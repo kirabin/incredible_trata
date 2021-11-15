@@ -9,52 +9,41 @@ import CoreData
 import Foundation
 
 extension CoreDataManager {
-    
     func creatCategory(lableName: String?, imageName: String?) {
         let category = Category.create(in: context)
         category.lableName = lableName
         category.imageName = imageName
-        
         do {
             try context.save()
         } catch {
             print("An error ocurred while saving: \(error.localizedDescription)")
         }
-        
-        let categories = try! context.fetch(Category.fetchRequest())
-        for category in categories {
-            print(category.imageName!, category.lableName!)
-        }
     }
-    
+
     func fillingAllCategories() {
         for category in Default.categories {
             creatCategory(lableName: category.lableName, imageName: category.imageName)
         }
     }
 
-    func delete(at entity: NSManagedObject.Type) {
-        do {
-            let results = try context.fetch(entity.fetchRequest())
-            for managedObject in results {
-                context.delete(managedObject as! NSManagedObject)
-            }
-        } catch let error as NSError {
-            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
-        }
-    }
-    
     func getAllCategories() -> [Category] {
-        let categories = try! context.fetch(Category.fetchRequest())
-        return categories
+        do {
+            let categories = try context.fetch(Category.fetchRequest())
+            return categories
+        } catch {
+            print("An error ocurred while saving: \(error.localizedDescription)")
+        }
+        return []
     }
-    
+
     func findCategory(viewContext: NSManagedObjectContext, object: Category) -> Category? {
-        let objects = try! viewContext.fetch(type(of: object).fetchRequest())
-        for temp in objects {
-            if temp.objectID == object.objectID {
-                return temp
+        do {
+            let objects = try viewContext.fetch(type(of: object).fetchRequest())
+            for temp in objects where temp.objectID == object.objectID {
+                    return temp
             }
+        } catch {
+            print("An error ocurred while saving: \(error.localizedDescription)")
         }
         return nil
     }
