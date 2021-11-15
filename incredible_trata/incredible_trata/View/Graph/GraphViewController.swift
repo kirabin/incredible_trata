@@ -32,8 +32,8 @@ class GraphViewController: UIViewController {
     func dateRangeChanged() {
         updateRecords()
     }
-    
-    private lazy var categoriesWithAmount: [(category: Category, amount:Int64)] = [] {
+
+    private lazy var categoriesWithAmount: [(category: Category, amount: Int64)] = [] {
         didSet {
             categorySummary.reloadData()
         }
@@ -41,20 +41,20 @@ class GraphViewController: UIViewController {
     
     private lazy var groupedRecords: [Category: [Record]] = [:] {
         didSet {
-            var categories: [(category: Category, amount:Int64)] = []
+            var categories: [(category: Category, amount: Int64)] = []
             for (category, records) in groupedRecords {
                 categories.append((category, getAmount(for: records)))
             }
             self.categoriesWithAmount = categories.sorted(by: { $0.amount > $1.amount })
         }
     }
-    
+
     private lazy var records: [Record] = [] {
         didSet {
             recordsChanged()
         }
     }
-    
+
     private func recordsChanged() {
         groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
         updateCharts()
@@ -62,13 +62,13 @@ class GraphViewController: UIViewController {
         title = dateRange.title
         summaryLabel.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(getAmount(for: records))"
     }
-    
+
     private func updateRecords() {
         let predicate = NSPredicate(format: "(%@ <= creation_date) AND (creation_date <= %@)",
                                     argumentArray: [dateRange.dateInterval.start, dateRange.dateInterval.end])
         records = CoreDataManager.shared.getRecords(with: predicate)
     }
-    
+
     func getAmount(for records: [Record]) -> Int64 {
         var amount: Int64 = 0
         for record in records {
@@ -76,7 +76,7 @@ class GraphViewController: UIViewController {
         }
         return amount
     }
-    
+
     private lazy var dateButton: UIBarButtonItem = {
         let image = UIImage(systemName: "calendar")
         let button = UIBarButtonItem(image: image,
@@ -85,7 +85,7 @@ class GraphViewController: UIViewController {
                                      action: #selector(dateButtonWasTapped))
         return button
     }()
-    
+
     @objc
     func dateButtonWasTapped() {
         let calendarViewController = CalendarViewController(
@@ -94,7 +94,7 @@ class GraphViewController: UIViewController {
         )
         self.present(calendarViewController, animated: true)
     }
-    
+
     private lazy var changeChartButton: UIBarButtonItem = {
         let image = UIImage(systemName: "chart.bar.xaxis")
         let button = UIBarButtonItem(image: image,
@@ -112,7 +112,7 @@ class GraphViewController: UIViewController {
             style = .bar
         }
     }
-    
+
     private var style: ChartStyle = .bar {
         didSet {
             switch style {
@@ -127,14 +127,14 @@ class GraphViewController: UIViewController {
             }
         }
     }
-    
+
     private lazy var summaryLabel: UILabel = {
         var label = UILabel()
         label.textColor = .white
         label.font = label.font.withSize(40)
         return label
     }()
-    
+
     private lazy var chartView: BarChartView = {
         var view = BarChartView()
         view.noDataTextColor = .white
@@ -145,7 +145,7 @@ class GraphViewController: UIViewController {
         view.legend.enabled = false
         return view
     }()
-    
+
     private lazy var pieChartView: PieChartView = {
         var view = PieChartView()
         view.noDataTextColor = .white
@@ -155,7 +155,7 @@ class GraphViewController: UIViewController {
         view.isHidden = true
         return view
     }()
-    
+
     private lazy var categorySummary: UITableView = {
         var view = UITableView()
         view.backgroundColor = Color.mainBG
@@ -165,11 +165,10 @@ class GraphViewController: UIViewController {
         view.register(GraphTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view = UIView()
-        
         navigationItem.rightBarButtonItems = [dateButton, changeChartButton]
         view.backgroundColor = Color.mainBG
         view.addSubview(summaryLabel)
@@ -179,7 +178,7 @@ class GraphViewController: UIViewController {
         setConstrainst()
         dateRangeChanged()
     }
-    
+
     func setConstrainst() {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         categorySummary.translatesAutoresizingMaskIntoConstraints = false
@@ -210,7 +209,7 @@ class GraphViewController: UIViewController {
             pieChartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // TODO: try updating just one (changed date, or amount)
@@ -224,16 +223,18 @@ extension GraphViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoriesWithAmount.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier, for: indexPath) as! GraphTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
+                                                       for: indexPath) as? GraphTableViewCell else {
+            fatalError()
+        }
         let category = categoriesWithAmount[indexPath.row]
         let rowsNumber = categoriesWithAmount.count
-        
         if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
             cell.roundSide = .all
         } else if indexPath.row == 0 {
@@ -241,13 +242,12 @@ extension GraphViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.row == rowsNumber - 1 {
             cell.roundSide = .bottom
         }
-        
         cell.configure(viewModel: category.category,
                        amount: category.amount,
                        iconColor: colors[indexPath.row % colors.count])
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoriesWithAmount[indexPath.row].category
         let detailView = CategoryAmountDetailViewController(
@@ -272,27 +272,24 @@ extension GraphViewController: CalendarViewControllerDelegate {
     }
 }
 
-
 extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         "\(Int(value))"
     }
-    
+
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
-    
+
     func updateCharts() {
         var chartDataEntries: [BarChartDataEntry] = []
         var chartBarDataEntries: [BarChartDataEntry] = []
-        
-        var i = 0
+        var number = 0
         for (category, amount) in categoriesWithAmount {
-            chartDataEntries.append(BarChartDataEntry(x: Double(i), y: Double(amount)))
+            chartDataEntries.append(BarChartDataEntry(x: Double(number), y: Double(amount)))
             chartBarDataEntries.append(BarChartDataEntry(x: 0, y: 0, data: category.lableName))
-            i += 1
+            number+=1
         }
-        
         let dataSet = BarChartDataSet(entries: chartDataEntries)
         // TODO: change colors
         dataSet.setColors(.orange, .yellow, .green, .blue, .cyan, .magenta)
@@ -300,10 +297,9 @@ extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
         data.barWidth = Double(0.50)
         chartView.data = data
         let leftAxis = chartView.leftAxis
-        
         leftAxis.valueFormatter = self
     }
-    
+
     func updatePieCharts() {
         var pieChartDataEntries: [PieChartDataEntry] = []
         for (_, amount) in categoriesWithAmount {
@@ -314,13 +310,12 @@ extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
         dataSet.setColors(.orange, .yellow, .green, .blue, .cyan, .magenta)
         let data = PieChartData(dataSet: dataSet)
         pieChartView.data = data
-  
     }
 }
+
 extension GraphViewController {
     enum ChartStyle {
         case bar
         case pie
     }
 }
-

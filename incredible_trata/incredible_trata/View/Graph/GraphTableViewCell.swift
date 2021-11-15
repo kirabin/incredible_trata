@@ -74,7 +74,7 @@ class GraphTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
     private lazy var roundIcon = RoundIcon()
     
     private lazy var categoryName: UILabel = {

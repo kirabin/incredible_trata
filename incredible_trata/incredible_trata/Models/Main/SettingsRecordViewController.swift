@@ -11,14 +11,13 @@ import UIKit
 import MapKit
 
 class SettingsRecordViewController: UIViewController {
-    
     let locationManager = CLLocationManager()
     var annotations: [MKAnnotation] = []
     var coordinate: CLLocationCoordinate2D?
     var childrenViewContext = CoreDataManager.shared.getChildrenContext()
-   
+
     private var childrenRecord: Record?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.mainBG
@@ -29,7 +28,8 @@ class SettingsRecordViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonAction))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain,
+                                                            target: self, action: #selector(saveButtonAction))
         createGestureRecognizer()
         setConstraints()
     }
@@ -43,7 +43,7 @@ class SettingsRecordViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
-    
+
     private lazy var amountTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = Color.controlBG
@@ -54,7 +54,7 @@ class SettingsRecordViewController: UIViewController {
         textField.addTarget(self, action: #selector(amountTextFieldChanged), for: .editingChanged)
         return textField
     }()
-    
+
     private lazy var dateTextFieldLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,14 +64,14 @@ class SettingsRecordViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
-    
+
     private lazy var picker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = Color.controlBG
         datePicker.addTarget(self, action: #selector(datePickerChanged), for: .allEvents)
        return datePicker
     }()
-    
+
     private lazy var categoryTextFieldLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -81,17 +81,16 @@ class SettingsRecordViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
-    
+
     private lazy var settingsCategoryButton: UIButton = {
         let settingsCategoryButton = UIButton()
         settingsCategoryButton.tintColor = Color.inputFG
         settingsCategoryButton.backgroundColor = Color.controlBG
         settingsCategoryButton.translatesAutoresizingMaskIntoConstraints = false
         settingsCategoryButton.addTarget(self, action: #selector(settingsCategory), for: .touchUpInside)
-        
         return settingsCategoryButton
     }()
-    
+
     private lazy var noteTextFieldLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +100,7 @@ class SettingsRecordViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
-    
+
     private lazy var noteTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = Color.controlBG
@@ -111,7 +110,7 @@ class SettingsRecordViewController: UIViewController {
         textField.addTarget(self, action: #selector(noteTextFieldChanged), for: .editingChanged)
         return textField
     }()
-    
+
     private lazy var amountStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             amountTextFieldLabel, amountTextField
@@ -127,12 +126,12 @@ class SettingsRecordViewController: UIViewController {
         stackView.spacing = 5
         return stackView
     }()
-    
+
     private lazy var defaultView: UIView = {
         let defaultView = UIView()
         return defaultView
     }()
-    
+
     private lazy var dateStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             dateTextFieldLabel, picker, defaultView
@@ -148,7 +147,7 @@ class SettingsRecordViewController: UIViewController {
                                                                  trailing: 2)
         return stackView
     }()
-    
+
     private lazy var categoryStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             categoryTextFieldLabel, settingsCategoryButton, UIView()
@@ -164,7 +163,7 @@ class SettingsRecordViewController: UIViewController {
                                                                  trailing: 2)
         return stackView
     }()
-    
+
     private lazy var noteStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             noteTextFieldLabel, noteTextField
@@ -180,13 +179,13 @@ class SettingsRecordViewController: UIViewController {
                                                                  trailing: 2)
         return stackView
     }()
-    
+
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
-    
+
     func reloadRecord(inputRecord: Record?) {
         childrenRecord = CoreDataManager.shared.findRecord(viewContext: childrenViewContext, record: inputRecord!)
         noteTextField.text = childrenRecord?.note
@@ -194,28 +193,29 @@ class SettingsRecordViewController: UIViewController {
         settingsCategoryButton.setImage(UIImage(systemName: (childrenRecord?.category?.imageName)!), for: .normal)
         settingsCategoryButton.setTitle((childrenRecord?.category?.lableName)!, for: .normal)
         picker.date = (childrenRecord?.creation_date)!
-        let coordinate = CLLocationCoordinate2D(latitude: (childrenRecord?.latitudeCoordinate)!, longitude: (childrenRecord?.longitudeCoordinate)!)
+        let coordinate = CLLocationCoordinate2D(latitude: (childrenRecord?.latitudeCoordinate)!,
+                                                longitude: (childrenRecord?.longitudeCoordinate)!)
         let annotation = MapPin(coordinate: coordinate, title: (childrenRecord?.note)!)
         mapView.removeAnnotations(annotations)
         mapView.addAnnotation(annotation)
         annotations.append(annotation)
         mapView.showAnnotations([annotation], animated: true)
     }
-    
+
     @objc func noteTextFieldChanged() {
         childrenRecord?.note = noteTextField.text!
     }
-    
+
     @objc func amountTextFieldChanged() {
         childrenRecord?.amount = Int64((amountTextField.text)!)!
     }
-    
+
     @objc func datePickerChanged() {
         childrenRecord?.creation_date = picker.date
     }
-    
-    @objc func saveButtonAction() {
-        CoreDataManager.shared.savePrivateContext(childrenViewContext)
+
+    @objc func saveButtonAction() throws {
+        try CoreDataManager.shared.savePrivateContext(childrenViewContext)
         navigationController?.popViewController(animated: true)
     }
 
@@ -224,7 +224,7 @@ class SettingsRecordViewController: UIViewController {
         categoryViewController.delegate = self
         self.present(categoryViewController, animated: true)
     }
-    
+
      func createGestureRecognizer() {
          let longTap = UILongPressGestureRecognizer(target: self, action: #selector(actionLongTap))
          mapView.addGestureRecognizer(longTap)
@@ -243,21 +243,22 @@ class SettingsRecordViewController: UIViewController {
          childrenRecord?.latitudeCoordinate = coordinate.latitude
          childrenRecord?.longitudeCoordinate = coordinate.longitude
      }
-    
+
     func setConstraints() {
         view.addSubview(mapView)
         view.addSubview(amountStackView)
         view.addSubview(dateStackView)
         view.addSubview(categoryStackView)
         view.addSubview(noteStackView)
-        
+
         NSLayoutConstraint.activate([
-            amountStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: Default.zero),
+            amountStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,
+                                                 constant: Default.zero),
             amountStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
             amountStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
             amountStackView.heightAnchor.constraint(equalToConstant: Default.StackViewhHeight),
             amountTextFieldLabel.widthAnchor.constraint(equalToConstant: Default.LabeleWidth),
-            
+
             dateStackView.topAnchor.constraint(equalTo: amountStackView.bottomAnchor, constant: Default.zero),
             dateStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Default.zero),
             dateStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
@@ -281,12 +282,10 @@ class SettingsRecordViewController: UIViewController {
         mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Default.zero),
         mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Default.zero),
             defaultView.widthAnchor.constraint(equalToConstant: Default.defaultViewWidth)
-            
         ])
         defaultView.contentHuggingPriority(for: .horizontal)
         defaultView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         picker.contentHuggingPriority(for: .horizontal)
-        
     }
 }
 
@@ -302,10 +301,10 @@ extension SettingsRecordViewController: CategoriesViewControllerDelegate {
 extension SettingsRecordViewController: UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 }
 
-class MapPin : NSObject, MKAnnotation {
+class MapPin: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
-    
+
     init(coordinate: CLLocationCoordinate2D, title: String) {
         self.coordinate = coordinate
         self.title = title
@@ -321,6 +320,5 @@ extension SettingsRecordViewController {
         static let StackViewhHeight: CGFloat = 50
         static let LabeleWidth: CGFloat = 80
         static let textFieldWidht: CGFloat = 60
-        
     }
 }

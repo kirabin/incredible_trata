@@ -13,17 +13,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
        return records.count
 
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idCell, for: indexPath) as! RecordTableViewCell
-        let i = tableView.numberOfRows(inSection: indexPath.section)
-        if indexPath.row == 0 && indexPath.row == i - 1 {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: idCell, for: indexPath) as?
+                RecordTableViewCell else {
+            fatalError()
+        }
+        let section = tableView.numberOfRows(inSection: indexPath.section)
+        if indexPath.row == 0 && indexPath.row == section - 1 {
             cell.indexCell = (true, true)
-        }
-        else if indexPath.row == 0 {
+        } else if indexPath.row == 0 {
             cell.indexCell = (true, false)
-        }
-        else if indexPath.row == i - 1 {
+        } else if indexPath.row == section - 1 {
             cell.indexCell = (false, true)
         } else {
             cell.indexCell = (false, false)
@@ -32,7 +33,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.imageView?.image = nil
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let settingsRecordViewController = SettingsRecordViewController()
         settingsRecordViewController.reloadRecord(inputRecord: records[indexPath.row])

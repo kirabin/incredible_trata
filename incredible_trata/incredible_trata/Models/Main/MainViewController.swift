@@ -17,17 +17,17 @@ class MainViewController: UIViewController {
     let idCell = "idCell"
     let categoryVC = CategoriesViewController()
     let locationManager = CLLocationManager()
-    
+
     private lazy var bottomConstraint: NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
-    
+
     private lazy var addItemBar: AddItemBar = {
         let bar = AddItemBar()
         bar.delegate = self
         return bar
     }()
-    
+
     private lazy var settingsButton: UIButton = {
         let button = RoundButton(with: UIImage(systemName: "gearshape"))
         button.backgroundColor = Color.headerButtonBG
@@ -35,12 +35,12 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     @objc
     func settingsButtonTapped() {
         self.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
-    
+
     private lazy var graphButton: UIButton = {
         let button = RoundButton(with: UIImage(systemName: "doc.plaintext"))
         button.backgroundColor = Color.headerButtonBG
@@ -48,25 +48,12 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(graphButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     @objc
     func graphButtonTapped() {
         self.navigationController?.pushViewController(GraphViewController(), animated: true)
     }
-    
-    let groupSection = ["1","2","3","4","5"]
-    let itemsInfoArrays = [
-    ["1111111111111111"],
-    ["1.4","1.5","1.6"],
-    ["22", "33"],
-    ["6","7", "8"],
-    ["26","27", "28"]
-    ]
-    
-//    override func loadView() {
-//
-//    }
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         DefaultsManager.shared.populateCoreDataIfNeeded()
@@ -77,7 +64,7 @@ class MainViewController: UIViewController {
         view.addSubview(settingsButton)
         view.addSubview(graphButton)
         setConstraints()
-        
+
         categoryVC.delegate = self
         NotificationCenter.default.addObserver(
             self,
@@ -91,7 +78,7 @@ class MainViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
-        
+
         castomTableView.delegate = self
         castomTableView.dataSource = self
         castomTableView.register(RecordTableViewCell.self, forCellReuseIdentifier: idCell)
@@ -111,7 +98,7 @@ class MainViewController: UIViewController {
         castomTableView.backgroundColor = Color.mainBG
         return castomTableView
     }()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         records = CoreDataManager.shared.getRecords()
         self.castomTableView.reloadData()
@@ -119,12 +106,12 @@ class MainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         addItemBar.updateAmountField()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     private func setConstraints() {
         addItemBar.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -139,14 +126,13 @@ class MainViewController: UIViewController {
             graphButton.widthAnchor.constraint(equalToConstant: 60),
             graphButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100.0),
             graphButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            
             castomTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0),
             castomTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0),
             castomTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0),
             castomTableView.bottomAnchor.constraint(equalTo: addItemBar.topAnchor, constant: 0)
         ])
     }
-    
+
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize =
@@ -156,13 +142,12 @@ class MainViewController: UIViewController {
             self.view.layoutIfNeeded()  // Updates layout with animation if needed
         }
     }
-    
+
     @objc
     private func keyboardWillHide(notification: NSNotification) {
         bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
-        
 }
 
 extension MainViewController: CategoriesViewControllerDelegate {
@@ -193,12 +178,12 @@ extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
-        
+
         records = CoreDataManager.shared.getRecords()
         self.castomTableView.reloadData()
         view.endEditing(true)
     }
-    
+
     func categoryButtonTapped() {
         let navVC = UINavigationController(rootViewController: categoryVC)
         navVC.navigationBar.barTintColor = .none

@@ -10,17 +10,16 @@ import Foundation
 import UIKit
 
 class AppearanceViewController: UIViewController {
-    
+
     var appearanceItems: [[AppearanceTableViewCellModel]] = []
 
     func creatappearanceItems() -> [[AppearanceTableViewCellModel]] {
-        var sections:[[AppearanceTableViewCellModel]] = []
-        
-        AppearanceSection.appearances.forEach{ section in
+        var sections: [[AppearanceTableViewCellModel]] = []
+        AppearanceSection.appearances.forEach { section in
             var rows: [AppearanceTableViewCellModel] = []
             
             section.rows.forEach { row in
-                let model:  AppearanceTableViewCellModel?
+                let model: AppearanceTableViewCellModel?
                 if case row = Theme.current {
                    model = AppearanceTableViewCellModel(cellType: row.type,
                                                              text: row.text, switched: false)
@@ -29,7 +28,7 @@ class AppearanceViewController: UIViewController {
                                                              text: row.text, switched: true)
                 }
                 
-                model?.action = { [weak self] isOn in
+                model?.action = { [weak self] _ in
                     guard let self = self else { return }
                     switch row {
                     case .system:
@@ -48,28 +47,29 @@ class AppearanceViewController: UIViewController {
         }
         return sections
     }
-    
+
     @objc func darkOn() {
         Theme.dark.setActive()
     }
-    
+
     @objc func lightOn() {
         Theme.light.setActive()
     }
-    
+
     @objc func sistemOn() {
         Theme.system.setActive()
     }
-    
+
     override func viewDidLoad() {
         title = Constants.appearanceTitle
         view.backgroundColor = Color.mainBG
         view.addSubview(appearanceTableView)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Color.addButtonBG]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:
+                                                                    Color.addButtonBG]
         appearanceItems = creatappearanceItems()
         setConstrainst()
     }
-    
+
     private lazy var appearanceTableView: UITableView = {
         let view = UITableView(frame: .zero, style: UITableView.Style.grouped)
         view.delegate = self
@@ -79,7 +79,7 @@ class AppearanceViewController: UIViewController {
         view.backgroundColor = Color.mainBG
         return view
     }()
-    
+
     func setConstrainst() {
         appearanceTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -88,7 +88,7 @@ class AppearanceViewController: UIViewController {
             appearanceTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                   constant: Constants.sidePadding),
             appearanceTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                   constant: -Constants.sidePadding),
+                                                   constant: -Constants.sidePadding)
         ])
     }
 }
@@ -97,19 +97,21 @@ extension AppearanceViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return appearanceItems.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return appearanceItems[section].count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.appearanceCellReusableIdentifier,
-                                                 for: indexPath) as! AppearanceTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.appearanceCellReusableIdentifier,
+                                                       for: indexPath) as? AppearanceTableViewCell else {
+            fatalError()
+        }
         let cellModel = appearanceItems[indexPath.section][indexPath.row]
         cell.configure(viewModel: cellModel)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = appearanceItems[indexPath.section][indexPath.row]
         if let action = item.action {

@@ -46,7 +46,6 @@
 		F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78652726ABBF00874F0B /* AddItemBar.swift */; };
 		F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78692726E49F00874F0B /* RoundButton.swift */; };
 		F68A786E2727EAED00874F0B /* AddItemBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A786D2727EAED00874F0B /* AddItemBarTextField.swift */; };
-		F68A78722728523500874F0B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A78712728523400874F0B /* Color.swift */; };
 		F6A9BB762739026400A51108 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = F6A9BB752739026400A51108 /* Charts */; };
 		F6AEE2FE2732D47600ACEF1D /* SettingsSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEE2FD2732D47600ACEF1D /* SettingsSections.swift */; };
 		F6AEE3002738F8C700ACEF1D /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEE2FF2738F8C700ACEF1D /* GraphViewController.swift */; };
@@ -67,6 +66,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		83A0271B273E98D800A5E5DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83A02714273E98D800A5E5DA /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B94C4A881FB3692F0DFB438E271C21C9;
+			remoteInfo = "Pods-incredible_trata";
+		};
+		83A0271D273E98D800A5E5DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83A02714273E98D800A5E5DA /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 375C09B72AE3960661E8F17D3F30B27B;
+			remoteInfo = "Pods-incredible_trata-incredible_trataUITests";
+		};
+		83A0271F273E98D800A5E5DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83A02714273E98D800A5E5DA /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D7AA618890A02F2DC7095AA5F139F637;
+			remoteInfo = "Pods-incredible_trataTests";
+		};
 		EA3F495227268CA00055292D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EA3F493027268C9D0055292D /* Project object */;
@@ -84,6 +104,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2EFA753BC6D4C161C2EF65CC /* Pods-incredible_trata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata.release.xcconfig"; path = "Target Support Files/Pods-incredible_trata/Pods-incredible_trata.release.xcconfig"; sourceTree = "<group>"; };
+		42EB509ADC71B766F9422320 /* Pods-incredible_trata-incredible_trataUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata-incredible_trataUITests.debug.xcconfig"; path = "Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		55E3599531B0DDDFE1B767E7 /* Pods-incredible_trata-incredible_trataUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata-incredible_trataUITests.release.xcconfig"; path = "Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMainViewController.swift; sourceTree = "<group>"; };
 		832C4A93273AB7FB00F796CA /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		832C4A97273AEF6800F796CA /* AppearanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +118,7 @@
 		834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Category.swift"; sourceTree = "<group>"; };
 		8357C7E62735138C00FD0F8A /* SettingsRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRecordViewController.swift; sourceTree = "<group>"; };
 		835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAddCAtegoryViewController.swift; sourceTree = "<group>"; };
+		83A02714273E98D800A5E5DA /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
 		83CF019F272A966100E76996 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordTableViewCell.swift; path = View/RecordTableViewCell.swift; sourceTree = "<group>"; };
 		83CF01A1272A969800E76996 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = incredible_trata/Models/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
 		83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +126,9 @@
 		83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		84563E1EEA56988EF14245C0 /* Pods-incredible_trataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trataTests.debug.xcconfig"; path = "Target Support Files/Pods-incredible_trataTests/Pods-incredible_trataTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E4B66DC3960FF4D4B5763C7 /* Pods-incredible_trataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trataTests.release.xcconfig"; path = "Target Support Files/Pods-incredible_trataTests/Pods-incredible_trataTests.release.xcconfig"; sourceTree = "<group>"; };
+		E871F4CF70D501444262CC78 /* Pods-incredible_trata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata.debug.xcconfig"; path = "Target Support Files/Pods-incredible_trata/Pods-incredible_trata.debug.xcconfig"; sourceTree = "<group>"; };
 		EA3F493827268C9D0055292D /* incredible_trata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = incredible_trata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F493B27268C9D0055292D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA3F493D27268C9D0055292D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +261,30 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		83A02715273E98D800A5E5DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83A0271C273E98D800A5E5DA /* Pods_incredible_trata.framework */,
+				83A0271E273E98D800A5E5DA /* Pods_incredible_trata_incredible_trataUITests.framework */,
+				83A02720273E98D800A5E5DA /* Pods_incredible_trataTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E35C38F397E54A2EC80840B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83A02714273E98D800A5E5DA /* Pods.xcodeproj */,
+				E871F4CF70D501444262CC78 /* Pods-incredible_trata.debug.xcconfig */,
+				2EFA753BC6D4C161C2EF65CC /* Pods-incredible_trata.release.xcconfig */,
+				42EB509ADC71B766F9422320 /* Pods-incredible_trata-incredible_trataUITests.debug.xcconfig */,
+				55E3599531B0DDDFE1B767E7 /* Pods-incredible_trata-incredible_trataUITests.release.xcconfig */,
+				84563E1EEA56988EF14245C0 /* Pods-incredible_trataTests.debug.xcconfig */,
+				8E4B66DC3960FF4D4B5763C7 /* Pods-incredible_trataTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EA3F492F27268C9D0055292D = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +292,7 @@
 				EA3F495427268CA00055292D /* incredible_trataTests */,
 				EA3F495E27268CA00055292D /* incredible_trataUITests */,
 				EA3F493927268C9D0055292D /* Products */,
+				E35C38F397E54A2EC80840B4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -463,14 +515,34 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		83A0270D273E909300A5E5DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A0270E273E90F400A5E5DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		EA3F493727268C9D0055292D /* incredible_trata */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA3F496527268CA00055292D /* Build configuration list for PBXNativeTarget "incredible_trata" */;
 			buildPhases = (
+				4957DE428EE5F56CDA37BADC /* [CP] Check Pods Manifest.lock */,
+				83A0270D273E909300A5E5DA /* Headers */,
 				EA3F493427268C9D0055292D /* Sources */,
 				EA3F493527268C9D0055292D /* Frameworks */,
 				EA3F493627268C9D0055292D /* Resources */,
+				832AA82E273E9D5600F1CA0C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -488,6 +560,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA3F496827268CA00055292D /* Build configuration list for PBXNativeTarget "incredible_trataTests" */;
 			buildPhases = (
+				BC59E1D5BF97C3D860ABD291 /* [CP] Check Pods Manifest.lock */,
 				EA3F494D27268CA00055292D /* Sources */,
 				EA3F494E27268CA00055292D /* Frameworks */,
 				EA3F494F27268CA00055292D /* Resources */,
@@ -506,6 +579,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA3F496B27268CA00055292D /* Build configuration list for PBXNativeTarget "incredible_trataUITests" */;
 			buildPhases = (
+				D097105013E56E188B9D3DD4 /* [CP] Check Pods Manifest.lock */,
+				83A0270E273E90F400A5E5DA /* Headers */,
 				EA3F495727268CA00055292D /* Sources */,
 				EA3F495827268CA00055292D /* Frameworks */,
 				EA3F495927268CA00055292D /* Resources */,
@@ -557,6 +632,12 @@
 			);
 			productRefGroup = EA3F493927268C9D0055292D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 83A02715273E98D800A5E5DA /* Products */;
+					ProjectRef = 83A02714273E98D800A5E5DA /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EA3F493727268C9D0055292D /* incredible_trata */,
@@ -565,6 +646,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		83A0271C273E98D800A5E5DA /* Pods_incredible_trata.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_incredible_trata.framework;
+			remoteRef = 83A0271B273E98D800A5E5DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83A0271E273E98D800A5E5DA /* Pods_incredible_trata_incredible_trataUITests.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_incredible_trata_incredible_trataUITests.framework;
+			remoteRef = 83A0271D273E98D800A5E5DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83A02720273E98D800A5E5DA /* Pods_incredible_trataTests.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_incredible_trataTests.framework;
+			remoteRef = 83A0271F273E98D800A5E5DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EA3F493627268C9D0055292D /* Resources */ = {
@@ -590,6 +695,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4957DE428EE5F56CDA37BADC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-incredible_trata-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		832AA82E273E9D5600F1CA0C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		BC59E1D5BF97C3D860ABD291 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-incredible_trataTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D097105013E56E188B9D3DD4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-incredible_trata-incredible_trataUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA3F493427268C9D0055292D /* Sources */ = {
@@ -801,6 +992,7 @@
 		};
 		EA3F496627268CA00055292D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E871F4CF70D501444262CC78 /* Pods-incredible_trata.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -829,6 +1021,7 @@
 		};
 		EA3F496727268CA00055292D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EFA753BC6D4C161C2EF65CC /* Pods-incredible_trata.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -857,6 +1050,7 @@
 		};
 		EA3F496927268CA00055292D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84563E1EEA56988EF14245C0 /* Pods-incredible_trataTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -882,6 +1076,7 @@
 		};
 		EA3F496A27268CA00055292D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E4B66DC3960FF4D4B5763C7 /* Pods-incredible_trataTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -907,6 +1102,7 @@
 		};
 		EA3F496C27268CA00055292D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42EB509ADC71B766F9422320 /* Pods-incredible_trata-incredible_trataUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -930,6 +1126,7 @@
 		};
 		EA3F496D27268CA00055292D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55E3599531B0DDDFE1B767E7 /* Pods-incredible_trata-incredible_trataUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

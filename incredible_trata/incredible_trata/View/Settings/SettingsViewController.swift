@@ -11,8 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     lazy var settingItems: [[SettingsTableViewCellModel]] = {
-        var sections:[[SettingsTableViewCellModel]] = []
-        
+        var sections: [[SettingsTableViewCellModel]] = []
         SettingsSection.sortedSections.forEach { section in
             var rows: [SettingsTableViewCellModel] = []
             
@@ -83,7 +82,7 @@ class SettingsViewController: UIViewController {
             settingsView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                   constant: Constants.sidePadding),
             settingsView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                   constant: -Constants.sidePadding),
+                                                   constant: -Constants.sidePadding)
         ])
     }
     
@@ -103,8 +102,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.settingsCellReusableIdentifier,
-                                                 for: indexPath) as! SettingsTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.settingsCellReusableIdentifier,
+                                                       for: indexPath) as? SettingsTableViewCell else {
+            fatalError()
+        }
         let cellModel = settingItems[indexPath.section][indexPath.row]
         let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
         

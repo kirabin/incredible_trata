@@ -7,15 +7,13 @@
 import Foundation
 import CoreData
 
-
 class CoreDataManager {
-    
     var context: NSManagedObjectContext {
         persistentContainer.viewContext
     }
-    
+
     static let shared = CoreDataManager()
-    
+
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "incredible_trata")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -25,14 +23,14 @@ class CoreDataManager {
         })
         return container
     }()
-    
+
     var childrenContext: NSManagedObjectContext {
         let childrenContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         childrenContext.parent = context
         childrenContext.automaticallyMergesChangesFromParent = true
         return childrenContext
     }
-    
+
     func saveContext () {
         if context.hasChanges {
             do {
@@ -44,7 +42,7 @@ class CoreDataManager {
             }
         }
     }
-    
+
     private func deleteAll(for entity: NSManagedObject.Type) {
         do {
             let results = try context.fetch(entity.fetchRequest())
@@ -55,17 +53,17 @@ class CoreDataManager {
             print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
-    
+
     func getChildrenContext() -> NSManagedObjectContext {
         let childrenContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         childrenContext.parent = context
         childrenContext.automaticallyMergesChangesFromParent = true
         return childrenContext
     }
-    
-    func savePrivateContext(_ privateContext: NSManagedObjectContext) {
-        try! privateContext.save()
-        try! context.save()
+
+    func savePrivateContext(_ privateContext: NSManagedObjectContext) throws {
+        try privateContext.save()
+        try context.save()
     }
 }
 

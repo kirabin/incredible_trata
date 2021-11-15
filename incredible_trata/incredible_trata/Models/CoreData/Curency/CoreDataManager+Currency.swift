@@ -8,7 +8,6 @@
 import Foundation
 
 extension CoreDataManager {
-    
     func populateCurrency(with items: [(symbol: String, name: String)]) {
         for item in items {
             let obj = Currency.create(in: context)
@@ -23,7 +22,7 @@ extension CoreDataManager {
             }
         }
     }
-    
+
     func getCurrencies() -> [Currency]? {
         try? CoreDataManager.shared.context.fetch(Currency.fetchRequest())
     }

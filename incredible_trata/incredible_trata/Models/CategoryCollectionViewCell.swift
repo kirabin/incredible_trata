@@ -9,18 +9,17 @@
 import Foundation
 import UIKit
 
-
 class CategoryCollectionViewCell: UICollectionViewCell {
-    
+
     override init (frame: CGRect) {
         super.init(frame: frame)
         setConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,14 +27,14 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         imageView.tintColor = Color.textBG
         return imageView
     }()
-    
-    var image: String? = nil {
+
+    var image: String? {
         didSet {
             let imageName = UIImage(systemName: image!)
             logoImageView.image = imageName
         }
     }
-    
+
     private func setConstraints() {
         contentView.addSubview(logoImageView)
         NSLayoutConstraint.activate([
@@ -44,7 +43,4 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             logoImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             logoImageView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)])
     }
-
 }
-
-

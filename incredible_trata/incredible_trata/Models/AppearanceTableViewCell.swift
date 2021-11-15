@@ -18,11 +18,11 @@ class AppearanceTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         setupStackView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private var viewModel: AppearanceTableViewCellModel! {
         didSet {
             labelView.text = viewModel.text
@@ -34,19 +34,18 @@ class AppearanceTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
     func configure(viewModel: AppearanceTableViewCellModel) {
         self.viewModel = viewModel
     }
-    
+
     private lazy var labelView: UILabel = {
         let label = UILabel()
         label.textColor = Color.textBG
         label.font = label.font.withSize(Constants.cellFontSize)
         return label
     }()
-    
-    
+
     private lazy var arrowView: UIImageView = {
         let image = UIImage(systemName: "checkmark")
         let imageView = UIImageView(image: image)
@@ -55,7 +54,7 @@ class AppearanceTableViewCell: UITableViewCell {
         imageView.setContentHuggingPriority(.required, for: .horizontal)
         return imageView
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
                 labelView, arrowView
@@ -72,11 +71,11 @@ class AppearanceTableViewCell: UITableViewCell {
                                         trailing: Constants.cellElementSpacing)
         return stack
     }()
-    
+
     func setupStackView() {
         contentView.addSubview(stackView)
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
@@ -86,7 +85,7 @@ class AppearanceTableViewCell: UITableViewCell {
                                               constant: Constants.cellPadding * 2)
         ])
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.accessoryType = .none
@@ -111,7 +110,7 @@ class AppearanceTableViewCellModel {
     var text: String
     var selected: Bool
     var action: ((Bool?) -> Void)?
-    
+
     init(cellType: SettingsRowType, text: String, switched: Bool) {
         self.cellType = cellType
         self.text = text

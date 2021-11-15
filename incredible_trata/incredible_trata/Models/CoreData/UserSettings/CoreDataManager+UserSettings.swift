@@ -8,7 +8,7 @@
 import Foundation
 
 extension CoreDataManager {
-    
+
     func getUserSettings() -> UserSettings {
         var items: [UserSettings] = []
         do {
@@ -23,28 +23,27 @@ extension CoreDataManager {
             return items[0]
         }
     }
-    
+
     func getUserSelectedCurrencySymbol() -> String {
         getUserSettings().currency!.symbol!
     }
-    
+
     func setUserSettings() -> UserSettings {
         let userSettings = UserSettings.create(in: context)
-        let currencies = try! context.fetch(Currency.fetchRequest())
-        
-        if currencies.isEmpty {
-            // TODO: How to better handle this?
-        } else {
-            userSettings.currency = currencies[0]
-        }
         do {
-            try context.save()
+            let currencies = try context.fetch(Currency.fetchRequest())
+            if currencies.isEmpty {
+                // TODO: How to better handle this?
+            } else {
+                userSettings.currency = currencies[0]
+            }
+                try context.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
         return userSettings
     }
-    
+
     func setUserSelected(_ currency: Currency) {
         let userSettings = getUserSettings()
         userSettings.currency = currency
