@@ -15,8 +15,12 @@
 		834994C3272BE66900F0E35B /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */; };
 		834994C4272BE66900F0E35B /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */; };
 		834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */; };
+		834AD977274253EA0063A59B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834AD976274253EA0063A59B /* NetworkService.swift */; };
+		834AD9792742A6010063A59B /* CurrencyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834AD9782742A6010063A59B /* CurrencyNetworkManager.swift */; };
+		834AD97B274381540063A59B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834AD97A274381540063A59B /* Errors.swift */; };
 		8357C7E72735138C00FD0F8A /* SettingsRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8357C7E62735138C00FD0F8A /* SettingsRecordViewController.swift */; };
-		835C1B87273246560033A9CE /* ExtensionAddCAtegoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */; };
+		835C1B87273246560033A9CE /* AddCAtegoryViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835C1B86273246560033A9CE /* AddCAtegoryViewController+CollectionView.swift */; };
+		83C6DEB92743C4C5008D4D92 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83C6DEB82743C4C5008D4D92 /* Keys.plist */; };
 		83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019F272A966100E76996 /* RecordTableViewCell.swift */; };
 		83CF01A2272A969800E76996 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF01A1272A969800E76996 /* MainViewController.swift */; };
 		83EFF9D0272E9C9700F133A2 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */; };
@@ -118,9 +122,13 @@
 		834994C1272BE66900F0E35B /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "../../../Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		834994C2272BE66900F0E35B /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Category.swift"; sourceTree = "<group>"; };
+		834AD976274253EA0063A59B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		834AD9782742A6010063A59B /* CurrencyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyNetworkManager.swift; sourceTree = "<group>"; };
+		834AD97A274381540063A59B /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		8357C7E62735138C00FD0F8A /* SettingsRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRecordViewController.swift; sourceTree = "<group>"; };
-		835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAddCAtegoryViewController.swift; sourceTree = "<group>"; };
+		835C1B86273246560033A9CE /* AddCAtegoryViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddCAtegoryViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		83A02714273E98D800A5E5DA /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
+		83C6DEB82743C4C5008D4D92 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		83CF019F272A966100E76996 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordTableViewCell.swift; path = View/RecordTableViewCell.swift; sourceTree = "<group>"; };
 		83CF01A1272A969800E76996 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = incredible_trata/Models/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
 		83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -216,7 +224,7 @@
 		8329D90A2726BD97000949BB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */,
+				835C1B86273246560033A9CE /* AddCAtegoryViewController+CollectionView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -227,6 +235,15 @@
 				834994C5272BEDCD00F0E35B /* CoreDataManager+Category.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		834AD975274253770063A59B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				834AD976274253EA0063A59B /* NetworkService.swift */,
+				834AD9782742A6010063A59B /* CurrencyNetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		83574758272A7C3D00FF0A3E /* CoreDataManager */ = {
@@ -306,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				F6F5C0DC2743A44300282AD1 /* Common */,
+				834AD975274253770063A59B /* Networking */,
 				EA3F497427268E3E0055292D /* Resource */,
 				F68A78632726AB8C00874F0B /* View */,
 				EA3F497227268DEA0055292D /* Modules */,
@@ -345,6 +363,7 @@
 		EA3F497027268DC90055292D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EA3F497327268E1A0055292D /* Main */,
 				F6F5C0CD2743826100282AD1 /* Date */,
 				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
 				8357475B272A901800FF0A3E /* View */,
@@ -352,7 +371,6 @@
 				83574758272A7C3D00FF0A3E /* CoreDataManager */,
 				8329D9032726B34B000949BB /* Extensions */,
 				F6F95FCD272A7AAE005202E2 /* CoreData */,
-				EA3F497327268E1A0055292D /* Main */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -384,6 +402,8 @@
 				EA3F494727268CA00055292D /* Assets.xcassets */,
 				EA3F494C27268CA00055292D /* Info.plist */,
 				832C4AA1273D3DFC00F796CA /* Color.swift */,
+				834AD97A274381540063A59B /* Errors.swift */,
+				83C6DEB82743C4C5008D4D92 /* Keys.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -566,7 +586,7 @@
 				EA3F493427268C9D0055292D /* Sources */,
 				EA3F493527268C9D0055292D /* Frameworks */,
 				EA3F493627268C9D0055292D /* Resources */,
-				832AA82E273E9D5600F1CA0C /* ShellScript */,
+				832AA82E273E9D5600F1CA0C /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -700,6 +720,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C6DEB92743C4C5008D4D92 /* Keys.plist in Resources */,
 				EA3F494827268CA00055292D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,7 +764,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		832AA82E273E9D5600F1CA0C /* ShellScript */ = {
+		832AA82E273E9D5600F1CA0C /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -752,6 +773,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -842,7 +864,9 @@
 				832C4A98273AEF6800F796CA /* AppearanceTableViewCell.swift in Sources */,
 				F6AEE3002738F8C700ACEF1D /* GraphViewController.swift in Sources */,
 				834994C6272BEDCD00F0E35B /* CoreDataManager+Category.swift in Sources */,
+				834AD9792742A6010063A59B /* CurrencyNetworkManager.swift in Sources */,
 				EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */,
+				834AD97B274381540063A59B /* Errors.swift in Sources */,
 				F6FA5C69272BED4D00C93A19 /* CoreDataManager+Record.swift in Sources */,
 				832C4AA4273D3E1000F796CA /* Theme.swift in Sources */,
 				F6F5C0E22743BA7F00282AD1 /* UITableView+RegCell.swift in Sources */,
@@ -852,7 +876,7 @@
 				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F66CB5CC273E56BA00F7C8C5 /* MonthSelectionTableViewCell.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */,
-				835C1B87273246560033A9CE /* ExtensionAddCAtegoryViewController.swift in Sources */,
+				835C1B87273246560033A9CE /* AddCAtegoryViewController+CollectionView.swift in Sources */,
 				832C4A94273AB7FB00F796CA /* AppearanceViewController.swift in Sources */,
 				F6FA5C6D272BEE2600C93A19 /* CoreDataManager+UserSettings.swift in Sources */,
 				F66CB5CA273E4B6F00F7C8C5 /* MonthSelectionViewController.swift in Sources */,
@@ -864,6 +888,7 @@
 				F6F95FE0272A8C5C005202E2 /* UserSettings+CoreDataClass.swift in Sources */,
 				F6FA5C6B272BEDE700C93A19 /* CoreDataManager+Currency.swift in Sources */,
 				83EFF9E127303E4F00F133A2 /* CategoryCollectionViewCell.swift in Sources */,
+				834AD977274253EA0063A59B /* NetworkService.swift in Sources */,
 				F68A78662726ABBF00874F0B /* AddItemBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1028,10 +1053,14 @@
 				DEVELOPMENT_TEAM = B5MHTW4TA8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = incredible_trata/Resource/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Your location is not needed. This request has popped up due to a 3rd party framework used by the app in a context that does NOT need you to reveal you location. Do be sure to check audit trail for the location queries on ios 15 or later.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You will get zero benefit allowing this app accessing your location. You should never see this alert. If you do alert technical support at foo@bar.baz";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1057,10 +1086,14 @@
 				DEVELOPMENT_TEAM = B5MHTW4TA8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = incredible_trata/Resource/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Your location is not needed. This request has popped up due to a 3rd party framework used by the app in a context that does NOT need you to reveal you location. Do be sure to check audit trail for the location queries on ios 15 or later.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You will get zero benefit allowing this app accessing your location. You should never see this alert. If you do alert technical support at foo@bar.baz";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

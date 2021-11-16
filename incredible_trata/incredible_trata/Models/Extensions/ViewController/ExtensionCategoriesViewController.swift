@@ -1,22 +1,24 @@
 //
-//  ExtensionMainViewController.swift
+//  ExtensionCategoriesViewController.swift
 //  incredible_trata
 //
-//  Created by Aristova Alina on 25.10.2021.
+//  Created by Aristova Alina on 31.10.2021.
+//  
 //
 
+import Foundation
 import UIKit
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - extension UITableViewDelegate, UITableViewDataSource
 
+extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return records.count
-
+        categories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idCell, for: indexPath) as?
-                RecordTableViewCell else {
+                CategoryTableViewCell else {
             fatalError()
         }
         let section = tableView.numberOfRows(inSection: indexPath.section)
@@ -29,14 +31,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.indexCell = (false, false)
         }
-        cell.viewModel = records[indexPath.row]
+        cell.viewModel = categories[indexPath.row]
         cell.imageView?.image = nil
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let settingsRecordViewController = SettingsRecordViewController()
-        settingsRecordViewController.reloadRecord(inputRecord: records[indexPath.row])
-        self.navigationController?.pushViewController(settingsRecordViewController, animated: true)
+        delegate?.categoryWasSelected(category: categories[indexPath.row])
+        self.dismiss(animated: true, completion: nil)
     }
 }

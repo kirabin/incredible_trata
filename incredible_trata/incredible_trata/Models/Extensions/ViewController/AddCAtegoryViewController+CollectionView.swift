@@ -1,5 +1,5 @@
 //
-//  ExtensionAddCAtegoryVC.swift
+//  AddCAtegoryViewController+CollectionView.swift
 //  incredible_trata
 //
 //  Created by Aristova Alina on 03.11.2021.

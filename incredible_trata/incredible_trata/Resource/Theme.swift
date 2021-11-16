@@ -52,7 +52,6 @@ extension Theme {
 
     func setActive() {
         save()
-
         guard #available(iOS 13.0, *) else { return }
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
