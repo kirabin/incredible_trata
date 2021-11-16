@@ -11,11 +11,15 @@ import Foundation
 import MapKit
 
 class MainViewController: UIViewController {
-    
+
     var records = CoreDataManager.shared.getRecords()
-    var selectedСategory: Category?
+    var selectedСategory: Category? {
+        didSet {
+            addItemBar.setCategoryButtonIcon(imageName: selectedСategory?.imageName ?? "questionmark")
+        }
+    }
+
     let idCell = "idCell"
-    let categoryVC = CategoriesViewController()
     let locationManager = CLLocationManager()
 
     private lazy var bottomConstraint: NSLayoutConstraint = {
@@ -64,8 +68,7 @@ class MainViewController: UIViewController {
         view.addSubview(settingsButton)
         view.addSubview(graphButton)
         setConstraints()
-
-        categoryVC.delegate = self
+        setCategory()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow(notification:)),
@@ -82,7 +85,6 @@ class MainViewController: UIViewController {
         castomTableView.delegate = self
         castomTableView.dataSource = self
         castomTableView.register(RecordTableViewCell.self, forCellReuseIdentifier: idCell)
-        DefaultsManager.shared.populateCoreData()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -148,6 +150,16 @@ class MainViewController: UIViewController {
         bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
+
+    func setCategory() {
+        let categories = CoreDataManager.shared.getCategories()
+
+        if categories.isEmpty {
+            // TODO: fatal?
+        } else {
+            selectedСategory = categories[0]
+        }
+    }
 }
 
 extension MainViewController: CategoriesViewControllerDelegate {
@@ -161,7 +173,7 @@ extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
         guard let noteValue = noteValue,
               let priceValue = priceValue,
               !priceValue.isEmpty,
-              let selectedCurrency = CoreDataManager.shared.getUserSettings().currency
+              let selectedCurrency = CoreDataManager.shared.getUserSettings()?.currency
         else {
             return
         }
@@ -185,7 +197,10 @@ extension MainViewController: AddItemBarDelegate, CLLocationManagerDelegate {
     }
 
     func categoryButtonTapped() {
-        let navVC = UINavigationController(rootViewController: categoryVC)
+        let categoriesViewController = CategoriesViewController()
+        categoriesViewController.delegate = self
+
+        let navVC = UINavigationController(rootViewController: categoriesViewController)
         navVC.navigationBar.barTintColor = .none
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.present(navVC, animated: true)

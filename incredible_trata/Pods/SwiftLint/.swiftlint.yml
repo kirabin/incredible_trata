@@ -37,7 +37,6 @@ disabled_rules: # rule identifiers to exclude from running
   - reduce_into
   - multiline_arguments_brackets
   - function_default_parameter_at_end
-  - type_name
 
 opt_in_rules: # some rules are only opt-in
   - anyobject_protocol
@@ -189,6 +188,8 @@ excluded:
   - Carthage
   - AirWatch
   - Senat/Modules/FaceRecognition/SmartBio
+  - incredible_trataTests
+  - incredible_trataUITests
 
 identifier_name:
   min_length: 2
@@ -224,10 +225,9 @@ function_parameter_count:
   warning: 10
   error: 12
 
-function_body_length:
-  warning: 300
-  error: 300
-
+#function_body_length:
+#  warning: 300
+#  error: 300
 
 # implicitly_unwrapped_optional:
 #   severity: warning

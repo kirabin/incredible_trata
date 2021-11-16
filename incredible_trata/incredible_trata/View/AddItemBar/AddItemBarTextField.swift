@@ -8,9 +8,8 @@
 import Foundation
 import UIKit
 
-
 class AddItemBarTextField: UITextField {
-    
+
     init() {
         super.init(frame: .zero)
 
@@ -22,11 +21,11 @@ class AddItemBarTextField: UITextField {
             attributes: [NSAttributedString.Key.foregroundColor: Color.inputFG]
         )
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.height / 2

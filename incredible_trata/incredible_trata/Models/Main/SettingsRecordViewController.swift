@@ -33,7 +33,7 @@ class SettingsRecordViewController: UIViewController {
         createGestureRecognizer()
         setConstraints()
     }
-    
+
     private lazy var amountTextFieldLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -192,7 +192,7 @@ class SettingsRecordViewController: UIViewController {
         amountTextField.text = String((childrenRecord?.amount)!)
         settingsCategoryButton.setImage(UIImage(systemName: (childrenRecord?.category?.imageName)!), for: .normal)
         settingsCategoryButton.setTitle((childrenRecord?.category?.lableName)!, for: .normal)
-        picker.date = (childrenRecord?.creation_date)!
+        picker.date = (childrenRecord?.creationDate)!
         let coordinate = CLLocationCoordinate2D(latitude: (childrenRecord?.latitudeCoordinate)!,
                                                 longitude: (childrenRecord?.longitudeCoordinate)!)
         let annotation = MapPin(coordinate: coordinate, title: (childrenRecord?.note)!)
@@ -211,7 +211,7 @@ class SettingsRecordViewController: UIViewController {
     }
 
     @objc func datePickerChanged() {
-        childrenRecord?.creation_date = picker.date
+        childrenRecord?.creationDate = picker.date
     }
 
     @objc func saveButtonAction() throws {

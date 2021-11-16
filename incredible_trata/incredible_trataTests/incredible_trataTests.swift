@@ -8,6 +8,7 @@
 import XCTest
 @testable import incredible_trata
 
+// swiftlint:disable type_name
 class incredible_trataTests: XCTestCase {
 
     override func setUpWithError() throws {

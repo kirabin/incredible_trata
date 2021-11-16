@@ -24,7 +24,7 @@ extension AddCategoryViewController: UICollectionViewDataSource,
                 }
         cell.layer.cornerRadius = 10
         cell.backgroundColor = Color.iconBG
-        cell.image = Default.images[indexPath.row]
+        cell.image = Default.imageNames[indexPath.row]
        return cell
     }
 

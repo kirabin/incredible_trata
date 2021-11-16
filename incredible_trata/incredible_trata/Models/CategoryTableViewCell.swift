@@ -12,10 +12,11 @@ import UIKit
 final class CategoryTableViewCell: UITableViewCell {
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            logoImageView, titleLabel
+            logoImageView, titleLabel, arrowImage
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
 
@@ -40,17 +41,43 @@ final class CategoryTableViewCell: UITableViewCell {
         return label
     }()
 
-    var viewModel: Category? {
+    private lazy var arrowImage: UIImageView = {
+        let image = UIImage(systemName: "chevron.right")
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = Color.textBG
+        imageView.isHidden = true
+        return imageView
+    }()
+
+    private lazy var isParentCategory = false {
         didSet {
-            let imageName = UIImage(systemName: viewModel?.imageName ?? "home")
+            if isParentCategory && showNestedArrow {
+                arrowImage.isHidden = false
+            } else {
+                arrowImage.isHidden = true
+            }
+        }
+    }
+
+    var showNestedArrow: Bool = true
+
+    var category: Category? {
+        didSet {
+            let imageName = UIImage(systemName: category?.imageName ?? "")
             logoImageView.image = imageName
             logoImageView.translatesAutoresizingMaskIntoConstraints = false
             logoImageView.contentMode = .scaleAspectFit
             logoImageView.tintColor = Color.textBG
-            titleLabel.text = viewModel?.lableName
-
+            titleLabel.text = category?.lableName
+            if category?.nestedCategories?.count ?? 0 != 0 {
+                isParentCategory = true
+            }
+            if category?.parentCategory != nil && showNestedArrow {
+                horizontalStackView.directionalLayoutMargins.leading = 15
+            }
         }
     }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -117,6 +144,8 @@ final class CategoryTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
         self.contentView.layer.cornerRadius = 0
         indexCell = (false, false)
+        isParentCategory = false
+        horizontalStackView.directionalLayoutMargins.leading = 0
     }
 }
 

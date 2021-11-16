@@ -17,7 +17,7 @@ class AppearanceViewController: UIViewController {
         var sections: [[AppearanceTableViewCellModel]] = []
         AppearanceSection.appearances.forEach { section in
             var rows: [AppearanceTableViewCellModel] = []
-            
+
             section.rows.forEach { row in
                 let model: AppearanceTableViewCellModel?
                 if case row = Theme.current {
@@ -27,7 +27,7 @@ class AppearanceViewController: UIViewController {
                     model = AppearanceTableViewCellModel(cellType: row.type,
                                                              text: row.text, switched: true)
                 }
-                
+
                 model?.action = { [weak self] _ in
                     guard let self = self else { return }
                     switch row {

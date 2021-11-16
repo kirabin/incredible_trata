@@ -17,30 +17,30 @@ class GraphTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         setupStackView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private var viewModel: Category! {
         didSet {
             categoryName.text = viewModel.lableName
             roundIcon.imageName = viewModel.imageName
         }
     }
-    
+
     private var amount: Int64 = 0 {
         didSet {
             categoryAmount.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(amount)"
         }
     }
-    
+
     func configure(viewModel: Category, amount: Int64, iconColor: UIColor) {
         self.viewModel = viewModel
         self.amount = amount
         roundIcon.backgroundColor = iconColor
     }
-    
+
     enum RoundSide {
         case none
         case top
@@ -76,14 +76,14 @@ class GraphTableViewCell: UITableViewCell {
     }
 
     private lazy var roundIcon = RoundIcon()
-    
+
     private lazy var categoryName: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: Constants.cellFontSize)
         return label
     }()
-    
+
     private lazy var categoryAmount: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -91,7 +91,7 @@ class GraphTableViewCell: UITableViewCell {
         label.setContentHuggingPriority(.required, for: .horizontal)
         return label
     }()
-    
+
     private lazy var arrowView: UIImageView = {
         let image = UIImage(systemName: "chevron.right")
         let imageView = UIImageView(image: image)
@@ -99,7 +99,7 @@ class GraphTableViewCell: UITableViewCell {
         imageView.setContentHuggingPriority(.required, for: .horizontal)
         return imageView
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             roundIcon, categoryName, categoryAmount, arrowView
@@ -116,10 +116,10 @@ class GraphTableViewCell: UITableViewCell {
                                 trailing: Constants.cellElementSpacing)
         return stack
     }()
-    
+
     func setupStackView() {
         contentView.addSubview(stackView)
-        
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
@@ -131,21 +131,19 @@ class GraphTableViewCell: UITableViewCell {
             roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
         ])
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         if viewModel != nil {
             contentView.backgroundColor = Color.controlBG
-        }
-        else if selected {
+        } else if selected {
             contentView.backgroundColor = .gray
         } else {
             contentView.backgroundColor = Color.controlBG
         }
     }
-    
-    // TODO: a bit on how it works
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.contentView.layer.cornerRadius = 0

@@ -3,32 +3,31 @@
 //  incredible_trata
 //
 //  Created by Ryabin Kirill on 08.11.2021.
-//  
+//
 
 import Foundation
 import UIKit
 import Charts
 
-
 class GraphViewController: UIViewController {
-    
+
     let colors: [UIColor] = [.orange, .yellow, .green, .blue, .cyan, .magenta]
-    
+
     init() {
         dateRange = .month(Date())
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private var dateRange: DateRange {
         didSet {
             dateRangeChanged()
         }
     }
-    
+
     func dateRangeChanged() {
         updateRecords()
     }
@@ -38,7 +37,7 @@ class GraphViewController: UIViewController {
             categorySummary.reloadData()
         }
     }
-    
+
     private lazy var groupedRecords: [Category: [Record]] = [:] {
         didSet {
             var categories: [(category: Category, amount: Int64)] = []
@@ -56,15 +55,32 @@ class GraphViewController: UIViewController {
     }
 
     private func recordsChanged() {
-        groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
+        groupRecords()
         updateCharts()
         updatePieCharts()
         title = dateRange.title
         summaryLabel.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(getAmount(for: records))"
     }
 
+    private func groupRecords() {
+        var groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
+        for (category, records) in groupedRecords {
+            var category = category
+            while let parentCategory = category.parentCategory {
+                groupedRecords[category] = nil
+                if groupedRecords[parentCategory] != nil {
+                    groupedRecords[parentCategory]?.append(contentsOf: records)
+                } else {
+                    groupedRecords[parentCategory] = records
+                }
+                category = parentCategory
+            }
+        }
+        self.groupedRecords = groupedRecords
+    }
+
     private func updateRecords() {
-        let predicate = NSPredicate(format: "(%@ <= creation_date) AND (creation_date <= %@)",
+        let predicate = NSPredicate(format: "(%@ <= creationDate) AND (creationDate <= %@)",
                                     argumentArray: [dateRange.dateInterval.start, dateRange.dateInterval.end])
         records = CoreDataManager.shared.getRecords(with: predicate)
     }
@@ -203,9 +219,9 @@ class GraphViewController: UIViewController {
             categorySummary.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             pieChartView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor),
             pieChartView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
-                                               constant: Constants.padding),
+                                                  constant: Constants.padding),
             pieChartView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,
-                                                constant: -Constants.padding),
+                                                   constant: -Constants.padding),
             pieChartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }

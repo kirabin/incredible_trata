@@ -15,29 +15,48 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
+    @NSManaged public var id: UUID?
     @NSManaged public var imageName: String?
     @NSManaged public var lableName: String?
-    @NSManaged public var id: UUID?
-    @NSManaged public var record: NSSet?
+    @NSManaged public var records: NSSet?
+    @NSManaged public var nestedCategories: NSSet?
+    @NSManaged public var parentCategory: Category?
 
 }
 
-// MARK: Generated accessors for record
+// MARK: Generated accessors for records
 extension Category {
 
-    @objc(addRecordObject:)
-    @NSManaged public func addToRecord(_ value: Record)
+    @objc(addRecordsObject:)
+    @NSManaged public func addToRecords(_ value: Record)
 
-    @objc(removeRecordObject:)
-    @NSManaged public func removeFromRecord(_ value: Record)
+    @objc(removeRecordsObject:)
+    @NSManaged public func removeFromRecords(_ value: Record)
 
-    @objc(addRecord:)
-    @NSManaged public func addToRecord(_ values: NSSet)
+    @objc(addRecords:)
+    @NSManaged public func addToRecords(_ values: NSSet)
 
-    @objc(removeRecord:)
-    @NSManaged public func removeFromRecord(_ values: NSSet)
+    @objc(removeRecords:)
+    @NSManaged public func removeFromRecords(_ values: NSSet)
+}
+
+// MARK: Generated accessors for nestedCategories
+extension Category {
+
+    @objc(addNestedCategoriesObject:)
+    @NSManaged public func addToNestedCategories(_ value: Category)
+
+    @objc(removeNestedCategoriesObject:)
+    @NSManaged public func removeFromNestedCategories(_ value: Category)
+
+    @objc(addNestedCategories:)
+    @NSManaged public func addToNestedCategories(_ values: NSSet)
+
+    @objc(removeNestedCategories:)
+    @NSManaged public func removeFromNestedCategories(_ values: NSSet)
 
 }
 
 extension Category: Identifiable {
+
 }

@@ -8,12 +8,9 @@
 import Foundation
 import CoreData
 
-
 extension NSManagedObject {
-    class func create(in context: NSManagedObjectContext) -> Self {
+    class func create(in context: NSManagedObjectContext) -> Self? {
         NSEntityDescription.insertNewObject(forEntityName: String(describing: self),
-                                            into: context) as! Self
+                                            into: context) as? Self
     }
-    
-    // TODO: find or create
 }

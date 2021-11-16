@@ -21,7 +21,6 @@
 		83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF019F272A966100E76996 /* RecordTableViewCell.swift */; };
 		83CF01A2272A969800E76996 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF01A1272A969800E76996 /* MainViewController.swift */; };
 		83EFF9D0272E9C9700F133A2 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */; };
-		83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D1272EACF200F133A2 /* ExtensionCategoriesViewController.swift */; };
 		83EFF9D4272EB21200F133A2 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */; };
 		83EFF9D6272EB52A00F133A2 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */; };
 		83EFF9E127303E4F00F133A2 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */; };
@@ -122,7 +121,6 @@
 		83CF019F272A966100E76996 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordTableViewCell.swift; path = View/RecordTableViewCell.swift; sourceTree = "<group>"; };
 		83CF01A1272A969800E76996 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = incredible_trata/Models/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
 		83EFF9CF272E9C9700F133A2 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		83EFF9D1272EACF200F133A2 /* ExtensionCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCategoriesViewController.swift; sourceTree = "<group>"; };
 		83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				8329D90C2726BDF0000949BB /* ExtensionMainViewController.swift */,
-				83EFF9D1272EACF200F133A2 /* ExtensionCategoriesViewController.swift */,
 				835C1B86273246560033A9CE /* ExtensionAddCAtegoryViewController.swift */,
 			);
 			path = ViewController;
@@ -814,7 +811,6 @@
 				F65891B627301331005C142B /* SettingsTableViewCellModel.swift in Sources */,
 				F65891AD272C49BA005C142B /* NavigationController.swift in Sources */,
 				EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */,
-				83EFF9D2272EACF200F133A2 /* ExtensionCategoriesViewController.swift in Sources */,
 				83CF01A0272A966100E76996 /* RecordTableViewCell.swift in Sources */,
 				832C4A98273AEF6800F796CA /* AppearanceTableViewCell.swift in Sources */,
 				F6AEE3002738F8C700ACEF1D /* GraphViewController.swift in Sources */,

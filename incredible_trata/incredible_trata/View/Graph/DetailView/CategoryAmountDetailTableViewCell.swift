@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class CategoryAmountDetailTableViewCell: UITableViewCell {
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = Color.controlBG
@@ -21,38 +21,41 @@ class CategoryAmountDetailTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var viewModel: Record? {
+
+    private var record: Record? {
         didSet {
-            guard let viewModel = viewModel else {
+            guard let record = record else {
                 return
             }
-            noteLabel.text = viewModel.note
-            amountLabel.text = "\(viewModel.currency!.symbol!)\(viewModel.amount)"
+            noteLabel.text = record.note
+            amountLabel.text = "\(record.currency!.symbol!)\(record.amount)"
+            roundIcon.imageName = record.category?.imageName ?? ""
         }
     }
-    
-    func configure(viewModel: Record) {
-        self.viewModel = viewModel
+
+    func configure(record: Record) {
+        self.record = record
     }
-    
-    
+
+    private lazy var roundIcon = RoundIcon()
+
     private lazy var noteLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         return label
     }()
-    
+
     private lazy var amountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         return label
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
-            noteLabel, amountLabel
+            roundIcon, noteLabel, amountLabel
         ])
+        stack.spacing = 10
         stack.isLayoutMarginsRelativeArrangement = true
         stack.directionalLayoutMargins =
         NSDirectionalEdgeInsets(top: Constants.padding,
@@ -61,16 +64,18 @@ class CategoryAmountDetailTableViewCell: UITableViewCell {
                                 trailing: Constants.padding)
         return stack
     }()
-    
+
     func setupStackView() {
         contentView.addSubview(stackView)
-        
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            roundIcon.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
+            roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
         ])
     }
 }
@@ -79,5 +84,6 @@ class CategoryAmountDetailTableViewCell: UITableViewCell {
 extension CategoryAmountDetailTableViewCell {
     private enum Constants {
         static let padding: CGFloat = 15
+        static let iconHeight: CGFloat = 40
     }
 }
