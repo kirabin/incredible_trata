@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-final class CategoryTableViewCell: UITableViewCell {
+final class CategoryTableViewCell: RoundedTableViewCell {
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             logoImageView, titleLabel, arrowImage
@@ -91,27 +91,6 @@ final class CategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    var indexCell = (first:false, last:false) {
-        didSet {
-            switch indexCell {
-            case (first:true, last:true):
-                self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,
-                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            case (first:false, last:true):
-                self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            case (first:true, last:false):
-                self.contentView.layer.cornerRadius = 10
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            case (first:false, last:false):
-                self.contentView.layer.cornerRadius = 0
-                self.contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner,
-                                                        .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            }
-        }
-    }
-
     private func setupUI() {
         addSubviews()
         setupLayout()
@@ -143,7 +122,6 @@ final class CategoryTableViewCell: UITableViewCell {
         self.clipsToBounds = false
         self.backgroundColor = .clear
         self.contentView.layer.cornerRadius = 0
-        indexCell = (false, false)
         isParentCategory = false
         horizontalStackView.directionalLayoutMargins.leading = 0
     }

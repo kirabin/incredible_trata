@@ -8,25 +8,14 @@
 import Foundation
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
+class SettingsTableViewCell: RoundedTableViewCell {
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = Color.controlBG
-        self.backgroundColor = .clear
-        self.selectionStyle = .none
-        setupStackView()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private var viewModel: SettingsTableViewCellModel! {
+    // MARK: - Private Properties
+    private var viewModel: SettingsTableViewCellModel? {
         didSet {
-            labelView.text = viewModel.text
-            roundIcon.imageName = viewModel.imageName
-            switch viewModel.cellType {
+            labelView.text = viewModel?.text ?? ""
+            roundIcon.imageName = viewModel?.imageName ?? ""
+            switch viewModel?.cellType {
             case .blank:
                 break
             case .nested:
@@ -35,48 +24,13 @@ class SettingsTableViewCell: UITableViewCell {
                 toggleView.isHidden = false
             case .check:
                 break
-            }
-        }
-    }
-
-    func configure(viewModel: SettingsTableViewCellModel) {
-        self.viewModel = viewModel
-    }
-
-    enum RoundSide {
-        case none
-        case top
-        case bottom
-        case all
-    }
-
-    var roundSide: RoundSide = .none {
-        didSet {
-            self.contentView.layer.cornerRadius = Constants.cellCornerRadius
-            switch roundSide {
             case .none:
-                self.contentView.layer.maskedCorners = []
-            case .top:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMinYCorner,
-                    .layerMinXMinYCorner
-                ]
-            case .bottom:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMaxYCorner,
-                    .layerMinXMaxYCorner
-                ]
-            case .all:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMinYCorner,
-                    .layerMinXMinYCorner,
-                    .layerMaxXMaxYCorner,
-                    .layerMinXMaxYCorner
-                ]
+                break
             }
         }
     }
 
+    // MARK: - Subviews
     private lazy var roundIcon = RoundIcon()
 
     private lazy var labelView: UILabel = {
@@ -93,16 +47,6 @@ class SettingsTableViewCell: UITableViewCell {
         toggle.addTarget(self, action: #selector(toggleWasTapped), for: .touchUpInside)
         return toggle
     }()
-
-    @objc
-    func toggleWasTapped() {
-        guard let viewModel = self.viewModel,
-              let action = viewModel.action
-        else {
-            return
-        }
-        action(toggleView.isOn)
-    }
 
     private lazy var arrowView: UIImageView = {
         let image = UIImage(systemName: "chevron.right")
@@ -130,21 +74,20 @@ class SettingsTableViewCell: UITableViewCell {
         return stack
     }()
 
-    func setupStackView() {
-        contentView.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            stackView.heightAnchor.constraint(equalTo: roundIcon.heightAnchor,
-                                              constant: Constants.cellPadding * 2),
-            roundIcon.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
-            roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
-        ])
+    // MARK: - Initialization
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = Color.controlBG
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
+        setupStackView()
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -163,6 +106,38 @@ class SettingsTableViewCell: UITableViewCell {
         self.contentView.layer.cornerRadius = 0
         self.arrowView.isHidden = true
         self.toggleView.isHidden = true
+    }
+
+    // MARK: - Public Methods
+    func configure(viewModel: SettingsTableViewCellModel) {
+        self.viewModel = viewModel
+    }
+
+    // MARK: - Private Methods
+    @objc
+    private func toggleWasTapped() {
+        guard let viewModel = self.viewModel,
+              let action = viewModel.action
+        else {
+            return
+        }
+        action(toggleView.isOn)
+    }
+
+    private func setupStackView() {
+        contentView.addSubview(stackView)
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            stackView.heightAnchor.constraint(equalTo: roundIcon.heightAnchor,
+                                              constant: Constants.cellPadding * 2),
+            roundIcon.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
+            roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
+        ])
     }
 }
 

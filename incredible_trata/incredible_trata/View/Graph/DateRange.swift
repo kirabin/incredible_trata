@@ -13,21 +13,22 @@ enum DateRange {
     case year(Date)
     case custom(DateInterval)
 
+    // MARK: - Public Properties
+    // TODO: end date not in range
     var dateInterval: DateInterval {
         let calendar = Calendar.current
         var dateInterval: DateInterval = DateInterval(start: Date(), end: Date())
 
         switch self {
         case .week(let date):
-            dateInterval = calendar.dateInterval(of: .weekOfYear, for: date)!
+            dateInterval = calendar.dateInterval(of: .weekOfYear, for: date) ?? dateInterval
         case .month(let date):
-            dateInterval = calendar.dateInterval(of: .month, for: date)!
+            dateInterval = calendar.dateInterval(of: .month, for: date) ?? dateInterval
         case .year(let date):
-            dateInterval = calendar.dateInterval(of: .year, for: date)!
+            dateInterval = calendar.dateInterval(of: .year, for: date) ?? dateInterval
         case .custom(let dateInterval):
             return dateInterval
         }
-        dateInterval.end.addTimeInterval(-60 * 60 * 24)
         return dateInterval
     }
 
@@ -55,6 +56,7 @@ enum DateRange {
         dateInterval.end.formatted(date: .abbreviated, time: .omitted)
     }
 
+    // MARK: - Public Methods
     mutating func moveToNextRange() {
         let calendar = Calendar.current
 

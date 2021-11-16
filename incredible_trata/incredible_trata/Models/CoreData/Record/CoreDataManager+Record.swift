@@ -10,6 +10,7 @@ import CoreData
 
 extension CoreDataManager {
 
+    // swiftlint:disable function_parameter_count
     func saveRecord(note: String, amount: Int64, currency: Currency, category: Category,
                     longitude: Double, latitude: Double) throws {
         guard let record = Record.create(in: context) else {return}
@@ -25,6 +26,7 @@ extension CoreDataManager {
         category.addToRecords(record)
         try context.save()
     }
+    // swiftlint:enable function_parameter_count
 
     func save(_ record: Record) throws {
         try context.save()
@@ -42,14 +44,25 @@ extension CoreDataManager {
         return nil
     }
 
-    func getRecords(with predicate: NSPredicate? = nil) -> [Record] {
+    func getRecords(with predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> [Record] {
         let request = Record.fetchRequest()
         request.predicate = predicate
+        request.sortDescriptors = sortDescriptors
+
         do {
             return try context.fetch(request)
         } catch let error as NSError {
             print("Could not get records with predicate. \(error), \(error.userInfo)")
         }
         return []
+    }
+
+    func getLastRecordDate() -> Date? {
+        let sortDescriptors = [NSSortDescriptor(key: #keyPath(Record.creationDate), ascending: false)]
+        let records: [Record] = getRecords(sortDescriptors: sortDescriptors)
+        if records.isEmpty {
+            return nil
+        }
+        return records[0].creationDate
     }
 }

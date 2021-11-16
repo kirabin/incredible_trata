@@ -54,7 +54,6 @@ class CategoriesViewController: UIViewController {
         table.layer.cornerRadius = 10
         table.delegate = self
         table.dataSource = self
-        table.register(CategoryTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
         return table
     }()
 
@@ -97,27 +96,18 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId,
-                                                       for: indexPath) as? CategoryTableViewCell
+        guard let cell: CategoryTableViewCell = tableView.regCell(indexPath: indexPath)
         else {
             return UITableViewCell()
         }
         let category = categories[indexPath.row]
-        let numberOfRows = tableView.numberOfRows(inSection: indexPath.section)
-        if indexPath.row == 0 && indexPath.row == numberOfRows - 1 {
-            cell.indexCell = (true, true)
-        } else if indexPath.row == 0 {
-            cell.indexCell = (true, false)
-        } else if indexPath.row == numberOfRows - 1 {
-            cell.indexCell = (false, true)
-        } else {
-            cell.indexCell = (false, false)
-        }
+        // TODO: ugly
         if self.parentCategory != nil && self.parentCategory == category {
             cell.showNestedArrow = false
         }
+        cell.setRoundSide(tableView: tableView, indexPath: indexPath)
         cell.category = category
-        cell.imageView?.image = nil
+
         return cell
     }
 
@@ -131,12 +121,5 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
             categoriesVeiwController.delegate = self.delegate
             navigationController?.pushViewController(categoriesVeiwController, animated: true)
         }
-    }
-}
-
-// MARK: - Constants
-extension CategoriesViewController {
-    private enum Constants {
-        static let cellReuseId = "CategoriesViewControllerID"
     }
 }

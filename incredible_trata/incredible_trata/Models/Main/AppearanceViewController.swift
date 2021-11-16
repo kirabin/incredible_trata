@@ -74,8 +74,7 @@ class AppearanceViewController: UIViewController {
         let view = UITableView(frame: .zero, style: UITableView.Style.grouped)
         view.delegate = self
         view.dataSource = self
-        view.register(AppearanceTableViewCell.self, forCellReuseIdentifier: Constants.appearanceCellReusableIdentifier)
-        view.separatorColor = Color.mainBG
+        view.separatorStyle = .none
         view.backgroundColor = Color.mainBG
         return view
     }()
@@ -103,9 +102,9 @@ extension AppearanceViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.appearanceCellReusableIdentifier,
-                                                       for: indexPath) as? AppearanceTableViewCell else {
-            fatalError()
+        guard let cell: AppearanceTableViewCell = tableView.regCell(indexPath: indexPath)
+        else {
+            return UITableViewCell()
         }
         let cellModel = appearanceItems[indexPath.section][indexPath.row]
         cell.configure(viewModel: cellModel)
@@ -124,7 +123,6 @@ extension AppearanceViewController: UITableViewDataSource, UITableViewDelegate {
 extension AppearanceViewController {
     private enum Constants {
         static let appearanceTitle = "Appearance"
-        static let appearanceCellReusableIdentifier = "appearanceCell"
         static let sidePadding: CGFloat = 24
     }
 }

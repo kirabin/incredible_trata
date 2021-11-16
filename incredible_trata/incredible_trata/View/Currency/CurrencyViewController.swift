@@ -10,19 +10,20 @@ import UIKit
 
 class CurrencyViewController: UIViewController {
 
+    // MARK: - Private Properties
     private lazy var currencyItems: [Currency]? = CoreDataManager.shared.getCurrencies()
 
+    // MARK: - Subviews
     private lazy var currencyList: UITableView = {
         let view = UITableView()
         view.delegate = self
         view.dataSource = self
-        view.register(CurrencyTableViewCell.self,
-                      forCellReuseIdentifier: Constants.cellReuseIdentifier)
         view.backgroundColor = Color.mainBG
-        view.separatorColor = Color.mainBG
+        view.separatorStyle = .none
         return view
     }()
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Currency"
@@ -31,7 +32,8 @@ class CurrencyViewController: UIViewController {
         setConstraints()
     }
 
-    func setConstraints() {
+    // MARK: - Private Methods
+    private func setConstraints() {
         currencyList.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             currencyList.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -45,28 +47,21 @@ class CurrencyViewController: UIViewController {
 
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currencyItems?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier,
-                                                       for: indexPath) as? CurrencyTableViewCell else {
-            fatalError()
+        guard let cell: CurrencyTableViewCell = tableView.regCell(indexPath: indexPath),
+              let currency = currencyItems?[indexPath.row]
+        else {
+            return UITableViewCell()
         }
-        let rowsNumber = tableView.numberOfRows(inSection: indexPath.section)
 
-        if let currencyItem = currencyItems?[indexPath.row] {
-            cell.configure(text: currencyItem.name! + " - " + currencyItem.symbol!)
-        }
-        if indexPath.row == 0 && indexPath.row == rowsNumber - 1 {
-            cell.roundSide = .all
-        } else if indexPath.row == 0 {
-            cell.roundSide = .top
-        } else if indexPath.row == rowsNumber - 1 {
-            cell.roundSide = .bottom
-        }
+        cell.setRoundSide(tableView: tableView, indexPath: indexPath)
+        cell.configure(text: (currency.name ?? "") + " - " + (currency.symbol ?? ""))
         return cell
     }
 
@@ -81,7 +76,6 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Constants
 extension CurrencyViewController {
     private enum Constants {
-        static let cellReuseIdentifier = "currencyCell"
         static let cellSidePadding: CGFloat = 15
     }
 }

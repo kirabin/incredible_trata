@@ -10,6 +10,7 @@ import UIKit
 
 class RoundButton: UIButton {
 
+    // MARK: - Initialization
     init(with image: UIImage? = nil) {
         super.init(frame: .zero)
 
@@ -25,6 +26,7 @@ class RoundButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.height / 2

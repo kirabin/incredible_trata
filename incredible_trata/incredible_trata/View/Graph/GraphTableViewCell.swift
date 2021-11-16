@@ -8,24 +8,13 @@
 import Foundation
 import UIKit
 
-class GraphTableViewCell: UITableViewCell {
+class GraphTableViewCell: RoundedTableViewCell {
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = Color.controlBG
-        self.backgroundColor = .clear
-        self.selectionStyle = .none
-        setupStackView()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private var viewModel: Category! {
+    // MARK: - Private Properties
+    private var category: Category? {
         didSet {
-            categoryName.text = viewModel.lableName
-            roundIcon.imageName = viewModel.imageName
+            categoryName.text = category?.lableName ?? ""
+            roundIcon.imageName = category?.imageName ?? ""
         }
     }
 
@@ -35,46 +24,7 @@ class GraphTableViewCell: UITableViewCell {
         }
     }
 
-    func configure(viewModel: Category, amount: Int64, iconColor: UIColor) {
-        self.viewModel = viewModel
-        self.amount = amount
-        roundIcon.backgroundColor = iconColor
-    }
-
-    enum RoundSide {
-        case none
-        case top
-        case bottom
-        case all
-    }
-
-    var roundSide: RoundSide = .none {
-        didSet {
-            self.contentView.layer.cornerRadius = Constants.cellCornerRadius
-            switch roundSide {
-            case .none:
-                self.contentView.layer.maskedCorners = []
-            case .top:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMinYCorner,
-                    .layerMinXMinYCorner
-                ]
-            case .bottom:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMaxYCorner,
-                    .layerMinXMaxYCorner
-                ]
-            case .all:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMinYCorner,
-                    .layerMinXMinYCorner,
-                    .layerMaxXMaxYCorner,
-                    .layerMinXMaxYCorner
-                ]
-            }
-        }
-    }
-
+    // MARK: - Subviews
     private lazy var roundIcon = RoundIcon()
 
     private lazy var categoryName: UILabel = {
@@ -117,7 +67,46 @@ class GraphTableViewCell: UITableViewCell {
         return stack
     }()
 
-    func setupStackView() {
+    // MARK: - Initialization
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = Color.controlBG
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
+        setupStackView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.contentView.layer.cornerRadius = 0
+    }
+
+    // MARK: - Public Methods
+    func configure(category: Category, amount: Int64, iconColor: UIColor) {
+        self.category = category
+        self.amount = amount
+        roundIcon.backgroundColor = iconColor
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        if category != nil {
+            contentView.backgroundColor = Color.controlBG
+        } else if selected {
+            contentView.backgroundColor = .gray
+        } else {
+            contentView.backgroundColor = Color.controlBG
+        }
+    }
+
+    // MARK: - Private Methods
+    private func setupStackView() {
         contentView.addSubview(stackView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,24 +119,6 @@ class GraphTableViewCell: UITableViewCell {
             roundIcon.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
             roundIcon.widthAnchor.constraint(equalToConstant: Constants.iconHeight)
         ])
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        if viewModel != nil {
-            contentView.backgroundColor = Color.controlBG
-        } else if selected {
-            contentView.backgroundColor = .gray
-        } else {
-            contentView.backgroundColor = Color.controlBG
-        }
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.contentView.layer.cornerRadius = 0
-        self.roundSide = .none
     }
 }
 

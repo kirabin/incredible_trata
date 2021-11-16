@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
-class CurrencyTableViewCell: UITableViewCell {
+class CurrencyTableViewCell: RoundedTableViewCell {
 
+    // MARK: - Subviews
     private lazy var currencyLabel: UILabel = {
         let label = UILabel()
         label.text = "?"
@@ -18,6 +19,7 @@ class CurrencyTableViewCell: UITableViewCell {
         return label
     }()
 
+    // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -28,57 +30,11 @@ class CurrencyTableViewCell: UITableViewCell {
         setConstraints()
     }
 
-    func setConstraints() {
-        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            currencyLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            currencyLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            currencyLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
-                                                   constant: Constants.cellPadding),
-            currencyLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
-                                                    constant: -Constants.cellPadding),
-            currencyLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.cellLabelMinHeight)
-        ])
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(text: String) {
-        currencyLabel.text = text
-    }
-
-    enum RoundSide {
-        case none
-        case top
-        case bottom
-        case all
-    }
-
-    var roundSide: RoundSide = .none {
-        didSet {
-            self.contentView.layer.cornerRadius = Constants.cellCornerRadius
-            switch roundSide {
-            case .none:
-                self.contentView.layer.maskedCorners = []
-            case .top:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMinYCorner,
-                    .layerMinXMinYCorner
-                ]
-            case .bottom:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMaxYCorner,
-                    .layerMinXMaxYCorner
-                ]
-            case .all:
-                self.contentView.layer.maskedCorners = [
-                    .layerMaxXMinYCorner,
-                    .layerMinXMinYCorner,
-                    .layerMaxXMaxYCorner,
-                    .layerMinXMaxYCorner
-                ]
-            }
-        }
-    }
-
+    // MARK: - Lifecycle
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -89,8 +45,23 @@ class CurrencyTableViewCell: UITableViewCell {
         }
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // MARK: - Public Methods
+    func configure(text: String) {
+        currencyLabel.text = text
+    }
+
+    // MARK: - Private Methods
+    private func setConstraints() {
+        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            currencyLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            currencyLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            currencyLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
+                                                   constant: Constants.cellPadding),
+            currencyLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
+                                                    constant: -Constants.cellPadding),
+            currencyLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.cellLabelMinHeight)
+        ])
     }
 }
 
