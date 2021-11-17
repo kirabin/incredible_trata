@@ -91,12 +91,12 @@ class MainViewController: UIViewController {
     }()
 
     private lazy var customTableView: UITableView = {
-        let castomTableView = UITableView()
-        castomTableView.delegate = self
-        castomTableView.dataSource = self
-        castomTableView.translatesAutoresizingMaskIntoConstraints = false
-        castomTableView.backgroundColor = Color.mainBG
-        return castomTableView
+        let customTableView = UITableView()
+        customTableView.delegate = self
+        customTableView.dataSource = self
+        customTableView.translatesAutoresizingMaskIntoConstraints = false
+        customTableView.backgroundColor = Color.mainBG
+        return customTableView
     }()
 
     // MARK: - Initialization
@@ -112,7 +112,6 @@ class MainViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        DefaultsManager.shared.populateCoreDataIfNeeded()
         view.backgroundColor = Color.mainBG
         navigationItem.backButtonTitle = ""
         view.addSubview(customTableView)
@@ -124,6 +123,7 @@ class MainViewController: UIViewController {
         setCategory()
         setNotificationCenter()
         dateRangeChanged()
+        CurrencyNetworkManager.shared.obtainCurrency()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
