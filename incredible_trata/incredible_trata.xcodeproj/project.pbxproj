@@ -34,6 +34,7 @@
 		EA3F495627268CA00055292D /* incredible_trataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F495527268CA00055292D /* incredible_trataTests.swift */; };
 		EA3F496027268CA00055292D /* incredible_trataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F495F27268CA00055292D /* incredible_trataUITests.swift */; };
 		EA3F496227268CA00055292D /* incredible_trataUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */; };
+		F651F28C274519B9000C4178 /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651F28B274519B9000C4178 /* StoriesTableViewCell.swift */; };
 		F65891A9272C3E6B005C142B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891A8272C3E6B005C142B /* SettingsViewController.swift */; };
 		F65891AD272C49BA005C142B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891AC272C49BA005C142B /* NavigationController.swift */; };
 		F65891B2272FED40005C142B /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891B1272FED40005C142B /* SettingsTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 		F65891BF27327573005C142B /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891BE27327573005C142B /* CurrencyViewController.swift */; };
 		F65891C127327CD8005C142B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */; };
 		F6632EAD273A5361001647ED /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6632EAC273A5361001647ED /* DateRange.swift */; };
+		F667AB712743D9640065E216 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F667AB702743D9640065E216 /* StoriesViewController.swift */; };
 		F66CB5C6273C0A5D00F7C8C5 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66CB5C5273C0A5D00F7C8C5 /* ActionButton.swift */; };
 		F66CB5CA273E4B6F00F7C8C5 /* MonthSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66CB5C9273E4B6F00F7C8C5 /* MonthSelectionViewController.swift */; };
 		F66CB5CC273E56BA00F7C8C5 /* MonthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66CB5CB273E56BA00F7C8C5 /* MonthSelectionTableViewCell.swift */; };
@@ -149,6 +151,7 @@
 		EA3F495B27268CA00055292D /* incredible_trataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = incredible_trataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3F495F27268CA00055292D /* incredible_trataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incredible_trataUITests.swift; sourceTree = "<group>"; };
 		EA3F496127268CA00055292D /* incredible_trataUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incredible_trataUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F651F28B274519B9000C4178 /* StoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableViewCell.swift; sourceTree = "<group>"; };
 		F65891A8272C3E6B005C142B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F65891AC272C49BA005C142B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F65891B1272FED40005C142B /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 		F65891BE27327573005C142B /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		F65891C027327CD8005C142B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		F6632EAC273A5361001647ED /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
+		F667AB702743D9640065E216 /* StoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
 		F66CB5C5273C0A5D00F7C8C5 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		F66CB5C9273E4B6F00F7C8C5 /* MonthSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectionViewController.swift; sourceTree = "<group>"; };
 		F66CB5CB273E56BA00F7C8C5 /* MonthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -322,11 +326,11 @@
 		EA3F493A27268C9D0055292D /* incredible_trata */ = {
 			isa = PBXGroup;
 			children = (
+				F651F28A274518D6000C4178 /* Modules */,
 				F6F5C0DC2743A44300282AD1 /* Common */,
 				834AD975274253770063A59B /* Networking */,
 				EA3F497427268E3E0055292D /* Resource */,
 				F68A78632726AB8C00874F0B /* View */,
-				EA3F497227268DEA0055292D /* Modules */,
 				EA3F497027268DC90055292D /* Models */,
 				EA3F496E27268D900055292D /* Application */,
 				EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */,
@@ -364,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				EA3F497327268E1A0055292D /* Main */,
-				F6F5C0CD2743826100282AD1 /* Date */,
 				F6F95FC327299979005202E2 /* DefaultsManager.swift */,
 				8357475B272A901800FF0A3E /* View */,
 				8357475A272A8E4F00FF0A3E /* Appearance */,
@@ -373,13 +376,6 @@
 				F6F95FCD272A7AAE005202E2 /* CoreData */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		EA3F497227268DEA0055292D /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Modules;
 			sourceTree = "<group>";
 		};
 		EA3F497327268E1A0055292D /* Main */ = {
@@ -406,6 +402,15 @@
 				83C6DEB82743C4C5008D4D92 /* Keys.plist */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		F651F28A274518D6000C4178 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				F667AB702743D9640065E216 /* StoriesViewController.swift */,
+				F651F28B274519B9000C4178 /* StoriesTableViewCell.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		F65891A7272C3E57005C142B /* Settings */ = {
@@ -479,14 +484,6 @@
 			path = DetailView;
 			sourceTree = "<group>";
 		};
-		F6F5C0CD2743826100282AD1 /* Date */ = {
-			isa = PBXGroup;
-			children = (
-				F6F5C0D02743829C00282AD1 /* Date+Formatter.swift */,
-			);
-			path = Date;
-			sourceTree = "<group>";
-		};
 		F6F5C0DC2743A44300282AD1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +507,7 @@
 		F6F5C0E02743BA6100282AD1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F6F5C0D02743829C00282AD1 /* Date+Formatter.swift */,
 				F6F95FE6272A9C1D005202E2 /* NSManagedObject+CreateInContext.swift */,
 				F6F5C0E12743BA7F00282AD1 /* UITableView+RegCell.swift */,
 			);
@@ -875,6 +873,8 @@
 				F65891B2272FED40005C142B /* SettingsTableViewCell.swift in Sources */,
 				F6F95FE1272A8C5C005202E2 /* UserSettings+CoreDataProperties.swift in Sources */,
 				F66CB5CC273E56BA00F7C8C5 /* MonthSelectionTableViewCell.swift in Sources */,
+				F667AB712743D9640065E216 /* StoriesViewController.swift in Sources */,
+				F651F28C274519B9000C4178 /* StoriesTableViewCell.swift in Sources */,
 				F68A786A2726E49F00874F0B /* RoundButton.swift in Sources */,
 				835C1B87273246560033A9CE /* AddCAtegoryViewController+CollectionView.swift in Sources */,
 				832C4A94273AB7FB00F796CA /* AppearanceViewController.swift in Sources */,

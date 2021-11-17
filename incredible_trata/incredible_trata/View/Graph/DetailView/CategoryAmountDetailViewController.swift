@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 09.11.2021.
 //
 
-import Foundation
 import UIKit
 import Charts
 
@@ -31,7 +30,7 @@ class CategoryAmountDetailViewController: UIViewController {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.separatorStyle = .none
+        table.separatorColor = Color.mainBG
         table.backgroundColor = Color.mainBG
         return table
     }()

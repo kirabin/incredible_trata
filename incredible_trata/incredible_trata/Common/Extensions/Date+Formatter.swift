@@ -8,7 +8,6 @@
 import Foundation
 
 extension Date {
-
     /// Trims date by keeping only components from parameter
     /// - Parameter components: components to keep in date
     /// - Returns: Trimmed date

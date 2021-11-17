@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 29.10.2021.
 //  
 
-import Foundation
 import UIKit
 
 class SettingsViewController: UIViewController {
@@ -52,7 +51,7 @@ class SettingsViewController: UIViewController {
         let view = UITableView(frame: .zero, style: UITableView.Style.grouped)
         view.delegate = self
         view.dataSource = self
-        view.separatorStyle = .none
+        view.separatorColor = Color.mainBG
         view.backgroundColor = Color.mainBG
         return view
     }()

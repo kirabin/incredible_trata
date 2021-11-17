@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 03.11.2021.
 //
 
-import Foundation
 import UIKit
 
 class CurrencyTableViewCell: RoundedTableViewCell {
