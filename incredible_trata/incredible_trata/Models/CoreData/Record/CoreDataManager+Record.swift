@@ -57,6 +57,13 @@ extension CoreDataManager {
         return []
     }
 
+    func getRecords(dateInterval: DateInterval) -> [Record] {
+        let predicate = NSPredicate(format: "(%@ <= creationDate) AND (creationDate <= %@)",
+                                    argumentArray: [dateInterval.start, dateInterval.end])
+        let records = CoreDataManager.shared.getRecords(with: predicate)
+        return records
+    }
+
     func getLastRecordDate() -> Date? {
         let sortDescriptors = [NSSortDescriptor(key: #keyPath(Record.creationDate), ascending: false)]
         let records: [Record] = getRecords(sortDescriptors: sortDescriptors)

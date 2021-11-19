@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 08.11.2021.
 //
 
-import Foundation
 import UIKit
 
 protocol CalendarViewControllerDelegate: AnyObject {
@@ -264,16 +263,16 @@ class CalendarViewController: UIViewController {
 
     @objc
     func prevButtonTapped() {
-        updateRangeLabelWithAnimation(direction: .leftToRight, completion: {
+        updateRangeLabelWithAnimation(direction: .leftToRight) {
             self.dateRange.moveToPreviousRange()
-        })
+        }
     }
 
     @objc
     private func nextButtonTapped() {
-        updateRangeLabelWithAnimation(direction: .rightToLeft, completion: {
+        updateRangeLabelWithAnimation(direction: .rightToLeft) {
             self.dateRange.moveToNextRange()
-        })
+        }
     }
 
     private func updateRangeLabel() {

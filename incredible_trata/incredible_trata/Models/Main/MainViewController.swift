@@ -7,9 +7,9 @@
 
 import UIKit
 import CoreData
-import Foundation
 import MapKit
 
+// TODO: rows in sections are sorted in reverse order
 class MainViewController: UIViewController {
 
     // MARK: - Properties
@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
     let locationManager = CLLocationManager()
 
     // MARK: - Subviews
-    private lazy var bottomConstraint: NSLayoutConstraint = {
+    private lazy var addItemBarBottomConstraint: NSLayoutConstraint = {
         addItemBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
 
@@ -52,29 +52,23 @@ class MainViewController: UIViewController {
         return bar
     }()
 
-    private lazy var dateLabel: UILabel = {
-        let label = UILabel()
-        label.tintColor = Color.textBG
-        label.font = label.font.withSize(20)
-        return label
-    }()
-
     private lazy var monthSelectionButton: UIButton = {
         let image = UIImage(systemName: "chevron.down.circle.fill")
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
-        button.tintColor = .white
+        button.tintColor = Color.textBG
         button.semanticContentAttribute = .forceRightToLeft
-        button.titleLabel?.font = button.titleLabel?.font.withSize(25)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(23)
+        button.setTitleColor(Color.textBG, for: .normal)
         button.addTarget(self, action: #selector(monthSelectionButtonTapped), for: .touchUpInside)
         NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
+            button.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.headerButtonHeight)
         ])
         return button
     }()
 
     private lazy var settingsButton: UIButton = {
-        let button = RoundButton(with: UIImage(systemName: "gearshape"))
+        let button = RoundButton(with: UIImage(systemName: "gearshape"), size: Constants.headerButtonHeight)
         button.backgroundColor = Color.headerButtonBG
         button.tintColor = Color.textBG
         button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
@@ -82,12 +76,37 @@ class MainViewController: UIViewController {
     }()
 
     private lazy var graphButton: UIButton = {
-        let button = RoundButton(with: UIImage(systemName: "doc.plaintext"))
+        let button = RoundButton(with: UIImage(systemName: "doc.plaintext"), size: Constants.headerButtonHeight)
         button.backgroundColor = Color.headerButtonBG
         button.tintColor = Color.textBG
         button.addTarget(self, action: #selector(graphButtonTapped), for: .touchUpInside)
-        NSLayoutConstraint.activate([button.widthAnchor.constraint(equalToConstant: 60)])
         return button
+    }()
+
+    private lazy var storiesButton: UIButton = {
+        let button = RoundButton(with: UIImage(systemName: "dollarsign.circle.fill"),
+                                 size: Constants.headerButtonHeight)
+        button.backgroundColor = Color.headerButtonBG
+        button.tintColor = Color.textBG
+        button.addTarget(self, action: #selector(storiesButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var headerStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [
+            monthSelectionButton, storiesButton, graphButton, settingsButton
+        ])
+        monthSelectionButton.contentHorizontalAlignment = .left
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(
+            top: 15,
+            leading: 15,
+            bottom: 15,
+            trailing: 15
+        )
+        stack.distribution = .fill
+        stack.spacing = 7
+        return stack
     }()
 
     private lazy var customTableView: UITableView = {
@@ -116,9 +135,7 @@ class MainViewController: UIViewController {
         navigationItem.backButtonTitle = ""
         view.addSubview(customTableView)
         view.addSubview(addItemBar)
-        view.addSubview(settingsButton)
-        view.addSubview(graphButton)
-        view.addSubview(monthSelectionButton)
+        view.addSubview(headerStackView)
         setConstraints()
         setCategory()
         setNotificationCenter()
@@ -167,6 +184,11 @@ class MainViewController: UIViewController {
 
     // MARK: - Private Methods
     @objc
+    private func storiesButtonTapped() {
+        self.present(StoriesViewController(), animated: true)
+    }
+
+    @objc
     private func graphButtonTapped() {
         let graphViewController = GraphViewController(dateRange: dateRange)
         self.navigationController?.pushViewController(graphViewController, animated: true)
@@ -186,25 +208,18 @@ class MainViewController: UIViewController {
 
     private func setConstraints() {
         addItemBar.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        graphButton.translatesAutoresizingMaskIntoConstraints = false
-        monthSelectionButton.translatesAutoresizingMaskIntoConstraints = false
+        headerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bottomConstraint,
+            headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            addItemBarBottomConstraint,
             addItemBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             addItemBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            settingsButton.widthAnchor.constraint(equalToConstant: 60),
-            settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0),
-            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-
-            graphButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100.0),
-            graphButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-
-            monthSelectionButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            monthSelectionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 
             customTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0),
-            customTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130.0),
+            customTableView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor),
             customTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0),
             customTableView.bottomAnchor.constraint(equalTo: addItemBar.topAnchor, constant: 0)
         ])
@@ -215,14 +230,14 @@ class MainViewController: UIViewController {
         if let keyboardSize =
             (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
             .cgRectValue {
-            bottomConstraint.constant = -keyboardSize.height + view.safeAreaInsets.bottom
+            addItemBarBottomConstraint.constant = -keyboardSize.height + view.safeAreaInsets.bottom
             self.view.layoutIfNeeded()  // Updates layout with animation if needed
         }
     }
 
     @objc
     private func keyboardWillHide(notification: NSNotification) {
-        bottomConstraint.constant = 0
+        addItemBarBottomConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
 
@@ -237,10 +252,7 @@ class MainViewController: UIViewController {
     }
 
     private func updateRecords() {
-        let predicate = NSPredicate(format: "(%@ <= creationDate) AND (creationDate <= %@)",
-                                    argumentArray: [dateRange.dateInterval.start, dateRange.dateInterval.end])
-
-        records = CoreDataManager.shared.getRecords(with: predicate)
+        records = CoreDataManager.shared.getRecords(dateInterval: dateRange.dateInterval)
         if records.isEmpty {
             if let lastRecordDate = CoreDataManager.shared.getLastRecordDate() {
                 dateRange = .month(lastRecordDate)
@@ -368,5 +380,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: MonthSelectionViewControllerDelegate {
     func monthWasSelected(selectedDate: Date) {
         dateRange = .month(selectedDate)
+    }
+}
+
+// MARK: - Constants
+extension MainViewController {
+    private enum Constants {
+        static let headerButtonHeight: CGFloat = 45
     }
 }

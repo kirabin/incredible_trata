@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 26.10.2021.
 //
 
-import Foundation
 import UIKit
 
 class AddItemBarTextField: UITextField {

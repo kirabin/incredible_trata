@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 25.10.2021.
 //
 
-import Foundation
 import UIKit
 
 class RoundButton: UIButton {
@@ -24,6 +23,14 @@ class RoundButton: UIButton {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    convenience init(with image: UIImage? = nil, size: CGFloat) {
+        self.init(with: image)
+
+        NSLayoutConstraint.activate([
+            self.widthAnchor.constraint(equalToConstant: size)
+        ])
     }
 
     // MARK: - Lifecycle

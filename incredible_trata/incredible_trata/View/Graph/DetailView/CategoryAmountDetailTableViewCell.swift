@@ -5,7 +5,6 @@
 //  Created by Ryabin Kirill on 09.11.2021.
 //  
 
-import Foundation
 import UIKit
 
 class CategoryAmountDetailTableViewCell: UITableViewCell {

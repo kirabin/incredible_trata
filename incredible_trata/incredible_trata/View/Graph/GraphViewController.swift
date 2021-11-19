@@ -5,31 +5,18 @@
 //  Created by Ryabin Kirill on 08.11.2021.
 //
 
-import Foundation
 import UIKit
 import Charts
 
 class GraphViewController: UIViewController {
 
-    let colors: [UIColor] = [.orange, .yellow, .green, .blue, .cyan, .magenta]
-
-    init(dateRange: DateRange) {
-        self.dateRange = dateRange
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Private Properties
+    private let colors: [UIColor] = [.orange, .yellow, .green, .blue, .cyan, .magenta]
 
     private var dateRange: DateRange {
         didSet {
             dateRangeChanged()
         }
-    }
-
-    func dateRangeChanged() {
-        updateRecords()
     }
 
     private lazy var categoriesWithAmount: [(category: Category, amount: Int64)] = [] {
@@ -54,82 +41,6 @@ class GraphViewController: UIViewController {
         }
     }
 
-    private func recordsChanged() {
-        groupRecords()
-        updateCharts()
-        updatePieCharts()
-        title = dateRange.title
-        summaryLabel.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(getAmount(for: records))"
-    }
-
-    private func groupRecords() {
-        // TODO: force unwrap
-        var groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
-        for (category, records) in groupedRecords {
-            var category = category
-            while let parentCategory = category.parentCategory {
-                groupedRecords[category] = nil
-                if groupedRecords[parentCategory] != nil {
-                    groupedRecords[parentCategory]?.append(contentsOf: records)
-                } else {
-                    groupedRecords[parentCategory] = records
-                }
-                category = parentCategory
-            }
-        }
-        self.groupedRecords = groupedRecords
-    }
-
-    private func updateRecords() {
-        let predicate = NSPredicate(format: "(%@ <= creationDate) AND (creationDate <= %@)",
-                                    argumentArray: [dateRange.dateInterval.start, dateRange.dateInterval.end])
-        records = CoreDataManager.shared.getRecords(with: predicate)
-    }
-
-    func getAmount(for records: [Record]) -> Int64 {
-        var amount: Int64 = 0
-        for record in records {
-            amount += record.amount
-        }
-        return amount
-    }
-
-    private lazy var dateButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "calendar")
-        let button = UIBarButtonItem(image: image,
-                                     style: .plain,
-                                     target: self,
-                                     action: #selector(dateButtonWasTapped))
-        return button
-    }()
-
-    @objc
-    func dateButtonWasTapped() {
-        let calendarViewController = CalendarViewController(
-            delegate: self,
-            dateRange: dateRange
-        )
-        self.present(calendarViewController, animated: true)
-    }
-
-    private lazy var changeChartButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "chart.bar.xaxis")
-        let button = UIBarButtonItem(image: image,
-                                     style: .plain,
-                                     target: self,
-                                     action: #selector(changeChartButtonAction))
-        return button
-    }()
-
-    @objc
-    func changeChartButtonAction() {
-        if style == .bar {
-            style = .pie
-        } else {
-            style = .bar
-        }
-    }
-
     private var style: ChartStyle = .bar {
         didSet {
             switch style {
@@ -144,6 +55,25 @@ class GraphViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - Subviews
+    private lazy var dateButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "calendar")
+        let button = UIBarButtonItem(image: image,
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(dateButtonWasTapped))
+        return button
+    }()
+
+    private lazy var changeChartButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "chart.bar.xaxis")
+        let button = UIBarButtonItem(image: image,
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(changeChartButtonAction))
+        return button
+    }()
 
     private lazy var summaryLabel: UILabel = {
         var label = UILabel()
@@ -182,6 +112,17 @@ class GraphViewController: UIViewController {
         return view
     }()
 
+    // MARK: - Initialization
+    init(dateRange: DateRange) {
+        self.dateRange = dateRange
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view = UIView()
@@ -195,7 +136,76 @@ class GraphViewController: UIViewController {
         dateRangeChanged()
     }
 
-    func setConstrainst() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // TODO: try updating just one (changed date, or amount)
+        updateRecords()
+        categorySummary.reloadData()
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+
+    // MARK: - Private Methods
+    private func dateRangeChanged() {
+        updateRecords()
+    }
+
+    private func recordsChanged() {
+        groupRecords()
+        updateCharts()
+        updatePieCharts()
+        title = dateRange.title
+        summaryLabel.text = "\(CoreDataManager.shared.getUserSelectedCurrencySymbol())\(getAmount(for: records))"
+    }
+
+    private func groupRecords() {
+        // TODO: force unwrap
+        var groupedRecords = Dictionary.init(grouping: records, by: { $0.category! })
+        for (category, records) in groupedRecords {
+            var category = category
+            while let parentCategory = category.parentCategory {
+                groupedRecords[category] = nil
+                if groupedRecords[parentCategory] != nil {
+                    groupedRecords[parentCategory]?.append(contentsOf: records)
+                } else {
+                    groupedRecords[parentCategory] = records
+                }
+                category = parentCategory
+            }
+        }
+        self.groupedRecords = groupedRecords
+    }
+
+    private func updateRecords() {
+        records = CoreDataManager.shared.getRecords(dateInterval: dateRange.dateInterval)
+    }
+
+    private func getAmount(for records: [Record]) -> Int64 {
+        var amount: Int64 = 0
+        for record in records {
+            amount += record.amount
+        }
+        return amount
+    }
+
+    @objc
+    private func dateButtonWasTapped() {
+        let calendarViewController = CalendarViewController(
+            delegate: self,
+            dateRange: dateRange
+        )
+        self.present(calendarViewController, animated: true)
+    }
+
+    @objc
+    private func changeChartButtonAction() {
+        if style == .bar {
+            style = .pie
+        } else {
+            style = .bar
+        }
+    }
+
+    private func setConstrainst() {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         categorySummary.translatesAutoresizingMaskIntoConstraints = false
         summaryLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -225,16 +235,9 @@ class GraphViewController: UIViewController {
             pieChartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // TODO: try updating just one (changed date, or amount)
-        updateRecords()
-        categorySummary.reloadData()
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-    }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension GraphViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -269,20 +272,14 @@ extension GraphViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Constants
-extension GraphViewController {
-    private enum Constants {
-        static let cellReuseIdentifier = "graphCell"
-        static let padding: CGFloat = 15
-    }
-}
-
+// MARK: - CalendarViewControllerDelegate
 extension GraphViewController: CalendarViewControllerDelegate {
     func updateDateRange(for dateRange: DateRange) {
         self.dateRange = dateRange
     }
 }
 
+// MARK: - ChartViewDelegate, AxisValueFormatter
 extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         "\(Int(value))"
@@ -324,9 +321,18 @@ extension GraphViewController: ChartViewDelegate, AxisValueFormatter {
     }
 }
 
+// MARK: - ChartStyle
 extension GraphViewController {
     enum ChartStyle {
         case bar
         case pie
+    }
+}
+
+// MARK: - Constants
+extension GraphViewController {
+    private enum Constants {
+        static let cellReuseIdentifier = "graphCell"
+        static let padding: CGFloat = 15
     }
 }
