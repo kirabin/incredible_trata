@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202CCAD81867C48D757FB7E8 /* Pods_incredible_trata_incredible_trataUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDB8C298BFDC7AE640DB25F /* Pods_incredible_trata_incredible_trataUITests.framework */; };
 		832C4A94273AB7FB00F796CA /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4A93273AB7FB00F796CA /* AppearanceViewController.swift */; };
 		832C4A98273AEF6800F796CA /* AppearanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4A97273AEF6800F796CA /* AppearanceTableViewCell.swift */; };
 		832C4A9E273CE89400F796CA /* AppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C4A9D273CE89400F796CA /* AppearanceSection.swift */; };
@@ -27,6 +28,8 @@
 		83EFF9D4272EB21200F133A2 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D3272EB21200F133A2 /* CategoryTableViewCell.swift */; };
 		83EFF9D6272EB52A00F133A2 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */; };
 		83EFF9E127303E4F00F133A2 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */; };
+		B5112D834477394D35B90605 /* Pods_incredible_trataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5834744FCE53F615CF7507 /* Pods_incredible_trataTests.framework */; };
+		B9E3F535496174D5FD737AF1 /* Pods_incredible_trata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B5515C692D210E7662CB444 /* Pods_incredible_trata.framework */; };
 		EA3F493C27268C9D0055292D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493B27268C9D0055292D /* AppDelegate.swift */; };
 		EA3F493E27268C9D0055292D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3F493D27268C9D0055292D /* SceneDelegate.swift */; };
 		EA3F494627268C9D0055292D /* incredible_trata.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA3F494427268C9D0055292D /* incredible_trata.xcdatamodeld */; };
@@ -113,8 +116,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B5515C692D210E7662CB444 /* Pods_incredible_trata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_incredible_trata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFA753BC6D4C161C2EF65CC /* Pods-incredible_trata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata.release.xcconfig"; path = "Target Support Files/Pods-incredible_trata/Pods-incredible_trata.release.xcconfig"; sourceTree = "<group>"; };
 		42EB509ADC71B766F9422320 /* Pods-incredible_trata-incredible_trataUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata-incredible_trataUITests.debug.xcconfig"; path = "Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FDB8C298BFDC7AE640DB25F /* Pods_incredible_trata_incredible_trataUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_incredible_trata_incredible_trataUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E3599531B0DDDFE1B767E7 /* Pods-incredible_trata-incredible_trataUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata-incredible_trataUITests.release.xcconfig"; path = "Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests.release.xcconfig"; sourceTree = "<group>"; };
 		832C4A93273AB7FB00F796CA /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		832C4A97273AEF6800F796CA /* AppearanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 		83EFF9D5272EB52A00F133A2 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		83EFF9E027303E4F00F133A2 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		84563E1EEA56988EF14245C0 /* Pods-incredible_trataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trataTests.debug.xcconfig"; path = "Target Support Files/Pods-incredible_trataTests/Pods-incredible_trataTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8A5834744FCE53F615CF7507 /* Pods_incredible_trataTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_incredible_trataTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4B66DC3960FF4D4B5763C7 /* Pods-incredible_trataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trataTests.release.xcconfig"; path = "Target Support Files/Pods-incredible_trataTests/Pods-incredible_trataTests.release.xcconfig"; sourceTree = "<group>"; };
 		E871F4CF70D501444262CC78 /* Pods-incredible_trata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incredible_trata.debug.xcconfig"; path = "Target Support Files/Pods-incredible_trata/Pods-incredible_trata.debug.xcconfig"; sourceTree = "<group>"; };
 		EA3F493827268C9D0055292D /* incredible_trata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = incredible_trata.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6A9BB762739026400A51108 /* Charts in Frameworks */,
+				B9E3F535496174D5FD737AF1 /* Pods_incredible_trata.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5112D834477394D35B90605 /* Pods_incredible_trataTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,12 +218,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				202CCAD81867C48D757FB7E8 /* Pods_incredible_trata_incredible_trataUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A52C77952B68FF46E8D8A60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B5515C692D210E7662CB444 /* Pods_incredible_trata.framework */,
+				4FDB8C298BFDC7AE640DB25F /* Pods_incredible_trata_incredible_trataUITests.framework */,
+				8A5834744FCE53F615CF7507 /* Pods_incredible_trataTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8329D9032726B34B000949BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +329,7 @@
 				EA3F495E27268CA00055292D /* incredible_trataUITests */,
 				EA3F493927268C9D0055292D /* Products */,
 				E35C38F397E54A2EC80840B4 /* Pods */,
+				2A52C77952B68FF46E8D8A60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -585,6 +605,7 @@
 				EA3F493527268C9D0055292D /* Frameworks */,
 				EA3F493627268C9D0055292D /* Resources */,
 				832AA82E273E9D5600F1CA0C /* Run Script */,
+				C264710FA9F4416C0755ADF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -626,6 +647,7 @@
 				EA3F495727268CA00055292D /* Sources */,
 				EA3F495827268CA00055292D /* Frameworks */,
 				EA3F495927268CA00055292D /* Resources */,
+				63D242BCE585CA6904159CAA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -670,7 +692,7 @@
 			);
 			mainGroup = EA3F492F27268C9D0055292D;
 			packageReferences = (
-				F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts" */,
+				F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts.git" */,
 			);
 			productRefGroup = EA3F493927268C9D0055292D /* Products */;
 			projectDirPath = "";
@@ -762,6 +784,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		63D242BCE585CA6904159CAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-incredible_trata-incredible_trataUITests/Pods-incredible_trata-incredible_trataUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		832AA82E273E9D5600F1CA0C /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -778,7 +817,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" --config .swiftlint.yml\n";
 		};
 		BC59E1D5BF97C3D860ABD291 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -800,6 +839,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C264710FA9F4416C0755ADF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-incredible_trata/Pods-incredible_trata-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-incredible_trata/Pods-incredible_trata-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-incredible_trata/Pods-incredible_trata-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D097105013E56E188B9D3DD4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1250,7 +1306,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts" */ = {
+		F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
@@ -1263,7 +1319,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		F6A9BB752739026400A51108 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts" */;
+			package = F6A9BB742739026400A51108 /* XCRemoteSwiftPackageReference "Charts.git" */;
 			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */

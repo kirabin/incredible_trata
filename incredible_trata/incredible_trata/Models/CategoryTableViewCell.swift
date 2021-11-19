@@ -63,16 +63,18 @@ final class CategoryTableViewCell: RoundedTableViewCell {
 
     var category: Category? {
         didSet {
-            let imageName = UIImage(systemName: category?.imageName ?? "")
-            logoImageView.image = imageName
+            guard let category = category else {
+                return
+            }
+            logoImageView.image = UIImage(systemName: category.imageName ?? "")
             logoImageView.translatesAutoresizingMaskIntoConstraints = false
             logoImageView.contentMode = .scaleAspectFit
             logoImageView.tintColor = Color.textBG
-            titleLabel.text = category?.lableName
-            if category?.nestedCategories?.count ?? 0 != 0 {
+            titleLabel.text = category.lableName
+            if !category.nestedCategoriesArray.isEmpty {
                 isParentCategory = true
             }
-            if category?.parentCategory != nil && showNestedArrow {
+            if category.parentCategory != nil && showNestedArrow {
                 horizontalStackView.directionalLayoutMargins.leading = 15
             }
         }

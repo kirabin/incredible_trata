@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 extension Category {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
         return NSFetchRequest<Category>(entityName: "Category")
     }
@@ -22,11 +21,13 @@ extension Category {
     @NSManaged public var nestedCategories: NSSet?
     @NSManaged public var parentCategory: Category?
 
+    var nestedCategoriesArray: [Category] {
+        self.nestedCategories?.allObjects as? [Category] ?? []
+    }
 }
 
 // MARK: Generated accessors for records
 extension Category {
-
     @objc(addRecordsObject:)
     @NSManaged public func addToRecords(_ value: Record)
 
@@ -42,7 +43,6 @@ extension Category {
 
 // MARK: Generated accessors for nestedCategories
 extension Category {
-
     @objc(addNestedCategoriesObject:)
     @NSManaged public func addToNestedCategories(_ value: Category)
 
@@ -54,9 +54,6 @@ extension Category {
 
     @objc(removeNestedCategories:)
     @NSManaged public func removeFromNestedCategories(_ values: NSSet)
-
 }
 
-extension Category: Identifiable {
-
-}
+extension Category: Identifiable {}

@@ -39,7 +39,7 @@ class CategoriesViewController: UIViewController {
     private func setCategories() {
         if let category = parentCategory {
             categories = [category]
-            categories.append(contentsOf: category.nestedCategories?.allObjects as? [Category] ?? [])
+            categories.append(contentsOf: category.nestedCategoriesArray)
         } else {
             let predicate = NSPredicate(format: "parentCategory = nil")
             categories = CoreDataManager.shared.getCategories(with: predicate)
@@ -112,7 +112,7 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categories[indexPath.row]
-        if self.parentCategory == category || category.nestedCategories?.count == 0 {
+        if self.parentCategory == category || category.nestedCategoriesArray.isEmpty {
             delegate?.categoryWasSelected(category: category)
             self.dismiss(animated: true, completion: nil)
         } else {
