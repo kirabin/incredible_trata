@@ -73,7 +73,6 @@ opt_in_rules: # some rules are only opt-in
   - fatal_error_message
   - file_length
   - file_name
-  #- file_types_order
   - first_where
   - for_where
   - force_try
@@ -182,6 +181,7 @@ included: # paths to include during linting. `--path` is ignored if present.
   - SNStorages
   - SNDomain
   - SNLog
+  - incredible_trata
 
 excluded:
   - Pods
@@ -233,5 +233,3 @@ function_parameter_count:
 #   severity: warning
 
 reporter: "xcode"
-
-warning_threshold: 1

@@ -17,4 +17,6 @@ target 'incredible_trata' do
   end
 
 	pod 'SwiftLint'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
