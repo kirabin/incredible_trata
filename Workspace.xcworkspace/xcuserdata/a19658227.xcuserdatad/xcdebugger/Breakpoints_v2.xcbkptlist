@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "FD65DA6C-2163-433B-968F-1D4B66975793"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "GraphViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE - 8756adaf6394a43b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "incredible_trata.GraphViewController.categories.getter : Swift.Array&lt;incredible_trata.Category&gt;"
+                  moduleName = "incredible_trata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a19658227/incredible_trata/incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE - c0e0e4d241353cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "incredible_trata.GraphViewController.categories.setter : Swift.Array&lt;incredible_trata.Category&gt;"
+                  moduleName = "incredible_trata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a19658227/incredible_trata/incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "121">
+               </Location>
+               <Location
+                  uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE - 5317e0305b5e2cea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "incredible_trata.GraphViewController.categories.modify : Swift.Array&lt;incredible_trata.Category&gt;"
+                  moduleName = "incredible_trata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a19658227/incredible_trata/incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE - 8367aeb8b35fdb7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "incredible_trata.GraphViewController.categories.modify : Swift.Array&lt;incredible_trata.Category&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "incredible_trata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a19658227/incredible_trata/incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "17">
+               </Location>
+               <Location
+                  uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE - 61b4907c3da0dbab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "incredible_trata.GraphViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; incredible_trata.GraphViewController"
+                  moduleName = "incredible_trata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a19658227/incredible_trata/incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "141">
+               </Location>
+               <Location
+                  uuid = "45223E31-69BF-4DD2-B5D7-BDF8F604B5CE - 558fc76b7596cfe9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "incredible_trata.GraphViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;incredible_trata.GraphViewController&gt;"
+                  moduleName = "incredible_trata"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a19658227/incredible_trata/incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "98">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DEB1B6AA-B60A-494F-9B98-BDAB71FE7676"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "incredible_trata/incredible_trata/View/Graph/GraphViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
